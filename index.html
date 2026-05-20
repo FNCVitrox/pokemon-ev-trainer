@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-20-team-tools" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-20-item-view" />
   </head>
   <body>
     <main class="app-shell">
@@ -15,13 +15,17 @@
           <p class="hero-copy" id="appSubtitle">Plane Builds, tracke EVs und trainiere schneller in Feuerrot / Blattgrün.</p>
         </div>
         <div class="top-actions">
+          <div class="view-tabs" aria-label="App Navigation">
+            <button class="view-tab active" id="trainerViewButton" type="button">Trainer</button>
+            <button class="view-tab" id="itemsViewButton" type="button">Items</button>
+          </div>
           <button class="ghost-button" id="tutorialButton" type="button">Tutorial</button>
           <button class="ghost-button" id="languageButton" type="button">EN</button>
           <button class="ghost-button" id="resetButton" type="button">Reset</button>
         </div>
       </header>
 
-      <section class="trainer-grid" aria-label="EV Trainer Dashboard">
+      <section class="app-view trainer-grid active" id="trainerView" aria-label="EV Trainer Dashboard">
         <div class="panel team-panel">
           <div class="section-heading compact-heading">
             <div>
@@ -149,6 +153,28 @@
           <div id="moveHelpContent"></div>
         </div>
       </section>
+
+      <section class="app-view items-view" id="itemsView" aria-label="Item Fundorte">
+        <div class="panel item-guide-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Items</p>
+              <h2 id="itemsTitle">Item-Fundorte</h2>
+              <p class="muted item-intro" id="itemsIntro">Wichtige Feuerrot / Blattgrün Items fürs EV-Training und Builds.</p>
+            </div>
+          </div>
+
+          <div class="item-toolbar">
+            <label>
+              <span id="itemSearchLabel">Item suchen</span>
+              <input id="itemSearch" type="search" placeholder="z.B. Machoband, Überreste..." autocomplete="off" />
+            </label>
+            <div id="itemFilters" class="filter-row item-filter-row" aria-label="Item Filter"></div>
+          </div>
+
+          <div id="itemCards" class="item-card-grid"></div>
+        </div>
+      </section>
     </main>
 
     <div class="tutorial-modal" id="tutorialModal" hidden>
@@ -165,6 +191,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-20-team-tools"></script>
+    <script src="app.js?v=2026-05-20-item-view"></script>
   </body>
 </html>

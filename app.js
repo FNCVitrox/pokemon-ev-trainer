@@ -11,7 +11,23 @@ const i18n = {
   de: {
     languageButton: "EN",
     reset: "Reset",
+    navTrainer: "Trainer",
+    navItems: "Items",
     subtitle: "Plane Builds, tracke EVs und trainiere schneller in Feuerrot / Blattgrün.",
+    itemsTitle: "Item-Fundorte",
+    itemsIntro: "Wichtige Feuerrot / Blattgrün Items fürs EV-Training und Builds.",
+    itemSearch: "Item suchen",
+    itemSearchPlaceholder: "z.B. Machoband, Überreste...",
+    itemAll: "Alle",
+    itemCategoryEv: "EV-Training",
+    itemCategoryVitamin: "Vitamine",
+    itemCategoryBattle: "Kampf",
+    itemCategoryUtility: "Utility",
+    itemCategoryBuild: "Build",
+    itemLocation: "Fundort",
+    itemEffect: "Effekt",
+    itemNote: "Hinweis",
+    itemNoResults: "Keine Items gefunden.",
     search: "Suche",
     searchPlaceholder: "z.B. Glurak, Pikachu, Mewtu...",
     pokemon: "Pokémon",
@@ -86,7 +102,23 @@ const i18n = {
   en: {
     languageButton: "DE",
     reset: "Reset",
+    navTrainer: "Trainer",
+    navItems: "Items",
     subtitle: "Plan builds, track EVs, and train faster in FireRed / LeafGreen.",
+    itemsTitle: "Item locations",
+    itemsIntro: "Important FireRed / LeafGreen items for EV training and builds.",
+    itemSearch: "Search item",
+    itemSearchPlaceholder: "e.g. Macho Brace, Leftovers...",
+    itemAll: "All",
+    itemCategoryEv: "EV training",
+    itemCategoryVitamin: "Vitamins",
+    itemCategoryBattle: "Battle",
+    itemCategoryUtility: "Utility",
+    itemCategoryBuild: "Build",
+    itemLocation: "Location",
+    itemEffect: "Effect",
+    itemNote: "Note",
+    itemNoResults: "No items found.",
     search: "Search",
     searchPlaceholder: "e.g. Charizard, Pikachu, Mewtwo...",
     pokemon: "Pokémon",
@@ -1578,6 +1610,90 @@ const pokemon = kantoPokemon.map(([id, name, types], index) => ({
   target: { ...getRecommendedTarget(types, id) }
 }));
 
+const itemGuide = [
+  {
+    category: "ev",
+    de: { name: "Machoband", location: "Vertania-Arena: nach Giovanni mit dem Itemfinder auf seinem Platz suchen.", effect: "Verdoppelt alle erhaltenen EVs, senkt im Kampf aber die Initiative des Trägers.", note: "Stackt mit Pokérus zu x4 EVs." },
+    en: { name: "Macho Brace", location: "Viridian Gym: after Giovanni, use the Itemfinder on the exact spot where he stood.", effect: "Doubles all EVs gained, but lowers the holder's Speed in battle.", note: "Stacks with Pokerus for x4 EVs." }
+  },
+  {
+    category: "ev",
+    de: { name: "EP-Teiler", location: "Route 15: Professor Eichs Assistent im Obergeschoss, wenn du 50 Pokémon im Pokédex hast.", effect: "Pokémon bekommt EP und dadurch auch die EVs des besiegten Gegners.", note: "Gut, wenn ein schwaches Teammitglied EVs bekommen soll." },
+    en: { name: "Exp. Share", location: "Route 15: Professor Oak's aide upstairs after you have 50 Pokemon registered.", effect: "The holder gains EXP and therefore also receives EVs from the defeated enemy.", note: "Good when a weaker team member should receive EVs." }
+  },
+  {
+    category: "vitamin",
+    stat: "hp",
+    de: { name: "KP-Plus", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 KP-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Spart frühes EV-Training." },
+    en: { name: "HP Up", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 HP EVs while the stat is still below the vitamin limit.", note: "Saves early EV training time." }
+  },
+  {
+    category: "vitamin",
+    stat: "atk",
+    de: { name: "Protein", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Angriffs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Für physische Angreifer." },
+    en: { name: "Protein", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Attack EVs while the stat is still below the vitamin limit.", note: "For physical attackers." }
+  },
+  {
+    category: "vitamin",
+    stat: "def",
+    de: { name: "Eisen", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Verteidigungs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Für defensivere Builds." },
+    en: { name: "Iron", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Defense EVs while the stat is still below the vitamin limit.", note: "For bulkier builds." }
+  },
+  {
+    category: "vitamin",
+    stat: "spa",
+    de: { name: "Kalzium", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Sp.-Angriffs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Für Spezial-Angreifer." },
+    en: { name: "Calcium", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Sp. Atk EVs while the stat is still below the vitamin limit.", note: "For special attackers." }
+  },
+  {
+    category: "vitamin",
+    stat: "spd",
+    de: { name: "Zink", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Sp.-Verteidigungs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Nützlich für Tanks und Wasser/Eis-Matchups." },
+    en: { name: "Zinc", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Sp. Def EVs while the stat is still below the vitamin limit.", note: "Useful for tanks and Water/Ice matchups." }
+  },
+  {
+    category: "vitamin",
+    stat: "spe",
+    de: { name: "Carbon", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Initiative-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Sehr gut für schnelle Story-Sweeper." },
+    en: { name: "Carbos", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Speed EVs while the stat is still below the vitamin limit.", note: "Very good for fast story sweepers." }
+  },
+  {
+    category: "battle",
+    de: { name: "Überreste", location: "Route 12 und Route 16: mit Itemfinder an den Relaxo-Plätzen suchen.", effect: "Heilt jede Runde 1/16 der maximalen KP.", note: "Eines der besten Story-Items für lange Kämpfe." },
+    en: { name: "Leftovers", location: "Route 12 and Route 16: use the Itemfinder on the Snorlax spots.", effect: "Restores 1/16 of max HP every turn.", note: "One of the best story items for long battles." }
+  },
+  {
+    category: "utility",
+    de: { name: "Münzamulett", location: "Route 16: Professor Eichs Assistent, wenn du 40 Pokémon im Pokédex hast.", effect: "Verdoppelt das Preisgeld, wenn der Träger am Kampf teilnimmt.", note: "Sehr gut, um Vitamine zu finanzieren." },
+    en: { name: "Amulet Coin", location: "Route 16: Professor Oak's aide after you have 40 Pokemon registered.", effect: "Doubles prize money if the holder joins the battle.", note: "Great for funding vitamins." }
+  },
+  {
+    category: "utility",
+    de: { name: "Sanftglocke", location: "Pokémon-Turm: mit Itemfinder an dem Ort suchen, an dem Mr. Fuji stand.", effect: "Erhöht Freundschaft schneller.", note: "Praktisch für Rückkehr." },
+    en: { name: "Soothe Bell", location: "Pokemon Tower: use the Itemfinder where Mr. Fuji stood.", effect: "Raises friendship faster.", note: "Useful for Return." }
+  },
+  {
+    category: "build",
+    de: { name: "Schwarzgurt", location: "Mit Raub/Dieb von bestimmten Trainern, z.B. Kampf-Dojo, Vertania-Arena, Route 15 oder Siegesstraße.", effect: "Verstärkt Kampf-Attacken.", note: "Kein normaler Geschenk-Pickup. Vor dem Trainerkampf Dieb/Raub planen." },
+    en: { name: "Black Belt", location: "Steal it with Thief/Covet from specific trainers, e.g. Fighting Dojo, Viridian Gym, Route 15 or Victory Road.", effect: "Boosts Fighting-type moves.", note: "Not a normal gift pickup. Plan Thief/Covet before the trainer battle." }
+  },
+  {
+    category: "build",
+    de: { name: "Schattenglas", location: "Rocket-Versteck in Prismania City.", effect: "Verstärkt Unlicht-Attacken.", note: "Nützlich für Biss/Verfolgung-Coverage." },
+    en: { name: "BlackGlasses", location: "Rocket Hideout in Celadon City.", effect: "Boosts Dark-type moves.", note: "Useful for Bite/Pursuit coverage." }
+  },
+  {
+    category: "build",
+    de: { name: "Bannsticker", location: "Wildes Alpollo im Pokémon-Turm oder Lost Cave kann ihn selten tragen. Mit Raub/Dieb holen.", effect: "Verstärkt Geist-Attacken.", note: "Für Gengar/Alpollo mit Spukball." },
+    en: { name: "Spell Tag", location: "Wild Haunter in Pokemon Tower or Lost Cave can rarely hold it. Take it with Thief/Covet.", effect: "Boosts Ghost-type moves.", note: "For Gengar/Haunter with Shadow Ball." }
+  },
+  {
+    category: "build",
+    de: { name: "Metallmantel", location: "Eiland 5: Gedenksäule.", effect: "Verstärkt Stahl-Attacken.", note: "Auch wichtig für bestimmte Entwicklungen in späteren Games." },
+    en: { name: "Metal Coat", location: "Five Island: Memorial Pillar.", effect: "Boosts Steel-type moves.", note: "Also important for certain evolutions in later games." }
+  }
+];
+
 const blankEvs = () => ({ hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 });
 const teamDefaultPokemon = [0, 3, 6, 24, 5, 142];
 
@@ -1617,6 +1733,8 @@ const enemies = [
 
 const state = {
   lang: "de",
+  currentView: "trainer",
+  selectedItemFilter: "all",
   selectedTeamSlot: 0,
   teamSlots: Array.from({ length: 6 }, (_, index) => createTeamSlot(index)),
   selectedPokemon: 0,
@@ -1639,8 +1757,18 @@ const elements = {
   tutorialTitle: document.querySelector("#tutorialTitle"),
   tutorialCloseButton: document.querySelector("#tutorialCloseButton"),
   tutorialContent: document.querySelector("#tutorialContent"),
+  trainerViewButton: document.querySelector("#trainerViewButton"),
+  itemsViewButton: document.querySelector("#itemsViewButton"),
+  trainerView: document.querySelector("#trainerView"),
+  itemsView: document.querySelector("#itemsView"),
   languageButton: document.querySelector("#languageButton"),
   appSubtitle: document.querySelector("#appSubtitle"),
+  itemsTitle: document.querySelector("#itemsTitle"),
+  itemsIntro: document.querySelector("#itemsIntro"),
+  itemSearchLabel: document.querySelector("#itemSearchLabel"),
+  itemSearch: document.querySelector("#itemSearch"),
+  itemFilters: document.querySelector("#itemFilters"),
+  itemCards: document.querySelector("#itemCards"),
   teamTitle: document.querySelector("#teamTitle"),
   resetSlotButton: document.querySelector("#resetSlotButton"),
   exportTeamButton: document.querySelector("#exportTeamButton"),
@@ -1701,6 +1829,8 @@ function loadState() {
   try {
     const parsed = JSON.parse(saved);
     state.lang = parsed.lang ?? "de";
+    state.currentView = parsed.currentView === "items" ? "items" : "trainer";
+    state.selectedItemFilter = parsed.selectedItemFilter ?? "all";
     state.selectedPokemon = parsed.selectedPokemon ?? 0;
     state.selectedVersion = parsed.selectedVersion ?? 0;
     state.selectedNature = parsed.selectedNature ?? "timid";
@@ -1817,6 +1947,16 @@ function getNatureLabel(nature) {
 function getNatureEffect(nature) {
   if (!nature.plus || !nature.minus) return t("neutralNature");
   return `+${getStatLabel(nature.plus)} / -${getStatLabel(nature.minus)}`;
+}
+
+function getItemCategoryLabel(category) {
+  return {
+    ev: t("itemCategoryEv"),
+    vitamin: t("itemCategoryVitamin"),
+    battle: t("itemCategoryBattle"),
+    utility: t("itemCategoryUtility"),
+    build: t("itemCategoryBuild")
+  }[category] ?? category;
 }
 
 function formatNatureText(text) {
@@ -1997,6 +2137,10 @@ function getEnemyPlace(enemy) {
   return state.lang === "en" ? enemy.placeEn ?? enemy.place : enemy.place;
 }
 
+function getGuideItemText(item) {
+  return item[state.lang] ?? item.de;
+}
+
 function createExportPayload() {
   syncActiveTeamSlot();
   return {
@@ -2031,6 +2175,8 @@ function decodeTeamCode(code) {
 
 function renderLanguage() {
   document.documentElement.lang = state.lang;
+  elements.trainerViewButton.textContent = t("navTrainer");
+  elements.itemsViewButton.textContent = t("navItems");
   elements.tutorialButton.textContent = t("tutorialButton");
   elements.tutorialEyebrow.textContent = t("tutorialEyebrow");
   elements.tutorialTitle.textContent = t("tutorialTitle");
@@ -2038,6 +2184,10 @@ function renderLanguage() {
   elements.languageButton.textContent = t("languageButton");
   elements.resetButton.textContent = t("reset");
   elements.appSubtitle.textContent = t("subtitle");
+  elements.itemsTitle.textContent = t("itemsTitle");
+  elements.itemsIntro.textContent = t("itemsIntro");
+  elements.itemSearchLabel.textContent = t("itemSearch");
+  elements.itemSearch.placeholder = t("itemSearchPlaceholder");
   elements.teamTitle.textContent = t("teamTitle");
   elements.resetSlotButton.textContent = t("resetSlot");
   elements.searchLabel.textContent = t("search");
@@ -2065,6 +2215,14 @@ function renderTrainingHelp() {
     <strong>${t("multiplier")}: x${getMultiplier()}</strong>
     <span>${isTrainingComplete() ? t("trainingComplete") : t("trainingHelp")}</span>
   `;
+}
+
+function renderView() {
+  const isItems = state.currentView === "items";
+  elements.trainerView.classList.toggle("active", !isItems);
+  elements.itemsView.classList.toggle("active", isItems);
+  elements.trainerViewButton.classList.toggle("active", !isItems);
+  elements.itemsViewButton.classList.toggle("active", isItems);
 }
 
 function renderStatFilters() {
@@ -2711,8 +2869,71 @@ function renderTrainingPlan() {
   `;
 }
 
+function renderItemFilters() {
+  const filters = [
+    ["all", t("itemAll")],
+    ["ev", t("itemCategoryEv")],
+    ["vitamin", t("itemCategoryVitamin")],
+    ["battle", t("itemCategoryBattle")],
+    ["build", t("itemCategoryBuild")],
+    ["utility", t("itemCategoryUtility")]
+  ];
+
+  elements.itemFilters.innerHTML = filters
+    .map(([key, label]) => `
+      <button class="filter-button${state.selectedItemFilter === key ? " active" : ""}" type="button" data-item-filter="${key}">
+        ${label}
+      </button>
+    `)
+    .join("");
+}
+
+function renderItemGuide() {
+  const searchTerm = elements.itemSearch.value.trim().toLowerCase();
+  const filteredItems = itemGuide.filter((item) => {
+    const text = getGuideItemText(item);
+    const haystack = `${text.name} ${text.location} ${text.effect} ${text.note} ${getItemCategoryLabel(item.category)}`.toLowerCase();
+    const categoryMatches = state.selectedItemFilter === "all" || item.category === state.selectedItemFilter;
+    return categoryMatches && haystack.includes(searchTerm);
+  });
+
+  elements.itemCards.innerHTML = filteredItems
+    .map((item) => {
+      const text = getGuideItemText(item);
+      const statBadge = item.stat ? `<span class="item-stat-badge">${getStatLabel(item.stat)}</span>` : "";
+
+      return `
+        <article class="item-card">
+          <div class="item-card-header">
+            <div>
+              <span>${getItemCategoryLabel(item.category)}</span>
+              <h3>${text.name}</h3>
+            </div>
+            ${statBadge}
+          </div>
+          <dl>
+            <div>
+              <dt>${t("itemLocation")}</dt>
+              <dd>${text.location}</dd>
+            </div>
+            <div>
+              <dt>${t("itemEffect")}</dt>
+              <dd>${text.effect}</dd>
+            </div>
+            <div>
+              <dt>${t("itemNote")}</dt>
+              <dd>${text.note}</dd>
+            </div>
+          </dl>
+        </article>
+      `;
+    })
+    .join("") || `<p class="muted">${t("itemNoResults")}</p>`;
+}
+
 function render() {
   renderLanguage();
+  renderView();
   renderTeamSlots();
   renderTeamTools();
   renderTutorial();
@@ -2728,6 +2949,8 @@ function render() {
   renderLastAction();
   renderTrainingPlan();
   renderEnemies();
+  renderItemFilters();
+  renderItemGuide();
 }
 
 elements.pokemonSelect.addEventListener("change", (event) => {
@@ -2825,6 +3048,31 @@ elements.languageButton.addEventListener("click", () => {
   state.lang = state.lang === "de" ? "en" : "de";
   saveState();
   render();
+});
+
+elements.trainerViewButton.addEventListener("click", () => {
+  state.currentView = "trainer";
+  saveState();
+  render();
+});
+
+elements.itemsViewButton.addEventListener("click", () => {
+  state.currentView = "items";
+  saveState();
+  render();
+});
+
+elements.itemSearch.addEventListener("input", () => {
+  renderItemGuide();
+});
+
+elements.itemFilters.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-item-filter]");
+  if (!button) return;
+  state.selectedItemFilter = button.dataset.itemFilter;
+  saveState();
+  renderItemFilters();
+  renderItemGuide();
 });
 
 elements.shinyButton.addEventListener("click", () => {

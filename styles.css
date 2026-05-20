@@ -57,6 +57,32 @@ input {
   align-items: center;
 }
 
+.view-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  background: rgba(12, 18, 25, 0.42);
+}
+
+.view-tab {
+  min-height: 38px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 12px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.view-tab:hover,
+.view-tab.active {
+  background: rgba(50, 197, 255, 0.14);
+  color: var(--text);
+}
+
 h1,
 h2,
 p {
@@ -98,6 +124,14 @@ h2 {
   grid-template-columns: 1.05fr 1.25fr;
   gap: 16px;
   align-items: start;
+}
+
+.app-view {
+  display: none;
+}
+
+.app-view.active {
+  display: grid;
 }
 
 .dashboard-column {
@@ -469,6 +503,88 @@ input:not([type="checkbox"]):focus-visible,
   color: var(--text);
   padding: 10px;
   resize: vertical;
+}
+
+.items-view {
+  gap: 16px;
+}
+
+.item-guide-panel {
+  min-height: 620px;
+}
+
+.item-intro {
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+.item-toolbar {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.item-filter-row {
+  margin-bottom: 0;
+}
+
+.item-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.item-card {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  background: rgba(29, 38, 48, 0.68);
+  padding: 13px;
+}
+
+.item-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.item-card-header span,
+.item-card dt {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.item-card h3 {
+  margin: 3px 0 0;
+  font-size: 1.05rem;
+}
+
+.item-stat-badge {
+  align-self: start;
+  border: 1px solid rgba(50, 197, 255, 0.32);
+  border-radius: 999px;
+  background: rgba(50, 197, 255, 0.11);
+  color: var(--accent) !important;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+.item-card dl {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+}
+
+.item-card dd {
+  margin: 3px 0 0;
+  color: var(--text);
+  line-height: 1.42;
 }
 
 .status-badge {
@@ -1385,10 +1501,19 @@ input:not([type="checkbox"]):focus-visible,
   }
 
   .top-actions {
+    flex-wrap: wrap;
     justify-content: stretch;
   }
 
   .top-actions .ghost-button {
+    flex: 1;
+  }
+
+  .view-tabs {
+    width: 100%;
+  }
+
+  .view-tab {
     flex: 1;
   }
 
@@ -1409,7 +1534,9 @@ input:not([type="checkbox"]):focus-visible,
   }
 
   .team-tools,
-  .team-overview {
+  .team-overview,
+  .item-toolbar,
+  .item-card-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1533,6 +1660,10 @@ input:not([type="checkbox"]):focus-visible,
 @media (max-width: 1100px) and (min-width: 821px) {
   .team-slots {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .item-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .move-glossary {
