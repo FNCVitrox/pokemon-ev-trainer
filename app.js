@@ -29,6 +29,22 @@ const i18n = {
     activeSlot: "Aktiv",
     resetSlot: "Slot zurücksetzen",
     slotResetMessage: "Aktiver Slot wurde zurückgesetzt.",
+    slotName: "Slot-Name",
+    slotNamePlaceholder: "z.B. Starter",
+    exportTeam: "Export",
+    importTeam: "Import",
+    teamCodePlaceholder: "Team-Code hier einfügen oder per Export erzeugen",
+    exportDone: "Team-Code ist bereit.",
+    exportCopied: "Team-Code kopiert.",
+    importDone: "Team wurde importiert.",
+    importFailed: "Team-Code konnte nicht gelesen werden.",
+    teamOverviewTitle: "Team-Fortschritt",
+    teamOverviewDone: "fertige Slots",
+    teamOverviewTotal: "Team-EVs",
+    trainingPlanTitle: "Trainingsplan",
+    trainingPlanDone: "Alle Zielwerte sind fertig.",
+    trainingPlanStep: "noch",
+    trainingPlanBattles: "Kämpfe",
     teamSlotHint: "Klick einen Slot an, um EVs, Wesen und Shiny separat zu speichern.",
     matchupTitle: "Typen-Check",
     matchupStrong: "Greift stark an",
@@ -88,6 +104,22 @@ const i18n = {
     activeSlot: "Active",
     resetSlot: "Reset slot",
     slotResetMessage: "Active slot was reset.",
+    slotName: "Slot name",
+    slotNamePlaceholder: "e.g. Starter",
+    exportTeam: "Export",
+    importTeam: "Import",
+    teamCodePlaceholder: "Paste team code here or create one with export",
+    exportDone: "Team code is ready.",
+    exportCopied: "Team code copied.",
+    importDone: "Team was imported.",
+    importFailed: "Team code could not be read.",
+    teamOverviewTitle: "Team progress",
+    teamOverviewDone: "finished slots",
+    teamOverviewTotal: "team EVs",
+    trainingPlanTitle: "Training plan",
+    trainingPlanDone: "All goal values are done.",
+    trainingPlanStep: "left",
+    trainingPlanBattles: "battles",
     teamSlotHint: "Click a slot to store EVs, nature and shiny separately.",
     matchupTitle: "Type check",
     matchupStrong: "Hits hard",
@@ -1551,6 +1583,7 @@ const teamDefaultPokemon = [0, 3, 6, 24, 5, 142];
 
 function createTeamSlot(index, overrides = {}) {
   return {
+    nickname: "",
     selectedPokemon: teamDefaultPokemon[index] ?? 0,
     selectedNature: "timid",
     shinyActive: false,
@@ -1610,7 +1643,13 @@ const elements = {
   appSubtitle: document.querySelector("#appSubtitle"),
   teamTitle: document.querySelector("#teamTitle"),
   resetSlotButton: document.querySelector("#resetSlotButton"),
+  exportTeamButton: document.querySelector("#exportTeamButton"),
+  importTeamButton: document.querySelector("#importTeamButton"),
   teamSlots: document.querySelector("#teamSlots"),
+  slotNameLabel: document.querySelector("#slotNameLabel"),
+  slotNameInput: document.querySelector("#slotNameInput"),
+  teamOverview: document.querySelector("#teamOverview"),
+  teamCodeField: document.querySelector("#teamCodeField"),
   searchLabel: document.querySelector("#searchLabel"),
   pokemonSearch: document.querySelector("#pokemonSearch"),
   pokemonSelectLabel: document.querySelector("#pokemonSelectLabel"),
@@ -1640,6 +1679,7 @@ const elements = {
   trainingHelp: document.querySelector("#trainingHelp"),
   statFilters: document.querySelector("#statFilters"),
   lastAction: document.querySelector("#lastAction"),
+  trainingPlan: document.querySelector("#trainingPlan"),
   statRows: document.querySelector("#statRows"),
   totalBadge: document.querySelector("#totalBadge"),
   currentEvsLabel: document.querySelector("#currentEvsLabel"),
@@ -1685,6 +1725,7 @@ function normalizeTeamSlots(parsed) {
 
   savedSlots.slice(0, 6).forEach((slot, index) => {
     slots[index] = createTeamSlot(index, {
+      nickname: sanitizeSlotName(slot.nickname),
       selectedPokemon: clampPokemonIndex(slot.selectedPokemon),
       selectedNature: natures.some((nature) => nature.id === slot.selectedNature) ? slot.selectedNature : "timid",
       shinyActive: Boolean(slot.shinyActive),
@@ -1696,6 +1737,7 @@ function normalizeTeamSlots(parsed) {
 
   if (savedSlots.length === 0) {
     slots[0] = createTeamSlot(0, {
+      nickname: sanitizeSlotName(parsed.nickname),
       selectedPokemon: clampPokemonIndex(parsed.selectedPokemon),
       selectedNature: natures.some((nature) => nature.id === parsed.selectedNature) ? parsed.selectedNature : "timid",
       shinyActive: Boolean(parsed.shinyActive),
@@ -1714,6 +1756,10 @@ function clampPokemonIndex(value) {
   return Math.min(Math.max(index, 0), pokemon.length - 1);
 }
 
+function sanitizeSlotName(value) {
+  return String(value ?? "").trim().slice(0, 18);
+}
+
 function normalizeEvs(evs = {}) {
   const normalized = blankEvs();
   stats.forEach(([key]) => {
@@ -1725,6 +1771,7 @@ function normalizeEvs(evs = {}) {
 function syncActiveTeamSlot() {
   if (!Array.isArray(state.teamSlots) || !state.teamSlots[state.selectedTeamSlot]) return;
   state.teamSlots[state.selectedTeamSlot] = createTeamSlot(state.selectedTeamSlot, {
+    nickname: sanitizeSlotName(state.teamSlots[state.selectedTeamSlot].nickname),
     selectedPokemon: clampPokemonIndex(state.selectedPokemon),
     selectedNature: state.selectedNature,
     shinyActive: state.shinyActive,
@@ -1788,6 +1835,16 @@ function getTeamSlotTotal(slot) {
   return Object.values(normalizeEvs(slot.evs)).reduce((sum, value) => sum + value, 0);
 }
 
+function isTeamSlotComplete(slot) {
+  const entry = pokemon[clampPokemonIndex(slot.selectedPokemon)];
+  const evs = normalizeEvs(slot.evs);
+  return stats.some(([key]) => entry.target[key] > 0) && stats.every(([key]) => evs[key] >= entry.target[key]);
+}
+
+function getSlotDisplayName(slot, entry) {
+  return sanitizeSlotName(slot.nickname) || getPokemonName(entry);
+}
+
 function renderTeamSlots() {
   elements.teamSlots.innerHTML = state.teamSlots
     .map((slot, index) => {
@@ -1795,16 +1852,42 @@ function renderTeamSlots() {
       const total = getTeamSlotTotal(slot);
       const active = index === state.selectedTeamSlot;
       const shiny = slot.shinyActive ? " shiny" : "";
+      const displayName = getSlotDisplayName(slot, entry);
+      const pokemonName = getPokemonName(entry);
 
       return `
         <button class="team-slot${active ? " active" : ""}${shiny}" type="button" data-team-slot="${index}">
           <span>${t("teamSlot")} ${index + 1}${active ? ` · ${t("activeSlot")}` : ""}</span>
-          <strong>${getPokemonName(entry)}</strong>
-          <small>${total} / 510</small>
+          <strong>${displayName}</strong>
+          <small>${displayName === pokemonName ? `${total} / 510` : `${pokemonName} · ${total} / 510`}</small>
         </button>
       `;
     })
     .join("");
+}
+
+function renderTeamTools() {
+  const activeSlot = state.teamSlots[state.selectedTeamSlot] ?? createTeamSlot(state.selectedTeamSlot);
+  const totalTeamEvs = state.teamSlots.reduce((sum, slot) => sum + getTeamSlotTotal(slot), 0);
+  const completeSlots = state.teamSlots.filter(isTeamSlotComplete).length;
+  elements.slotNameLabel.textContent = t("slotName");
+  elements.slotNameInput.placeholder = t("slotNamePlaceholder");
+  elements.slotNameInput.value = sanitizeSlotName(activeSlot.nickname);
+  elements.exportTeamButton.textContent = t("exportTeam");
+  elements.importTeamButton.textContent = t("importTeam");
+  elements.teamCodeField.placeholder = t("teamCodePlaceholder");
+  elements.teamOverview.innerHTML = `
+    <div>
+      <span>${t("teamOverviewTitle")}</span>
+      <strong>${completeSlots} / 6</strong>
+      <small>${t("teamOverviewDone")}</small>
+    </div>
+    <div>
+      <span>${t("teamOverviewTotal")}</span>
+      <strong>${totalTeamEvs}</strong>
+      <small>${Math.max(0, 3060 - totalTeamEvs)} ${state.lang === "en" ? "left" : "übrig"}</small>
+    </div>
+  `;
 }
 
 function getTypeText(types) {
@@ -1912,6 +1995,38 @@ function getEnemyName(enemy) {
 
 function getEnemyPlace(enemy) {
   return state.lang === "en" ? enemy.placeEn ?? enemy.place : enemy.place;
+}
+
+function createExportPayload() {
+  syncActiveTeamSlot();
+  return {
+    app: "pokemon-ev-trainer",
+    version: 1,
+    selectedTeamSlot: state.selectedTeamSlot,
+    teamSlots: state.teamSlots.map((slot) => ({
+      nickname: sanitizeSlotName(slot.nickname),
+      selectedPokemon: clampPokemonIndex(slot.selectedPokemon),
+      selectedNature: slot.selectedNature,
+      shinyActive: Boolean(slot.shinyActive),
+      evs: normalizeEvs(slot.evs)
+    }))
+  };
+}
+
+function encodeTeamCode(payload) {
+  const bytes = new TextEncoder().encode(JSON.stringify(payload));
+  const binary = Array.from(bytes, (byte) => String.fromCharCode(byte)).join("");
+  return `PET1:${btoa(binary)}`;
+}
+
+function decodeTeamCode(code) {
+  const raw = code.trim();
+  const json = raw.startsWith("PET1:")
+    ? new TextDecoder().decode(Uint8Array.from(atob(raw.slice(5)), (char) => char.charCodeAt(0)))
+    : raw;
+  const parsed = JSON.parse(json);
+  if (!Array.isArray(parsed.teamSlots)) throw new Error("Invalid team code");
+  return parsed;
 }
 
 function renderLanguage() {
@@ -2566,9 +2681,40 @@ function renderEnemies() {
     .join("") || `<p class="muted">${t("noTrainingOptions")}</p>`;
 }
 
+function renderTrainingPlan() {
+  const active = pokemon[state.selectedPokemon];
+  const multiplier = getMultiplier();
+  const rows = stats
+    .map(([key]) => {
+      const remaining = Math.max(0, active.target[key] - state.evs[key]);
+      if (remaining === 0) return null;
+      const options = enemies.filter((enemy) => enemy.stat === key);
+      if (options.length === 0) return null;
+      const bestEnemy = options.reduce((best, enemy) => enemy.ev > best.ev ? enemy : best, options[0]);
+      const gain = bestEnemy.ev * multiplier;
+      const battles = Math.ceil(remaining / gain);
+      return { key, remaining, enemy: bestEnemy, gain, battles };
+    })
+    .filter(Boolean);
+
+  elements.trainingPlan.innerHTML = `
+    <strong>${t("trainingPlanTitle")}</strong>
+    ${rows.length === 0
+      ? `<span>${t("trainingPlanDone")}</span>`
+      : rows.map((row) => `
+        <div class="training-plan-row">
+          <span>${getStatLabel(row.key)}: ${row.remaining} EV ${t("trainingPlanStep")}</span>
+          <b>${row.battles}x ${getEnemyName(row.enemy)}</b>
+          <small>+${row.gain} EV · ${getEnemyPlace(row.enemy)} · ${t("trainingPlanBattles")}</small>
+        </div>
+      `).join("")}
+  `;
+}
+
 function render() {
   renderLanguage();
   renderTeamSlots();
+  renderTeamTools();
   renderTutorial();
   renderVersionSelect();
   renderNatureSelect();
@@ -2580,6 +2726,7 @@ function render() {
   renderTrainingHelp();
   renderStatFilters();
   renderLastAction();
+  renderTrainingPlan();
   renderEnemies();
 }
 
@@ -2610,6 +2757,46 @@ elements.teamSlots.addEventListener("click", (event) => {
   render();
 });
 
+elements.slotNameInput.addEventListener("input", (event) => {
+  state.teamSlots[state.selectedTeamSlot].nickname = sanitizeSlotName(event.target.value);
+  saveState();
+  renderTeamSlots();
+  renderTeamTools();
+});
+
+elements.exportTeamButton.addEventListener("click", async () => {
+  const code = encodeTeamCode(createExportPayload());
+  elements.teamCodeField.value = code;
+  elements.teamCodeField.hidden = false;
+  elements.teamCodeField.select();
+  state.lastAction = { type: "info", message: t("exportDone") };
+
+  try {
+    await navigator.clipboard?.writeText(code);
+    state.lastAction = { type: "info", message: t("exportCopied") };
+  } catch {
+    // The visible code field is the fallback.
+  }
+
+  saveState();
+  render();
+});
+
+elements.importTeamButton.addEventListener("click", () => {
+  try {
+    const parsed = decodeTeamCode(elements.teamCodeField.value);
+    state.teamSlots = normalizeTeamSlots(parsed);
+    state.selectedTeamSlot = Math.min(Math.max(Number(parsed.selectedTeamSlot ?? 0), 0), 5);
+    applyTeamSlot(state.selectedTeamSlot);
+    state.lastAction = { type: "info", message: t("importDone") };
+    saveState();
+    render();
+  } catch {
+    state.lastAction = { type: "blocked", message: t("importFailed") };
+    renderLastAction();
+  }
+});
+
 elements.resetSlotButton.addEventListener("click", () => {
   const selectedPokemon = state.selectedPokemon;
   state.selectedNature = "timid";
@@ -2618,6 +2805,7 @@ elements.resetSlotButton.addEventListener("click", () => {
   state.history = [];
   state.lastAction = { type: "info", message: t("slotResetMessage") };
   state.teamSlots[state.selectedTeamSlot] = createTeamSlot(state.selectedTeamSlot, {
+    nickname: "",
     selectedPokemon,
     selectedNature: state.selectedNature,
     shinyActive: state.shinyActive,

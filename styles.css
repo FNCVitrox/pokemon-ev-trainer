@@ -354,6 +354,13 @@ input:not([type="checkbox"]):focus-visible,
   margin-bottom: 10px;
 }
 
+.team-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .team-slots {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -413,6 +420,55 @@ input:not([type="checkbox"]):focus-visible,
 
 .team-slot small {
   color: var(--accent);
+}
+
+.team-tools {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.82fr) minmax(0, 1.18fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.team-overview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.team-overview div {
+  min-height: 68px;
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  background: rgba(29, 38, 48, 0.62);
+  padding: 10px;
+}
+
+.team-overview span,
+.team-overview small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.team-overview strong {
+  display: block;
+  margin: 3px 0;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.team-code-field {
+  width: 100%;
+  min-height: 70px;
+  margin-top: 10px;
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  background: rgba(12, 18, 25, 0.48);
+  color: var(--text);
+  padding: 10px;
+  resize: vertical;
 }
 
 .status-badge {
@@ -621,6 +677,50 @@ input:not([type="checkbox"]):focus-visible,
 
 .last-action.blocked {
   color: var(--danger);
+}
+
+.training-plan {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 212, 71, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 212, 71, 0.06);
+  padding: 10px;
+}
+
+.training-plan > strong {
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.training-plan > span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.training-plan-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 8px;
+  border-top: 1px solid rgba(49, 64, 80, 0.68);
+  padding-top: 7px;
+}
+
+.training-plan-row span,
+.training-plan-row small {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.training-plan-row b {
+  color: var(--text);
+  text-align: right;
+}
+
+.training-plan-row small {
+  grid-column: 1 / -1;
 }
 
 .enemy-grid {
@@ -1300,6 +1400,19 @@ input:not([type="checkbox"]):focus-visible,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .team-actions {
+    justify-content: stretch;
+  }
+
+  .team-actions .ghost-button {
+    flex: 1;
+  }
+
+  .team-tools,
+  .team-overview {
+    grid-template-columns: 1fr;
+  }
+
   .panel {
     padding: 16px;
   }
@@ -1379,6 +1492,14 @@ input:not([type="checkbox"]):focus-visible,
 
   .move-meta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .training-plan-row {
+    grid-template-columns: 1fr;
+  }
+
+  .training-plan-row b {
+    text-align: left;
   }
 
   .tutorial-step {

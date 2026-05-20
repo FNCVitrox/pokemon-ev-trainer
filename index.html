@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-20-team-slots" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-20-team-tools" />
   </head>
   <body>
     <main class="app-shell">
@@ -28,9 +28,21 @@
               <p class="eyebrow">Team</p>
               <h2 id="teamTitle">Team-Slots</h2>
             </div>
-            <button class="ghost-button small-button" id="resetSlotButton" type="button">Slot zurücksetzen</button>
+            <div class="team-actions">
+              <button class="ghost-button small-button" id="exportTeamButton" type="button">Export</button>
+              <button class="ghost-button small-button" id="importTeamButton" type="button">Import</button>
+              <button class="ghost-button small-button" id="resetSlotButton" type="button">Slot zurücksetzen</button>
+            </div>
           </div>
           <div id="teamSlots" class="team-slots" aria-label="Team Slots"></div>
+          <div class="team-tools">
+            <label>
+              <span id="slotNameLabel">Slot-Name</span>
+              <input id="slotNameInput" type="text" maxlength="18" placeholder="z.B. Starter" autocomplete="off" />
+            </label>
+            <div id="teamOverview" class="team-overview"></div>
+          </div>
+          <textarea id="teamCodeField" class="team-code-field" rows="3" spellcheck="false"></textarea>
         </div>
 
         <div class="dashboard-column dashboard-column-main">
@@ -122,6 +134,7 @@
             <div id="trainingHelp" class="training-help"></div>
             <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
             <div id="lastAction" class="last-action"></div>
+            <div id="trainingPlan" class="training-plan"></div>
             <div id="enemyButtons" class="enemy-grid"></div>
           </div>
         </div>
@@ -152,6 +165,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-20-slot-reset"></script>
+    <script src="app.js?v=2026-05-20-team-tools"></script>
   </body>
 </html>
