@@ -10,7 +10,7 @@
 const i18n = {
   de: {
     languageButton: "EN",
-    reset: "Reset",
+    reset: "EVs resetten",
     navTrainer: "Trainer",
     navItems: "Items",
     navLocations: "Orte",
@@ -128,7 +128,7 @@ const i18n = {
   },
   en: {
     languageButton: "DE",
-    reset: "Reset",
+    reset: "Reset EVs",
     navTrainer: "Trainer",
     navItems: "Items",
     navLocations: "Locations",
