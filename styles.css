@@ -509,7 +509,15 @@ input:not([type="checkbox"]):focus-visible,
   gap: 16px;
 }
 
+.locations-view {
+  gap: 16px;
+}
+
 .item-guide-panel {
+  min-height: 620px;
+}
+
+.location-guide-panel {
   min-height: 620px;
 }
 
@@ -528,6 +536,10 @@ input:not([type="checkbox"]):focus-visible,
 
 .item-filter-row {
   margin-bottom: 0;
+}
+
+.location-filter-row {
+  margin-bottom: 16px;
 }
 
 .item-card-grid {
@@ -591,6 +603,124 @@ input:not([type="checkbox"]):focus-visible,
   margin: 3px 0 0;
   color: var(--text);
   line-height: 1.42;
+}
+
+.location-timeline {
+  display: grid;
+  gap: 12px;
+}
+
+.location-card {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.location-step {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255, 212, 71, 0.48);
+  border-radius: 999px;
+  background: rgba(255, 212, 71, 0.1);
+  color: var(--accent-2);
+  font-weight: 900;
+}
+
+.location-card-body {
+  min-width: 0;
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  background: rgba(29, 38, 48, 0.68);
+  padding: 14px;
+}
+
+.location-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.location-card-header span,
+.location-detail-grid strong {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.location-card h3 {
+  margin: 3px 0 0;
+  font-size: 1.08rem;
+  line-height: 1.2;
+}
+
+.location-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.location-tags span {
+  border: 1px solid rgba(50, 197, 255, 0.32);
+  border-radius: 999px;
+  background: rgba(50, 197, 255, 0.11);
+  color: var(--accent);
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+.location-when {
+  margin-top: 7px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.location-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.location-detail-grid div {
+  min-width: 0;
+  border: 1px solid rgba(49, 64, 80, 0.72);
+  border-radius: 8px;
+  background: rgba(12, 18, 25, 0.38);
+  padding: 11px;
+}
+
+.location-detail-grid p,
+.location-detail-grid ul {
+  margin: 7px 0 0;
+  color: var(--text);
+  line-height: 1.42;
+}
+
+.location-detail-grid ul {
+  display: grid;
+  gap: 4px;
+  padding-left: 18px;
+}
+
+.location-tip {
+  margin-top: 10px;
+  border-left: 3px solid var(--accent-2);
+  border-radius: 8px;
+  background: rgba(255, 212, 71, 0.06);
+  color: var(--muted);
+  padding: 10px;
+  line-height: 1.42;
+}
+
+.location-tip b {
+  color: var(--accent-2);
 }
 
 .status-badge {
@@ -1575,6 +1705,7 @@ input:not([type="checkbox"]):focus-visible,
   .enemy-grid,
   .ev-summary,
   .build-detail-grid,
+  .location-detail-grid,
   .move-grid,
   .move-glossary,
   .tutorial-grid,
@@ -1637,6 +1768,23 @@ input:not([type="checkbox"]):focus-visible,
 
   .tutorial-step {
     grid-template-columns: 1fr;
+  }
+
+  .location-card {
+    grid-template-columns: 1fr;
+  }
+
+  .location-card-header {
+    display: grid;
+  }
+
+  .location-tags {
+    justify-content: flex-start;
+  }
+
+  .location-step {
+    width: 40px;
+    height: 40px;
   }
 
   .step-number {

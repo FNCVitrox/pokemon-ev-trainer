@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-21-expanded-items" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-21-location-route" />
   </head>
   <body>
     <main class="app-shell">
@@ -18,6 +18,7 @@
           <div class="view-tabs" aria-label="App Navigation">
             <button class="view-tab active" id="trainerViewButton" type="button">Trainer</button>
             <button class="view-tab" id="itemsViewButton" type="button">Items</button>
+            <button class="view-tab" id="locationsViewButton" type="button">Orte</button>
           </div>
           <button class="ghost-button" id="tutorialButton" type="button">Tutorial</button>
           <button class="ghost-button" id="languageButton" type="button">EN</button>
@@ -175,6 +176,21 @@
           <div id="itemCards" class="item-card-grid"></div>
         </div>
       </section>
+
+      <section class="app-view locations-view" id="locationsView" aria-label="Orte Route">
+        <div class="panel location-guide-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Route</p>
+              <h2 id="locationsTitle">Orte-Route</h2>
+              <p class="muted item-intro" id="locationsIntro">Story-Reihenfolge für wichtige EV-Trainingsorte, Build-Items und versteckte Fundorte.</p>
+            </div>
+          </div>
+
+          <div id="locationFilters" class="filter-row location-filter-row" aria-label="Orte Filter"></div>
+          <div id="locationSteps" class="location-timeline"></div>
+        </div>
+      </section>
     </main>
 
     <div class="tutorial-modal" id="tutorialModal" hidden>
@@ -191,6 +207,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-21-expanded-items"></script>
+    <script src="app.js?v=2026-05-21-location-route"></script>
   </body>
 </html>

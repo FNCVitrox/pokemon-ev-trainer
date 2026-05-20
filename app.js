@@ -13,6 +13,7 @@ const i18n = {
     reset: "Reset",
     navTrainer: "Trainer",
     navItems: "Items",
+    navLocations: "Orte",
     subtitle: "Plane Builds, tracke EVs und trainiere schneller in Feuerrot / Blattgrün.",
     itemsTitle: "Item-Fundorte",
     itemsIntro: "Wichtige Feuerrot / Blattgrün Items fürs EV-Training und Builds.",
@@ -39,6 +40,21 @@ const i18n = {
     itemEffect: "Effekt",
     itemNote: "Hinweis",
     itemNoResults: "Keine Items gefunden.",
+    locationsTitle: "Orte-Route",
+    locationsIntro: "Wichtige EV-Trainingsorte, Build-Items und versteckte Fundorte in Spiel-Reihenfolge.",
+    locationAll: "Alle",
+    locationStory: "Story",
+    locationPostgame: "Postgame",
+    locationImportant: "Wichtig",
+    locationEv: "EV",
+    locationBuild: "Build",
+    locationHidden: "Versteckt",
+    locationWild: "Wild",
+    locationWhen: "Wann",
+    locationDo: "Was du hier machst",
+    locationItems: "Items / Training",
+    locationTip: "Routine",
+    locationNoResults: "Keine Orte gefunden.",
     search: "Suche",
     searchPlaceholder: "z.B. Glurak, Pikachu, Mewtu...",
     pokemon: "Pokémon",
@@ -115,6 +131,7 @@ const i18n = {
     reset: "Reset",
     navTrainer: "Trainer",
     navItems: "Items",
+    navLocations: "Locations",
     subtitle: "Plan builds, track EVs, and train faster in FireRed / LeafGreen.",
     itemsTitle: "Item locations",
     itemsIntro: "Important FireRed / LeafGreen items for EV training and builds.",
@@ -141,6 +158,21 @@ const i18n = {
     itemEffect: "Effect",
     itemNote: "Note",
     itemNoResults: "No items found.",
+    locationsTitle: "Location route",
+    locationsIntro: "Important EV training spots, build items, and hidden pickups in playthrough order.",
+    locationAll: "All",
+    locationStory: "Story",
+    locationPostgame: "Postgame",
+    locationImportant: "Important",
+    locationEv: "EV",
+    locationBuild: "Build",
+    locationHidden: "Hidden",
+    locationWild: "Wild",
+    locationWhen: "When",
+    locationDo: "What to do here",
+    locationItems: "Items / training",
+    locationTip: "Routine",
+    locationNoResults: "No locations found.",
     search: "Search",
     searchPlaceholder: "e.g. Charizard, Pikachu, Mewtwo...",
     pokemon: "Pokémon",
@@ -1899,6 +1931,477 @@ const itemGuide = [
   }
 ];
 
+const locationGuide = [
+  {
+    stage: "01",
+    tags: ["story", "ev"],
+    de: {
+      place: "Alabastia -> Route 1 -> Vertania City",
+      when: "Start bis erster Besuch in Vertania City.",
+      action: "Wenn du schon Initiative-EVs möchtest: Rattfratz auf Route 1 zählen.",
+      items: ["Rattfratz: +1 Initiative-EV", "Frühe Route für Training ohne Umwege"],
+      tip: "Für die Story kannst du hier einfach normal spielen; gezieltes EV-Training lohnt sich meist erst, wenn du dein Team kennst."
+    },
+    en: {
+      place: "Pallet Town -> Route 1 -> Viridian City",
+      when: "Start through your first Viridian City visit.",
+      action: "If you already want Speed EVs, count Rattata on Route 1.",
+      items: ["Rattata: +1 Speed EV", "Early route for training without detours"],
+      tip: "For the story, playing normally is fine here; focused EV training is usually better once your team is decided."
+    }
+  },
+  {
+    stage: "02",
+    tags: ["story", "ev"],
+    de: {
+      place: "Route 2 und Vertania-Wald",
+      when: "Nach dem Paket für Professor Eich.",
+      action: "Raupy ist dein früher KP-Trainingsgegner, bevor du Richtung Marmoria gehst.",
+      items: ["Raupy: +1 KP-EV", "Hornliu/Kokuna vermeiden, wenn du nur KP willst"],
+      tip: "Nach jedem besiegten Raupy in der App Raupy anklicken, dann bleibt dein EV-Zähler sauber."
+    },
+    en: {
+      place: "Route 2 and Viridian Forest",
+      when: "After delivering Oak's Parcel.",
+      action: "Caterpie is your early HP training target before Pewter City.",
+      items: ["Caterpie: +1 HP EV", "Avoid Weedle/Kakuna if you only want HP"],
+      tip: "After each defeated Caterpie, tap Caterpie in the app so your EV count stays clean."
+    }
+  },
+  {
+    stage: "03",
+    tags: ["story", "ev", "hidden"],
+    de: {
+      place: "Marmoria City -> Route 3",
+      when: "Nach Rocko, auf dem Weg zum Mondberg.",
+      action: "Pummeluff ist früh gut für KP, wenn du mehr als +1 pro Kampf willst.",
+      items: ["Pummeluff: +2 KP-EVs", "Versteckte frühe Beeren auf Routen mit dem Itemfinder später nachprüfen"],
+      tip: "KP-Training hier ist bequem, aber stoppe rechtzeitig, wenn dein Build nur 4 KP-EVs braucht."
+    },
+    en: {
+      place: "Pewter City -> Route 3",
+      when: "After Brock, on the way to Mt. Moon.",
+      action: "Jigglypuff is good early HP training if you want more than +1 per battle.",
+      items: ["Jigglypuff: +2 HP EVs", "Recheck early hidden Berry spots later with the Itemfinder"],
+      tip: "HP training is convenient here, but stop early if your build only needs 4 HP EVs."
+    }
+  },
+  {
+    stage: "04",
+    tags: ["story", "ev"],
+    de: {
+      place: "Mondberg",
+      when: "Vor Azuria City.",
+      action: "Zubat für Initiative und Kleinstein für Verteidigung sind hier früh erreichbar.",
+      items: ["Zubat: +1 Initiative-EV", "Kleinstein: +1 Verteidigungs-EV"],
+      tip: "In Höhlen entstehen schnell falsche EVs. Wenn du exakt trainierst, fliehe vor allem, was nicht dein Zielwert ist."
+    },
+    en: {
+      place: "Mt. Moon",
+      when: "Before Cerulean City.",
+      action: "Zubat for Speed and Geodude for Defense are available early here.",
+      items: ["Zubat: +1 Speed EV", "Geodude: +1 Defense EV"],
+      tip: "Caves can add unwanted EVs quickly. If you train precisely, run from anything that is not your target stat."
+    }
+  },
+  {
+    stage: "05",
+    tags: ["story", "ev", "wild"],
+    de: {
+      place: "Azuria City -> Nugget-Brücke -> Route 24 / 25",
+      when: "Nach Mondberg und vor Bills Haus.",
+      action: "Abra ist der frühe Spezial-Angriff-Spot. Später kann Abra/Kadabra auch Krummlöffel tragen.",
+      items: ["Abra: +1 Sp.-Angriffs-EV", "Krummlöffel-Farm später mit Raub/Dieb möglich"],
+      tip: "Abra flieht gerne. Für EVs zählt nur, wenn du es wirklich besiegst."
+    },
+    en: {
+      place: "Cerulean City -> Nugget Bridge -> Route 24 / 25",
+      when: "After Mt. Moon and before Bill's house.",
+      action: "Abra is the early Special Attack spot. Later Abra/Kadabra can also hold TwistedSpoon.",
+      items: ["Abra: +1 Sp. Atk EV", "TwistedSpoon farm later with Thief/Covet"],
+      tip: "Abra likes to flee. EVs only count if you actually defeat it."
+    }
+  },
+  {
+    stage: "06",
+    tags: ["story", "ev"],
+    de: {
+      place: "Route 5 / 6 und Orania City",
+      when: "Nach Bill, wenn du durch das Haus mit dem gegrabenen Loch kommst.",
+      action: "Myrapla ist hier eine weitere frühe Spezial-Angriff-Option.",
+      items: ["Myrapla: +1 Sp.-Angriffs-EV", "Route 6 bringt dich direkt Richtung Hafen / M.S. Anne"],
+      tip: "Wenn du schon Spezial-Angriff planst, kannst du Route 5 / 6 in deine Story-Routine einbauen."
+    },
+    en: {
+      place: "Route 5 / 6 and Vermilion City",
+      when: "After Bill, once you pass through the burgled house.",
+      action: "Oddish is another early Special Attack option here.",
+      items: ["Oddish: +1 Sp. Atk EV", "Route 6 leads straight toward the harbor / S.S. Anne"],
+      tip: "If you already plan Special Attack, build Route 5 / 6 into your story routine."
+    }
+  },
+  {
+    stage: "07",
+    tags: ["story", "ev"],
+    de: {
+      place: "Route 11 und Digda-Höhle",
+      when: "Vor oder nach Major Bob.",
+      action: "Drowzee trainiert Spezial-Verteidigung, Digda gibt Initiative und Digdri starke Initiative.",
+      items: ["Drowzee: +1 Sp.-Verteidigungs-EV", "Digda: +1 Initiative-EV", "Digdri: +2 Initiative-EVs"],
+      tip: "Route 11 ist praktisch, wenn du Spezial-Verteidigung brauchst, ohne später lange zu suchen."
+    },
+    en: {
+      place: "Route 11 and Diglett's Cave",
+      when: "Before or after Lt. Surge.",
+      action: "Drowzee trains Special Defense, Diglett gives Speed, and Dugtrio gives strong Speed EVs.",
+      items: ["Drowzee: +1 Sp. Def EV", "Diglett: +1 Speed EV", "Dugtrio: +2 Speed EVs"],
+      tip: "Route 11 is useful if you need Special Defense without searching much later."
+    }
+  },
+  {
+    stage: "08",
+    tags: ["story", "ev", "wild"],
+    de: {
+      place: "Felstunnel und Route 10",
+      when: "Auf dem Weg nach Lavandia.",
+      action: "Machollo trainiert Angriff, Onix Verteidigung. Kleinstein/Georok/Onix können später Granitstein tragen.",
+      items: ["Machollo: +1 Angriffs-EV", "Onix: +1 Verteidigungs-EV", "Granitstein-Farm mit Raub/Dieb möglich"],
+      tip: "Gut für physische Pokémon, aber mische Angriff und Verteidigung nicht aus Versehen."
+    },
+    en: {
+      place: "Rock Tunnel and Route 10",
+      when: "On the way to Lavender Town.",
+      action: "Machop trains Attack, Onix trains Defense. Geodude/Graveler/Onix can later hold Hard Stone.",
+      items: ["Machop: +1 Attack EV", "Onix: +1 Defense EV", "Hard Stone farm with Thief/Covet"],
+      tip: "Good for physical Pokemon, but do not accidentally mix Attack and Defense."
+    }
+  },
+  {
+    stage: "09",
+    tags: ["story", "hidden"],
+    de: {
+      place: "Lavandia -> Route 8 / 7 -> Prismania City",
+      when: "Nach dem Felstunnel, bevor du Team Rocket in Prismania angehst.",
+      action: "Route 8 hat versteckte Beeren; danach kommst du nach Prismania für Items und Story.",
+      items: ["Route 8: versteckte Beeren mit Zerschneider erreichbar", "Übergang nach Prismania"],
+      tip: "Lavandia-Turm erst später vollständig machen, weil du das Silph Scope aus Prismania brauchst."
+    },
+    en: {
+      place: "Lavender Town -> Route 8 / 7 -> Celadon City",
+      when: "After Rock Tunnel, before handling Team Rocket in Celadon.",
+      action: "Route 8 has hidden Berries; then you reach Celadon for items and story.",
+      items: ["Route 8: hidden Berries reachable with Cut", "Route into Celadon"],
+      tip: "Finish Pokemon Tower later because you need the Silph Scope from Celadon."
+    }
+  },
+  {
+    stage: "10",
+    tags: ["story", "build", "important"],
+    de: {
+      place: "Prismania City: Kaufhaus und Rocket-Spielhalle",
+      when: "Sobald du Prismania erreichst.",
+      action: "Hier bekommst du Vitamine und mehrere Typ-Items gegen Münzen.",
+      items: ["KP-Plus / Protein / Eisen / Kalzium / Zink / Carbon", "Holzkohle", "Mystikwasser", "Wundersaat", "Rauchball"],
+      tip: "Wenn du Geld hast: Vitamine sparen echte Trainingskämpfe. Typ-Items passen direkt zu deinem STAB."
+    },
+    en: {
+      place: "Celadon City: Department Store and Game Corner",
+      when: "As soon as you reach Celadon.",
+      action: "This is where you get vitamins and several type-boosting items for coins.",
+      items: ["HP Up / Protein / Iron / Calcium / Zinc / Carbos", "Charcoal", "Mystic Water", "Miracle Seed", "Smoke Ball"],
+      tip: "If you have money, vitamins save real training battles. Type items fit your STAB directly."
+    }
+  },
+  {
+    stage: "11",
+    tags: ["story", "build"],
+    de: {
+      place: "Rocket-Versteck in Prismania",
+      when: "Während der Team-Rocket-Story in Prismania.",
+      action: "Schattenglas ist hier das wichtige Build-Item für Unlicht-Coverage.",
+      items: ["Schattenglas"],
+      tip: "Mitnehmen, wenn du Biss oder Verfolgung als Coverage nutzt."
+    },
+    en: {
+      place: "Rocket Hideout in Celadon",
+      when: "During the Team Rocket story in Celadon.",
+      action: "BlackGlasses is the important build item here for Dark coverage.",
+      items: ["BlackGlasses"],
+      tip: "Pick it up if you use Bite or Pursuit as coverage."
+    }
+  },
+  {
+    stage: "12",
+    tags: ["story", "build", "hidden", "wild"],
+    de: {
+      place: "Pokémon-Turm in Lavandia",
+      when: "Nach dem Rocket-Versteck, sobald du das Silph Scope hast.",
+      action: "Nebulak ist konstant für Spezial-Angriff. Schutzband liegt im Turm; Sanftglocke ist versteckt bei Mr. Fujis Stelle.",
+      items: ["Nebulak: +1 Sp.-Angriffs-EV", "Schutzband", "Sanftglocke versteckt", "Alpollo kann Bannsticker tragen"],
+      tip: "Merke dir Mr. Fujis Standpunkt. Mit Itemfinder später exakt dort suchen."
+    },
+    en: {
+      place: "Pokemon Tower in Lavender Town",
+      when: "After Rocket Hideout, once you have the Silph Scope.",
+      action: "Gastly is consistent Special Attack training. Cleanse Tag is in the tower; Soothe Bell is hidden where Mr. Fuji stood.",
+      items: ["Gastly: +1 Sp. Atk EV", "Cleanse Tag", "Hidden Soothe Bell", "Haunter can hold Spell Tag"],
+      tip: "Remember Mr. Fuji's exact spot. Use the Itemfinder there later."
+    }
+  },
+  {
+    stage: "13",
+    tags: ["story", "build"],
+    de: {
+      place: "Saffronia City: Silph Co. und Kampf-Dojo",
+      when: "Nach Pokémon-Turm / Pokéflöte, wenn Saffronia frei wird.",
+      action: "Schwarzgurt kann über Raub/Dieb von bestimmten Kampf-Trainern geplant werden.",
+      items: ["Schwarzgurt per Raub/Dieb von ausgewählten Trainern", "Story-Fortschritt für Saffronia-Arena"],
+      tip: "Wenn du Schwarzgurt willst, plane Raub/Dieb vor dem Trainerkampf, sonst ist die Chance weg."
+    },
+    en: {
+      place: "Saffron City: Silph Co. and Fighting Dojo",
+      when: "After Pokemon Tower / Poke Flute, once Saffron opens.",
+      action: "Black Belt can be planned with Thief/Covet from specific Fighting-type trainers.",
+      items: ["Black Belt via Thief/Covet from selected trainers", "Story progress for Saffron Gym"],
+      tip: "If you want Black Belt, plan Thief/Covet before the trainer battle or the chance is gone."
+    }
+  },
+  {
+    stage: "14",
+    tags: ["story", "ev", "hidden", "important"],
+    de: {
+      place: "Route 16 / 17 / 18 und Radweg",
+      when: "Mit Pokéflöte oder über Prismania-Zugang.",
+      action: "Zweiter Relaxo-Platz gibt Überreste. Professor Eichs Assistent auf Route 16 gibt Münzamulett bei 40 Pokédex-Einträgen.",
+      items: ["Überreste versteckt bei Relaxo Route 16", "Münzamulett", "Dodu: +1 Initiative-EV"],
+      tip: "Das Münzamulett finanziert später Vitamine, also lohnt sich der Abstecher."
+    },
+    en: {
+      place: "Route 16 / 17 / 18 and Cycling Road",
+      when: "With the Poke Flute or from the Celadon side.",
+      action: "The second Snorlax spot gives Leftovers. Oak's aide on Route 16 gives Amulet Coin at 40 Pokedex entries.",
+      items: ["Hidden Leftovers at Route 16 Snorlax spot", "Amulet Coin", "Doduo: +1 Speed EV"],
+      tip: "Amulet Coin funds later vitamins, so the detour is worth it."
+    }
+  },
+  {
+    stage: "15",
+    tags: ["story", "important"],
+    de: {
+      place: "Fuchsania City und Safari-Zone",
+      when: "Nachdem du über den Radweg oder die Küstenroute Fuchsania erreichst.",
+      action: "Story-Pflicht für Surfer; danach werden Wasser-Trainingsorte viel besser erreichbar.",
+      items: ["Surfer für neue Trainingswege", "Goldzähne", "Quick Claw in der Safari-Zone"],
+      tip: "Nach Surfer kannst du Spezial-Verteidigung mit Tentacha auf Wasserwegen sehr bequem trainieren."
+    },
+    en: {
+      place: "Fuchsia City and Safari Zone",
+      when: "After reaching Fuchsia via Cycling Road or the coast route.",
+      action: "Required for Surf; afterward, water training routes become much easier to reach.",
+      items: ["Surf for new training paths", "Gold Teeth", "Quick Claw in the Safari Zone"],
+      tip: "After Surf, Tentacool makes Special Defense training on water routes very convenient."
+    }
+  },
+  {
+    stage: "16",
+    tags: ["story", "hidden", "important", "build"],
+    de: {
+      place: "Route 12 / 13 / 14 / 15",
+      when: "Nach Pokéflöte und Fuchsania, bevor du Richtung Kraftwerk/Meer weitergehst.",
+      action: "Am Relaxo-Platz auf Route 12 liegt Überreste versteckt. Route 15 gibt den EP-Teiler.",
+      items: ["Überreste versteckt bei Relaxo Route 12", "EP-Teiler auf Route 15 bei 50 Pokédex-Einträgen", "Route 15 kann Schwarzgurt-Dieb-Targets haben"],
+      tip: "Bei Relaxo nicht einfach weiterlaufen: nach dem Kampf mit Itemfinder auf dem Platz suchen."
+    },
+    en: {
+      place: "Route 12 / 13 / 14 / 15",
+      when: "After the Poke Flute and Fuchsia, before moving toward Power Plant or the sea.",
+      action: "The Route 12 Snorlax spot hides Leftovers. Route 15 gives the Exp. Share.",
+      items: ["Hidden Leftovers at Route 12 Snorlax spot", "Exp. Share on Route 15 with 50 Pokedex entries", "Route 15 can have Black Belt Thief targets"],
+      tip: "Do not just walk away after Snorlax: use the Itemfinder on the exact spot."
+    }
+  },
+  {
+    stage: "17",
+    tags: ["story", "ev", "build", "wild"],
+    de: {
+      place: "Kraftwerk, Route 19 / 20 und Seeschauminseln",
+      when: "Nach Surfer, vor oder während des Wegs zur Zinnoberinsel.",
+      action: "Tentacha ist sehr häufig für Spezial-Verteidigung; im Kraftwerk kannst du später Magnet farmen.",
+      items: ["Tentacha: +1 Sp.-Verteidigungs-EV", "Flegmon: +1 KP-EV", "Jurob: +1 Sp.-Verteidigungs-EV", "Magneton kann Magnet tragen"],
+      tip: "Wasserwege sind super für Spezial-Verteidigung, aber achte auf gemischte Begegnungen."
+    },
+    en: {
+      place: "Power Plant, Route 19 / 20 and Seafoam Islands",
+      when: "After Surf, before or during the route to Cinnabar Island.",
+      action: "Tentacool is very common for Special Defense; at Power Plant you can later farm Magnet.",
+      items: ["Tentacool: +1 Sp. Def EV", "Slowpoke: +1 HP EV", "Seel: +1 Sp. Def EV", "Magneton can hold Magnet"],
+      tip: "Water routes are great for Special Defense, but watch out for mixed encounters."
+    }
+  },
+  {
+    stage: "18",
+    tags: ["story"],
+    de: {
+      place: "Zinnoberinsel, Pokémon-Haus und Route 21",
+      when: "Vor Pyro und vor der letzten Arena.",
+      action: "Story-Ort für Schlüssel und Fortschritt; EV-Training hier nur, wenn es zu deinem Build passt.",
+      items: ["Geheimer Schlüssel", "Story-Fortschritt Richtung Vertania-Arena"],
+      tip: "Für exakte EVs lieber nicht blind alles besiegen, wenn dein Ziel fast voll ist."
+    },
+    en: {
+      place: "Cinnabar Island, Pokemon Mansion and Route 21",
+      when: "Before Blaine and before the final Gym.",
+      action: "Story location for the key and progress; train EVs here only if it fits your build.",
+      items: ["Secret Key", "Story progress toward Viridian Gym"],
+      tip: "For exact EVs, avoid blindly defeating everything if your target is almost done."
+    }
+  },
+  {
+    stage: "19",
+    tags: ["story", "hidden"],
+    de: {
+      place: "Eiland 1 / 2 / 3 und Beerenforst",
+      when: "Direkt nach Pyro, wenn Bill dich auf die Sevii Islands mitnimmt.",
+      action: "Story-Inseltrip und guter Moment, Beerenforst als späteren Beeren-Ort zu merken.",
+      items: ["Beerenforst: viele versteckte Beeren", "Kindle Road / Glutberg für Story-Fortschritt"],
+      tip: "Der Beerenforst kann nach vielen Schritten wieder Beeren geben, also lohnt sich später ein Kontrollgang."
+    },
+    en: {
+      place: "One Island / Two Island / Three Island and Berry Forest",
+      when: "Right after Blaine, when Bill takes you to the Sevii Islands.",
+      action: "Story island trip and a good time to remember Berry Forest as a later Berry spot.",
+      items: ["Berry Forest: many hidden Berries", "Kindle Road / Mt. Ember for story progress"],
+      tip: "Berry Forest can regenerate Berries after many steps, so checking it later is worth it."
+    }
+  },
+  {
+    stage: "20",
+    tags: ["story", "hidden", "important"],
+    de: {
+      place: "Vertania-Arena",
+      when: "Nach sieben Orden, nach Giovanni.",
+      action: "Machoband ist versteckt auf Giovannis Platz. Das ist das wichtigste EV-Item im normalen Durchlauf.",
+      items: ["Machoband versteckt mit Itemfinder", "Stackt mit Pokérus zu x4"],
+      tip: "Direkt nach Giovanni speichern oder merken: auf seinem exakten Standpunkt Itemfinder benutzen."
+    },
+    en: {
+      place: "Viridian Gym",
+      when: "After seven Badges, after Giovanni.",
+      action: "Macho Brace is hidden on Giovanni's spot. This is the most important EV item in a normal playthrough.",
+      items: ["Hidden Macho Brace with Itemfinder", "Stacks with Pokerus for x4"],
+      tip: "Right after Giovanni, remember the exact tile and use the Itemfinder there."
+    }
+  },
+  {
+    stage: "21",
+    tags: ["story", "build", "hidden"],
+    de: {
+      place: "Route 22 / 23 und Siegesstraße",
+      when: "Nach dem achten Orden, vor der Liga.",
+      action: "Letzter Story-Block vor der Top Vier; auf Route 23 liegen nützliche versteckte Beeren, Siegesstraße hat weitere Trainer-Dieb-Chancen.",
+      items: ["Versteckte Beeren auf Route 23", "Schwarzgurt per Raub/Dieb bei passenden Trainern möglich"],
+      tip: "Vor der Liga EVs kontrollieren: wenn du bei 510 bist, nichts mehr planlos besiegen."
+    },
+    en: {
+      place: "Route 22 / 23 and Victory Road",
+      when: "After the eighth Badge, before the League.",
+      action: "Last story block before the Elite Four; Route 23 has useful hidden Berries, Victory Road has more trainer Thief chances.",
+      items: ["Hidden Berries on Route 23", "Black Belt via Thief/Covet from fitting trainers"],
+      tip: "Before the League, check EVs: if you are at 510, stop defeating random Pokemon."
+    }
+  },
+  {
+    stage: "22",
+    tags: ["postgame", "build", "wild"],
+    de: {
+      place: "Eiland 4: Eiskaskadenhöhle",
+      when: "Postgame auf den Sevii Islands.",
+      action: "Ewiges Eis ist hier wichtig für Eis-Builds. Jugong kann es ebenfalls selten tragen.",
+      items: ["Ewiges Eis", "Jugong-Farm für Ewiges Eis"],
+      tip: "Für Lapras, Austos, Arktos oder Eisstrahl-Nutzer ist das dein Eis-Item-Spot."
+    },
+    en: {
+      place: "Four Island: Icefall Cave",
+      when: "Postgame on the Sevii Islands.",
+      action: "NeverMeltIce is important here for Ice builds. Dewgong can also rarely hold it.",
+      items: ["NeverMeltIce", "Dewgong farm for NeverMeltIce"],
+      tip: "For Lapras, Cloyster, Articuno or Ice Beam users, this is your Ice item spot."
+    }
+  },
+  {
+    stage: "23",
+    tags: ["postgame", "build"],
+    de: {
+      place: "Eiland 5: Gedenksäule",
+      when: "Postgame, wenn Eiland 5 frei ist.",
+      action: "Metallmantel ist das relevante Stahl-Item.",
+      items: ["Metallmantel"],
+      tip: "Gut für Stahl-Coverage wie Metallklaue, auch wenn Stahl in Gen 3 offensiv eher nischig ist."
+    },
+    en: {
+      place: "Five Island: Memorial Pillar",
+      when: "Postgame, once Five Island is available.",
+      action: "Metal Coat is the relevant Steel item.",
+      items: ["Metal Coat"],
+      tip: "Good for Steel coverage like Metal Claw, even though Steel is offensively niche in Gen 3."
+    }
+  },
+  {
+    stage: "24",
+    tags: ["postgame", "build"],
+    de: {
+      place: "Eiland 5: Lost Cave",
+      when: "Postgame auf Eiland 5.",
+      action: "Hier liegen mehrere Build-Items auf engem Raum.",
+      items: ["Seidenschal", "Seerauch", "Laxrauch", "Bannsticker-Farm über Alpollo/Misdreavus je nach Version"],
+      tip: "Lost Cave ist der beste spätere Sammelpunkt, wenn du Normal-, Wasser- oder defensive Utility-Items willst."
+    },
+    en: {
+      place: "Five Island: Lost Cave",
+      when: "Postgame on Five Island.",
+      action: "Several build items are close together here.",
+      items: ["Silk Scarf", "Sea Incense", "Lax Incense", "Spell Tag farm from Haunter/Misdreavus depending on version"],
+      tip: "Lost Cave is the best later collection spot for Normal, Water or defensive utility items."
+    }
+  },
+  {
+    stage: "25",
+    tags: ["postgame", "build", "wild"],
+    de: {
+      place: "Eiland 6 / Eiland 7 und Trainer-Turm",
+      when: "Spätes Postgame.",
+      action: "Spezielle Belohnungen und spätere Farm-/Tauschitems gehören hierhin.",
+      items: ["King-Stein", "Drachenhaut", "Scope-Linse / Fokus-Band / Blendpuder je nach Version/Spezialinhalt"],
+      tip: "Trainer-Turm-Items sind versionsabhängig. Für internationale normale Spielstände lieber als Bonus, nicht als Pflicht planen."
+    },
+    en: {
+      place: "Six Island / Seven Island and Trainer Tower",
+      when: "Late postgame.",
+      action: "Special rewards and later farm/trade items belong here.",
+      items: ["King's Rock", "Dragon Scale", "Scope Lens / Focus Band / BrightPowder depending on version/special content"],
+      tip: "Trainer Tower items are version-dependent. For normal international saves, treat them as a bonus, not mandatory."
+    }
+  },
+  {
+    stage: "26",
+    tags: ["postgame", "wild", "build"],
+    de: {
+      place: "Späte Wild-Farmen",
+      when: "Sobald du Raub/Dieb und die passenden Gebiete hast.",
+      action: "Diese Items bekommst du meist nicht als normalen Pokéball-Fund, sondern von wilden Pokémon.",
+      items: ["Magneton: Magnet", "Abra/Kadabra: Krummlöffel", "Dragonir: Drachenzahn", "Bibor/Arbok: Giftstich", "Sandamer: Pudersand", "Ibitak/Dodri/Panzaeron: Hackattack", "Smettbo/Omot: Silberstaub"],
+      tip: "Vor dem Farmen Itemplatz frei machen und Raub/Dieb auf einem schnellen Pokémon nutzen."
+    },
+    en: {
+      place: "Late wild-held item farms",
+      when: "Once you have Thief/Covet and the right areas.",
+      action: "You usually do not get these as normal overworld Pokeball pickups; they come from wild Pokemon.",
+      items: ["Magneton: Magnet", "Abra/Kadabra: TwistedSpoon", "Dragonair: Dragon Fang", "Beedrill/Arbok: Poison Barb", "Sandslash: Soft Sand", "Fearow/Dodrio/Skarmory: Sharp Beak", "Butterfree/Venomoth: SilverPowder"],
+      tip: "Before farming, keep the item slot free and use Thief/Covet on a fast Pokemon."
+    }
+  }
+];
+
 const blankEvs = () => ({ hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 });
 const teamDefaultPokemon = [0, 3, 6, 24, 5, 142];
 
@@ -1940,6 +2443,7 @@ const state = {
   lang: "de",
   currentView: "trainer",
   selectedItemFilter: "all",
+  selectedLocationFilter: "all",
   selectedTeamSlot: 0,
   teamSlots: Array.from({ length: 6 }, (_, index) => createTeamSlot(index)),
   selectedPokemon: 0,
@@ -1964,8 +2468,10 @@ const elements = {
   tutorialContent: document.querySelector("#tutorialContent"),
   trainerViewButton: document.querySelector("#trainerViewButton"),
   itemsViewButton: document.querySelector("#itemsViewButton"),
+  locationsViewButton: document.querySelector("#locationsViewButton"),
   trainerView: document.querySelector("#trainerView"),
   itemsView: document.querySelector("#itemsView"),
+  locationsView: document.querySelector("#locationsView"),
   languageButton: document.querySelector("#languageButton"),
   appSubtitle: document.querySelector("#appSubtitle"),
   itemsTitle: document.querySelector("#itemsTitle"),
@@ -1974,6 +2480,10 @@ const elements = {
   itemSearch: document.querySelector("#itemSearch"),
   itemFilters: document.querySelector("#itemFilters"),
   itemCards: document.querySelector("#itemCards"),
+  locationsTitle: document.querySelector("#locationsTitle"),
+  locationsIntro: document.querySelector("#locationsIntro"),
+  locationFilters: document.querySelector("#locationFilters"),
+  locationSteps: document.querySelector("#locationSteps"),
   teamTitle: document.querySelector("#teamTitle"),
   resetSlotButton: document.querySelector("#resetSlotButton"),
   exportTeamButton: document.querySelector("#exportTeamButton"),
@@ -2034,8 +2544,9 @@ function loadState() {
   try {
     const parsed = JSON.parse(saved);
     state.lang = parsed.lang ?? "de";
-    state.currentView = parsed.currentView === "items" ? "items" : "trainer";
+    state.currentView = ["trainer", "items", "locations"].includes(parsed.currentView) ? parsed.currentView : "trainer";
     state.selectedItemFilter = parsed.selectedItemFilter ?? "all";
+    state.selectedLocationFilter = parsed.selectedLocationFilter ?? "all";
     state.selectedPokemon = parsed.selectedPokemon ?? 0;
     state.selectedVersion = parsed.selectedVersion ?? 0;
     state.selectedNature = parsed.selectedNature ?? "timid";
@@ -2397,6 +2908,7 @@ function renderLanguage() {
   document.documentElement.lang = state.lang;
   elements.trainerViewButton.textContent = t("navTrainer");
   elements.itemsViewButton.textContent = t("navItems");
+  elements.locationsViewButton.textContent = t("navLocations");
   elements.tutorialButton.textContent = t("tutorialButton");
   elements.tutorialEyebrow.textContent = t("tutorialEyebrow");
   elements.tutorialTitle.textContent = t("tutorialTitle");
@@ -2408,6 +2920,8 @@ function renderLanguage() {
   elements.itemsIntro.textContent = t("itemsIntro");
   elements.itemSearchLabel.textContent = t("itemSearch");
   elements.itemSearch.placeholder = t("itemSearchPlaceholder");
+  elements.locationsTitle.textContent = t("locationsTitle");
+  elements.locationsIntro.textContent = t("locationsIntro");
   elements.teamTitle.textContent = t("teamTitle");
   elements.resetSlotButton.textContent = t("resetSlot");
   elements.searchLabel.textContent = t("search");
@@ -2439,10 +2953,13 @@ function renderTrainingHelp() {
 
 function renderView() {
   const isItems = state.currentView === "items";
-  elements.trainerView.classList.toggle("active", !isItems);
+  const isLocations = state.currentView === "locations";
+  elements.trainerView.classList.toggle("active", state.currentView === "trainer");
   elements.itemsView.classList.toggle("active", isItems);
-  elements.trainerViewButton.classList.toggle("active", !isItems);
+  elements.locationsView.classList.toggle("active", isLocations);
+  elements.trainerViewButton.classList.toggle("active", state.currentView === "trainer");
   elements.itemsViewButton.classList.toggle("active", isItems);
+  elements.locationsViewButton.classList.toggle("active", isLocations);
 }
 
 function renderStatFilters() {
@@ -3161,6 +3678,88 @@ function renderItemGuide() {
     .join("") || `<p class="muted">${t("itemNoResults")}</p>`;
 }
 
+function renderLocationFilters() {
+  const filters = [
+    ["all", t("locationAll")],
+    ["story", t("locationStory")],
+    ["postgame", t("locationPostgame")],
+    ["important", t("locationImportant")],
+    ["ev", t("locationEv")],
+    ["build", t("locationBuild")],
+    ["hidden", t("locationHidden")],
+    ["wild", t("locationWild")]
+  ];
+
+  elements.locationFilters.innerHTML = filters
+    .map(([key, label]) => `
+      <button class="filter-button${state.selectedLocationFilter === key ? " active" : ""}" type="button" data-location-filter="${key}">
+        ${label}
+      </button>
+    `)
+    .join("");
+}
+
+function getLocationText(location) {
+  return location[state.lang] ?? location.de;
+}
+
+function getLocationTagLabel(tag) {
+  return {
+    story: t("locationStory"),
+    postgame: t("locationPostgame"),
+    important: t("locationImportant"),
+    ev: t("locationEv"),
+    build: t("locationBuild"),
+    hidden: t("locationHidden"),
+    wild: t("locationWild")
+  }[tag] ?? tag;
+}
+
+function renderLocationGuide() {
+  const filteredLocations = locationGuide.filter((location) => {
+    return state.selectedLocationFilter === "all" || location.tags.includes(state.selectedLocationFilter);
+  });
+
+  elements.locationSteps.innerHTML = filteredLocations
+    .map((location) => {
+      const text = getLocationText(location);
+      const tags = location.tags
+        .map((tag) => `<span>${getLocationTagLabel(tag)}</span>`)
+        .join("");
+      const items = text.items
+        .map((item) => `<li>${item}</li>`)
+        .join("");
+
+      return `
+        <article class="location-card">
+          <div class="location-step">${location.stage}</div>
+          <div class="location-card-body">
+            <div class="location-card-header">
+              <div>
+                <span>${t("locationWhen")}</span>
+                <h3>${text.place}</h3>
+              </div>
+              <div class="location-tags">${tags}</div>
+            </div>
+            <p class="location-when">${text.when}</p>
+            <div class="location-detail-grid">
+              <div>
+                <strong>${t("locationDo")}</strong>
+                <p>${text.action}</p>
+              </div>
+              <div>
+                <strong>${t("locationItems")}</strong>
+                <ul>${items}</ul>
+              </div>
+            </div>
+            <p class="location-tip"><b>${t("locationTip")}:</b> ${text.tip}</p>
+          </div>
+        </article>
+      `;
+    })
+    .join("") || `<p class="muted">${t("locationNoResults")}</p>`;
+}
+
 function render() {
   renderLanguage();
   renderView();
@@ -3181,6 +3780,8 @@ function render() {
   renderEnemies();
   renderItemFilters();
   renderItemGuide();
+  renderLocationFilters();
+  renderLocationGuide();
 }
 
 elements.pokemonSelect.addEventListener("change", (event) => {
@@ -3292,6 +3893,12 @@ elements.itemsViewButton.addEventListener("click", () => {
   render();
 });
 
+elements.locationsViewButton.addEventListener("click", () => {
+  state.currentView = "locations";
+  saveState();
+  render();
+});
+
 elements.itemSearch.addEventListener("input", () => {
   renderItemGuide();
 });
@@ -3303,6 +3910,15 @@ elements.itemFilters.addEventListener("click", (event) => {
   saveState();
   renderItemFilters();
   renderItemGuide();
+});
+
+elements.locationFilters.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-location-filter]");
+  if (!button) return;
+  state.selectedLocationFilter = button.dataset.locationFilter;
+  saveState();
+  renderLocationFilters();
+  renderLocationGuide();
 });
 
 elements.shinyButton.addEventListener("click", () => {
