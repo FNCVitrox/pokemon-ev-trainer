@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-20-ui-polish" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-20-team-slots" />
   </head>
   <body>
     <main class="app-shell">
@@ -22,6 +22,16 @@
       </header>
 
       <section class="trainer-grid" aria-label="EV Trainer Dashboard">
+        <div class="panel team-panel">
+          <div class="section-heading compact-heading">
+            <div>
+              <p class="eyebrow">Team</p>
+              <h2 id="teamTitle">Team-Slots</h2>
+            </div>
+          </div>
+          <div id="teamSlots" class="team-slots" aria-label="Team Slots"></div>
+        </div>
+
         <div class="dashboard-column dashboard-column-main">
           <div class="panel pokemon-panel">
             <label id="searchLabel" for="pokemonSearch">Suche</label>
@@ -141,6 +151,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-20-type-matchups"></script>
+    <script src="app.js?v=2026-05-20-team-slots"></script>
   </body>
 </html>

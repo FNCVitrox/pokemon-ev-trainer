@@ -24,6 +24,10 @@ const i18n = {
     applyBuild: "Build als Ziel setzen",
     trainingTitle: "Besiegte Pokémon",
     moveHelpTitle: "Attacken kurz erklärt",
+    teamTitle: "Team-Slots",
+    teamSlot: "Slot",
+    activeSlot: "Aktiv",
+    teamSlotHint: "Klick einen Slot an, um EVs, Wesen und Shiny separat zu speichern.",
     matchupTitle: "Typen-Check",
     matchupStrong: "Greift stark an",
     matchupWeak: "Schwach gegen",
@@ -77,6 +81,10 @@ const i18n = {
     applyBuild: "Set build goal",
     trainingTitle: "Defeated Pokémon",
     moveHelpTitle: "Move guide",
+    teamTitle: "Team slots",
+    teamSlot: "Slot",
+    activeSlot: "Active",
+    teamSlotHint: "Click a slot to store EVs, nature and shiny separately.",
     matchupTitle: "Type check",
     matchupStrong: "Hits hard",
     matchupWeak: "Weak to",
@@ -1534,6 +1542,21 @@ const pokemon = kantoPokemon.map(([id, name, types], index) => ({
   target: { ...getRecommendedTarget(types, id) }
 }));
 
+const blankEvs = () => ({ hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 });
+const teamDefaultPokemon = [0, 3, 6, 24, 5, 142];
+
+function createTeamSlot(index, overrides = {}) {
+  return {
+    selectedPokemon: teamDefaultPokemon[index] ?? 0,
+    selectedNature: "timid",
+    shinyActive: false,
+    evs: blankEvs(),
+    history: [],
+    lastAction: null,
+    ...overrides
+  };
+}
+
 const enemies = [
   { name: "Raupy", nameEn: "Caterpie", stat: "hp", ev: 1, place: "Vertania-Wald", placeEn: "Viridian Forest", note: "Early Game KP" },
   { name: "Pummeluff", nameEn: "Jigglypuff", stat: "hp", ev: 2, place: "Route 3", placeEn: "Route 3", note: "Mehr KP pro Kampf" },
@@ -1557,6 +1580,8 @@ const enemies = [
 
 const state = {
   lang: "de",
+  selectedTeamSlot: 0,
+  teamSlots: Array.from({ length: 6 }, (_, index) => createTeamSlot(index)),
   selectedPokemon: 0,
   selectedVersion: 0,
   selectedNature: "timid",
@@ -1566,7 +1591,7 @@ const state = {
   selectedStatFilter: "needed",
   history: [],
   lastAction: null,
-  evs: { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 }
+  evs: blankEvs()
 };
 
 const elements = {
@@ -1579,6 +1604,8 @@ const elements = {
   tutorialContent: document.querySelector("#tutorialContent"),
   languageButton: document.querySelector("#languageButton"),
   appSubtitle: document.querySelector("#appSubtitle"),
+  teamTitle: document.querySelector("#teamTitle"),
+  teamSlots: document.querySelector("#teamSlots"),
   searchLabel: document.querySelector("#searchLabel"),
   pokemonSearch: document.querySelector("#pokemonSearch"),
   pokemonSelectLabel: document.querySelector("#pokemonSelectLabel"),
@@ -1639,13 +1666,82 @@ function loadState() {
     state.history = Array.isArray(parsed.history) ? parsed.history.slice(-20) : [];
     state.lastAction = parsed.lastAction ?? null;
     state.evs = { ...state.evs, ...parsed.evs };
+    state.selectedTeamSlot = Math.min(Math.max(Number(parsed.selectedTeamSlot ?? 0), 0), 5);
+    state.teamSlots = normalizeTeamSlots(parsed);
+    applyTeamSlot(state.selectedTeamSlot);
   } catch {
     localStorage.removeItem("pokemonEvTrainerState");
   }
 }
 
+function normalizeTeamSlots(parsed) {
+  const slots = Array.from({ length: 6 }, (_, index) => createTeamSlot(index));
+  const savedSlots = Array.isArray(parsed.teamSlots) ? parsed.teamSlots : [];
+
+  savedSlots.slice(0, 6).forEach((slot, index) => {
+    slots[index] = createTeamSlot(index, {
+      selectedPokemon: clampPokemonIndex(slot.selectedPokemon),
+      selectedNature: natures.some((nature) => nature.id === slot.selectedNature) ? slot.selectedNature : "timid",
+      shinyActive: Boolean(slot.shinyActive),
+      evs: normalizeEvs(slot.evs),
+      history: Array.isArray(slot.history) ? slot.history.slice(-20) : [],
+      lastAction: slot.lastAction ?? null
+    });
+  });
+
+  if (savedSlots.length === 0) {
+    slots[0] = createTeamSlot(0, {
+      selectedPokemon: clampPokemonIndex(parsed.selectedPokemon),
+      selectedNature: natures.some((nature) => nature.id === parsed.selectedNature) ? parsed.selectedNature : "timid",
+      shinyActive: Boolean(parsed.shinyActive),
+      evs: normalizeEvs(parsed.evs),
+      history: Array.isArray(parsed.history) ? parsed.history.slice(-20) : [],
+      lastAction: parsed.lastAction ?? null
+    });
+  }
+
+  return slots;
+}
+
+function clampPokemonIndex(value) {
+  const index = Number(value);
+  if (!Number.isFinite(index)) return 0;
+  return Math.min(Math.max(index, 0), pokemon.length - 1);
+}
+
+function normalizeEvs(evs = {}) {
+  const normalized = blankEvs();
+  stats.forEach(([key]) => {
+    normalized[key] = clampEv(evs[key] ?? 0);
+  });
+  return normalized;
+}
+
+function syncActiveTeamSlot() {
+  if (!Array.isArray(state.teamSlots) || !state.teamSlots[state.selectedTeamSlot]) return;
+  state.teamSlots[state.selectedTeamSlot] = createTeamSlot(state.selectedTeamSlot, {
+    selectedPokemon: clampPokemonIndex(state.selectedPokemon),
+    selectedNature: state.selectedNature,
+    shinyActive: state.shinyActive,
+    evs: normalizeEvs(state.evs),
+    history: Array.isArray(state.history) ? state.history.slice(-20) : [],
+    lastAction: state.lastAction
+  });
+}
+
+function applyTeamSlot(index) {
+  const slot = state.teamSlots[index] ?? createTeamSlot(index);
+  state.selectedPokemon = clampPokemonIndex(slot.selectedPokemon);
+  state.selectedNature = slot.selectedNature;
+  state.shinyActive = Boolean(slot.shinyActive);
+  state.evs = normalizeEvs(slot.evs);
+  state.history = Array.isArray(slot.history) ? slot.history.slice(-20) : [];
+  state.lastAction = slot.lastAction ?? null;
+}
+
 function saveState() {
   try {
+    syncActiveTeamSlot();
     localStorage.setItem("pokemonEvTrainerState", JSON.stringify(state));
   } catch {
     elements.lastAction.textContent = state.lang === "en"
@@ -1681,6 +1777,29 @@ function formatNatureText(text) {
 
 function getPokemonName(entry) {
   return state.lang === "en" ? entry.nameEn : entry.name;
+}
+
+function getTeamSlotTotal(slot) {
+  return Object.values(normalizeEvs(slot.evs)).reduce((sum, value) => sum + value, 0);
+}
+
+function renderTeamSlots() {
+  elements.teamSlots.innerHTML = state.teamSlots
+    .map((slot, index) => {
+      const entry = pokemon[clampPokemonIndex(slot.selectedPokemon)];
+      const total = getTeamSlotTotal(slot);
+      const active = index === state.selectedTeamSlot;
+      const shiny = slot.shinyActive ? " shiny" : "";
+
+      return `
+        <button class="team-slot${active ? " active" : ""}${shiny}" type="button" data-team-slot="${index}">
+          <span>${t("teamSlot")} ${index + 1}${active ? ` · ${t("activeSlot")}` : ""}</span>
+          <strong>${getPokemonName(entry)}</strong>
+          <small>${total} / 510</small>
+        </button>
+      `;
+    })
+    .join("");
 }
 
 function getTypeText(types) {
@@ -1799,6 +1918,7 @@ function renderLanguage() {
   elements.languageButton.textContent = t("languageButton");
   elements.resetButton.textContent = t("reset");
   elements.appSubtitle.textContent = t("subtitle");
+  elements.teamTitle.textContent = t("teamTitle");
   elements.searchLabel.textContent = t("search");
   elements.pokemonSearch.placeholder = t("searchPlaceholder");
   elements.pokemonSelectLabel.textContent = t("pokemon");
@@ -2442,6 +2562,7 @@ function renderEnemies() {
 
 function render() {
   renderLanguage();
+  renderTeamSlots();
   renderTutorial();
   renderVersionSelect();
   renderNatureSelect();
@@ -2470,6 +2591,16 @@ elements.pokemonSelect.addEventListener("change", (event) => {
 });
 
 elements.pokemonSearch.addEventListener("input", () => {
+  render();
+});
+
+elements.teamSlots.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-team-slot]");
+  if (!button) return;
+  syncActiveTeamSlot();
+  state.selectedTeamSlot = Number(button.dataset.teamSlot);
+  applyTeamSlot(state.selectedTeamSlot);
+  saveState();
   render();
 });
 
