@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-20-move-meta-layout" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-20-separate-move-help" />
   </head>
   <body>
     <main class="app-shell">
@@ -108,6 +108,16 @@
           <div id="lastAction" class="last-action"></div>
           <div id="enemyButtons" class="enemy-grid"></div>
         </div>
+
+        <div class="panel move-help-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Guide</p>
+              <h2 id="moveHelpTitle">Attacken kurz erklärt</h2>
+            </div>
+          </div>
+          <div id="moveHelpContent"></div>
+        </div>
       </section>
     </main>
 
@@ -125,6 +135,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-20-move-meta-layout"></script>
+    <script src="app.js?v=2026-05-20-separate-move-help"></script>
   </body>
 </html>

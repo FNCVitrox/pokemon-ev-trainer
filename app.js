@@ -23,6 +23,7 @@ const i18n = {
     buildTitle: "Empfohlener Spielstil",
     applyBuild: "Build als Ziel setzen",
     trainingTitle: "Besiegte Pokémon",
+    moveHelpTitle: "Attacken kurz erklärt",
     noResults: "Keine Treffer",
     complete: "Alle Zielwerte sind erreicht.",
     moves: "Attacken",
@@ -66,6 +67,7 @@ const i18n = {
     buildTitle: "Recommended playstyle",
     applyBuild: "Set build goal",
     trainingTitle: "Defeated Pokémon",
+    moveHelpTitle: "Move guide",
     noResults: "No results",
     complete: "All goal values reached.",
     moves: "Moves",
@@ -1385,6 +1387,8 @@ const elements = {
   targetTitle: document.querySelector("#targetTitle"),
   buildTitle: document.querySelector("#buildTitle"),
   buildRecommendation: document.querySelector("#buildRecommendation"),
+  moveHelpTitle: document.querySelector("#moveHelpTitle"),
+  moveHelpContent: document.querySelector("#moveHelpContent"),
   applyBuildButton: document.querySelector("#applyBuildButton"),
   trainingTitle: document.querySelector("#trainingTitle"),
   undoButton: document.querySelector("#undoButton"),
@@ -1511,6 +1515,7 @@ function renderLanguage() {
   elements.targetEyebrow.textContent = t("target");
   elements.targetTitle.textContent = t("targetTitle");
   elements.buildTitle.textContent = t("buildTitle");
+  elements.moveHelpTitle.textContent = t("moveHelpTitle");
   elements.applyBuildButton.textContent = t("applyBuild");
   elements.trainingTitle.textContent = t("trainingTitle");
   elements.undoButton.textContent = t("undo");
@@ -2032,12 +2037,15 @@ function renderBuildRecommendation() {
     </div>
     <div class="move-list">
       <span>${t("moves")}</span>
-      ${renderMoveGlossary()}
       <div class="move-grid">
         ${build.moves.map((move) => renderMoveCard(move)).join("")}
       </div>
     </div>
   `;
+}
+
+function renderMoveHelp() {
+  elements.moveHelpContent.innerHTML = renderMoveGlossary();
 }
 
 function renderStats() {
@@ -2112,6 +2120,7 @@ function render() {
   renderPokemonSelect();
   renderPokemon();
   renderBuildRecommendation();
+  renderMoveHelp();
   renderStats();
   renderTrainingHelp();
   renderStatFilters();
