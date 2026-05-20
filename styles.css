@@ -245,9 +245,9 @@ input:not([type="checkbox"]):focus-visible,
 
 .type-matchups {
   display: grid;
-  gap: 10px;
-  margin: -4px 0 18px;
-  padding: 12px;
+  gap: 8px;
+  margin: -4px 0 16px;
+  padding: 10px;
   border: 1px solid rgba(49, 64, 80, 0.72);
   border-radius: 8px;
   background: rgba(12, 18, 25, 0.38);
@@ -262,67 +262,68 @@ input:not([type="checkbox"]):focus-visible,
 
 .type-matchup-header strong {
   color: var(--accent-2);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 900;
   text-transform: uppercase;
 }
 
 .type-matchup-header span {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   line-height: 1.35;
   text-align: right;
 }
 
 .type-matchup-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  gap: 7px;
 }
 
 .type-matchup-card {
+  display: grid;
+  grid-template-columns: 106px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
   min-width: 0;
-  min-height: 104px;
-  border: 1px solid rgba(49, 64, 80, 0.82);
-  border-radius: 8px;
-  padding: 10px;
-  background: rgba(29, 38, 48, 0.6);
+  border-top: 1px solid rgba(49, 64, 80, 0.72);
+  padding-top: 7px;
 }
 
 .type-matchup-card > span {
   display: block;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 900;
   text-transform: uppercase;
+  line-height: 1.25;
 }
 
 .type-matchup-card > div {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 5px;
+  margin-top: 0;
 }
 
 .type-chip {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   max-width: 100%;
-  min-height: 26px;
+  min-height: 24px;
   border: 1px solid rgba(50, 197, 255, 0.3);
   border-radius: 999px;
   background: rgba(50, 197, 255, 0.1);
   color: var(--accent);
-  padding: 4px 8px;
-  font-size: 0.78rem;
+  padding: 3px 7px;
+  font-size: 0.72rem;
   font-weight: 900;
   overflow-wrap: anywhere;
 }
 
 .type-chip small {
   color: var(--text);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
 }
 
 .type-chip.empty {
@@ -464,53 +465,58 @@ input:not([type="checkbox"]):focus-visible,
 .toggle-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .toggle-row label {
   display: flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 42px;
   padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--panel-soft);
+  background: rgba(29, 38, 48, 0.76);
   cursor: pointer;
+  color: var(--text);
+  font-weight: 900;
 }
 
 .toggle-row input {
   accent-color: var(--accent);
+  margin-right: 8px;
 }
 
 .training-help {
   display: grid;
-  gap: 4px;
-  margin-bottom: 12px;
-  border: 1px solid rgba(49, 64, 80, 0.82);
+  gap: 3px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(50, 197, 255, 0.24);
   border-radius: 8px;
-  padding: 11px;
-  background: rgba(29, 38, 48, 0.62);
+  padding: 10px;
+  background: rgba(50, 197, 255, 0.07);
 }
 
 .training-help strong {
   color: var(--accent);
+  font-size: 0.9rem;
 }
 
 .training-help span {
   color: var(--muted);
-  line-height: 1.4;
+  font-size: 0.86rem;
+  line-height: 1.35;
 }
 
 .filter-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 7px;
+  margin-bottom: 10px;
 }
 
 .filter-button {
-  min-height: 36px;
+  min-height: 34px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(32, 42, 56, 0.76);
@@ -528,10 +534,10 @@ input:not([type="checkbox"]):focus-visible,
 }
 
 .last-action {
-  min-height: 22px;
+  min-height: 20px;
   margin-bottom: 10px;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 800;
 }
 
@@ -551,19 +557,23 @@ input:not([type="checkbox"]):focus-visible,
 .enemy-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .enemy-button {
-  min-height: 70px;
+  min-height: 76px;
   cursor: pointer;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(32, 42, 56, 0.86);
+  background: linear-gradient(180deg, rgba(32, 42, 56, 0.9), rgba(24, 33, 44, 0.9));
   color: var(--text);
   text-align: left;
-  padding: 10px;
-  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
+  padding: 11px;
+  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.enemy-button:hover {
+  box-shadow: inset 3px 0 0 rgba(50, 197, 255, 0.85);
 }
 
 .enemy-button:active,
@@ -576,10 +586,16 @@ input:not([type="checkbox"]):focus-visible,
   display: block;
 }
 
+.enemy-button strong {
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
 .enemy-button span {
   color: var(--muted);
-  margin-top: 4px;
-  font-size: 0.86rem;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  line-height: 1.35;
 }
 
 .build-box {
@@ -1236,7 +1252,6 @@ input:not([type="checkbox"]):focus-visible,
   }
 
   .mini-grid,
-  .type-matchup-grid,
   .toggle-row,
   .enemy-grid,
   .ev-summary,
@@ -1248,6 +1263,10 @@ input:not([type="checkbox"]):focus-visible,
   .tutorial-split,
   .step-columns,
   .example-list {
+    grid-template-columns: 1fr;
+  }
+
+  .type-matchup-card {
     grid-template-columns: 1fr;
   }
 
