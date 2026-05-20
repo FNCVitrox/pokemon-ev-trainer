@@ -1003,6 +1003,124 @@ const extraMoveDescriptions = {
   }
 };
 
+const moveDetails = {
+  "Abgesang": { type: "Normal", power: null, accuracy: null, pp: 5 },
+  "Aero-Ass": { type: "Flug", power: 60, accuracy: null, pp: 20 },
+  "Agilität": { type: "Psycho", power: null, accuracy: null, pp: 30 },
+  "Aquaknarre": { type: "Wasser", power: 40, accuracy: 100, pp: 25 },
+  "Aussetzer": { type: "Normal", power: null, accuracy: 55, pp: 20 },
+  "Barriere": { type: "Psycho", power: null, accuracy: null, pp: 30 },
+  "Biss": { type: "Unlicht", power: 60, accuracy: 100, pp: 25 },
+  "Blättertanz": { type: "Pflanze", power: 70, accuracy: 100, pp: 20 },
+  "Bodyslam": { type: "Normal", power: 85, accuracy: 100, pp: 15 },
+  "Bohrschnabel": { type: "Flug", power: 80, accuracy: 100, pp: 20 },
+  "Donnerblitz": { type: "Elektro", power: 95, accuracy: 100, pp: 15 },
+  "Donnerschlag": { type: "Elektro", power: 75, accuracy: 100, pp: 15 },
+  "Donnerwelle": { type: "Elektro", power: null, accuracy: 100, pp: 20 },
+  "Doppelkick": { type: "Kampf", power: 30, accuracy: 100, pp: 30 },
+  "Doppelteam": { type: "Normal", power: null, accuracy: null, pp: 15 },
+  "Drachenklaue": { type: "Drache", power: 80, accuracy: 100, pp: 15 },
+  "Drachentanz": { type: "Drache", power: null, accuracy: null, pp: 20 },
+  "Drachenwut": { type: "Drache", power: null, accuracy: 100, pp: 10 },
+  "Dreschflegel": { type: "Normal", power: null, accuracy: 100, pp: 15 },
+  "Duonadel": { type: "Käfer", power: 25, accuracy: 100, pp: 20 },
+  "Durchbruch": { type: "Kampf", power: 75, accuracy: 100, pp: 15 },
+  "Egelsamen": { type: "Pflanze", power: null, accuracy: 90, pp: 10 },
+  "Eishieb": { type: "Eis", power: 75, accuracy: 100, pp: 15 },
+  "Eisstrahl": { type: "Eis", power: 95, accuracy: 100, pp: 10 },
+  "Erdbeben": { type: "Boden", power: 100, accuracy: 100, pp: 10 },
+  "Erholung": { type: "Psycho", power: null, accuracy: null, pp: 5 },
+  "Explosion": { type: "Normal", power: 250, accuracy: 100, pp: 5 },
+  "Fadenschuss": { type: "Käfer", power: null, accuracy: 95, pp: 40 },
+  "Feuerschlag": { type: "Feuer", power: 75, accuracy: 100, pp: 15 },
+  "Feuerwirbel": { type: "Feuer", power: 15, accuracy: 70, pp: 15 },
+  "Flammenwurf": { type: "Feuer", power: 95, accuracy: 100, pp: 15 },
+  "Fliegen": { type: "Flug", power: 70, accuracy: 95, pp: 15 },
+  "Flügelschlag": { type: "Flug", power: 60, accuracy: 100, pp: 35 },
+  "Fußkick": { type: "Kampf", power: null, accuracy: 100, pp: 20 },
+  "Gedankengut": { type: "Psycho", power: null, accuracy: null, pp: 20 },
+  "Geheimpower": { type: "Normal", power: 70, accuracy: 100, pp: 20 },
+  "Genesung": { type: "Normal", power: null, accuracy: null, pp: 20 },
+  "Geowurf": { type: "Kampf", power: null, accuracy: 100, pp: 20 },
+  "Gesang": { type: "Normal", power: null, accuracy: 55, pp: 15 },
+  "Giftpuder": { type: "Gift", power: null, accuracy: 75, pp: 35 },
+  "Giftstachel": { type: "Gift", power: 15, accuracy: 100, pp: 35 },
+  "Gigasauger": { type: "Pflanze", power: 60, accuracy: 100, pp: 5 },
+  "Glut": { type: "Feuer", power: 40, accuracy: 100, pp: 25 },
+  "Härtner": { type: "Normal", power: null, accuracy: null, pp: 30 },
+  "Hornattacke": { type: "Normal", power: 65, accuracy: 100, pp: 25 },
+  "Hornbohrer": { type: "Normal", power: null, accuracy: 30, pp: 5 },
+  "Hyperzahn": { type: "Normal", power: 80, accuracy: 90, pp: 15 },
+  "Hypnose": { type: "Psycho", power: null, accuracy: 60, pp: 20 },
+  "Intensität": { type: "Boden", power: null, accuracy: 100, pp: 30 },
+  "Karateschlag": { type: "Kampf", power: 50, accuracy: 100, pp: 25 },
+  "Knochmerang": { type: "Boden", power: 50, accuracy: 90, pp: 10 },
+  "Konfusion": { type: "Psycho", power: 50, accuracy: 100, pp: 25 },
+  "Konfusstrahl": { type: "Geist", power: null, accuracy: 100, pp: 10 },
+  "Kopfnuss": { type: "Normal", power: 70, accuracy: 100, pp: 15 },
+  "Krabbhammer": { type: "Wasser", power: 90, accuracy: 85, pp: 10 },
+  "Kratzer": { type: "Normal", power: 40, accuracy: 100, pp: 35 },
+  "Kreideschrei": { type: "Normal", power: null, accuracy: 85, pp: 40 },
+  "Kreuzhieb": { type: "Kampf", power: 100, accuracy: 80, pp: 5 },
+  "Lichtschild": { type: "Psycho", power: null, accuracy: null, pp: 30 },
+  "Matschbombe": { type: "Gift", power: 90, accuracy: 100, pp: 10 },
+  "Metallklaue": { type: "Stahl", power: 50, accuracy: 95, pp: 35 },
+  "Metallsound": { type: "Stahl", power: null, accuracy: 85, pp: 40 },
+  "Mondschein": { type: "Normal", power: null, accuracy: null, pp: 5 },
+  "Nachtnebel": { type: "Geist", power: null, accuracy: 100, pp: 15 },
+  "Pikser": { type: "Flug", power: 35, accuracy: 100, pp: 35 },
+  "Pilzspore": { type: "Pflanze", power: null, accuracy: 100, pp: 15 },
+  "Platscher": { type: "Normal", power: null, accuracy: null, pp: 40 },
+  "Protzer": { type: "Kampf", power: null, accuracy: null, pp: 20 },
+  "Psychokinese": { type: "Psycho", power: 90, accuracy: 100, pp: 10 },
+  "Rasierblatt": { type: "Pflanze", power: 55, accuracy: 95, pp: 25 },
+  "Rauchwolke": { type: "Normal", power: null, accuracy: 100, pp: 20 },
+  "Regentanz": { type: "Wasser", power: null, accuracy: null, pp: 5 },
+  "Rückkehr": { type: "Normal", power: null, accuracy: 100, pp: 20 },
+  "Ruckzuckhieb": { type: "Normal", power: 40, accuracy: 100, pp: 30 },
+  "Sandwirbel": { type: "Boden", power: null, accuracy: 100, pp: 15 },
+  "Säure": { type: "Gift", power: 40, accuracy: 100, pp: 30 },
+  "Säurepanzer": { type: "Gift", power: null, accuracy: null, pp: 40 },
+  "Schaufler": { type: "Boden", power: 60, accuracy: 100, pp: 10 },
+  "Schlafpuder": { type: "Pflanze", power: null, accuracy: 75, pp: 15 },
+  "Schlitzer": { type: "Normal", power: 70, accuracy: 100, pp: 20 },
+  "Schutzschild": { type: "Normal", power: null, accuracy: null, pp: 10 },
+  "Schwerttanz": { type: "Normal", power: null, accuracy: null, pp: 30 },
+  "Silberblick": { type: "Normal", power: null, accuracy: 100, pp: 30 },
+  "Silberhauch": { type: "Käfer", power: 60, accuracy: 100, pp: 5 },
+  "Slam": { type: "Normal", power: 80, accuracy: 75, pp: 20 },
+  "Smog": { type: "Gift", power: 20, accuracy: 70, pp: 20 },
+  "Solarstrahl": { type: "Pflanze", power: 120, accuracy: 100, pp: 10 },
+  "Sonnentag": { type: "Feuer", power: null, accuracy: null, pp: 5 },
+  "Spukball": { type: "Geist", power: 80, accuracy: 100, pp: 15 },
+  "Stachelspore": { type: "Pflanze", power: null, accuracy: 75, pp: 30 },
+  "Stahlflügel": { type: "Stahl", power: 70, accuracy: 90, pp: 25 },
+  "Stampfer": { type: "Normal", power: 65, accuracy: 100, pp: 20 },
+  "Stärke": { type: "Normal", power: 80, accuracy: 100, pp: 15 },
+  "Steinhagel": { type: "Gestein", power: 75, accuracy: 90, pp: 10 },
+  "Steinwurf": { type: "Gestein", power: 50, accuracy: 90, pp: 15 },
+  "Sternschauer": { type: "Normal", power: 60, accuracy: null, pp: 20 },
+  "Superschall": { type: "Normal", power: null, accuracy: 55, pp: 20 },
+  "Surfer": { type: "Wasser", power: 95, accuracy: 100, pp: 15 },
+  "Tackle": { type: "Normal", power: 35, accuracy: 95, pp: 35 },
+  "Teleport": { type: "Psycho", power: null, accuracy: null, pp: 20 },
+  "Tempohieb": { type: "Kampf", power: 40, accuracy: 100, pp: 30 },
+  "Todeskuss": { type: "Normal", power: null, accuracy: 75, pp: 10 },
+  "Toxin": { type: "Gift", power: null, accuracy: 85, pp: 10 },
+  "Trugschlag": { type: "Normal", power: 40, accuracy: 100, pp: 40 },
+  "Turbotempo": { type: "Normal", power: 80, accuracy: 100, pp: 5 },
+  "Turmkick": { type: "Kampf", power: 85, accuracy: 90, pp: 20 },
+  "Ultraschall": { type: "Normal", power: null, accuracy: 90, pp: 20 },
+  "Verfolgung": { type: "Unlicht", power: 40, accuracy: 100, pp: 20 },
+  "Wandler": { type: "Normal", power: null, accuracy: null, pp: 10 },
+  "Weichei": { type: "Normal", power: null, accuracy: null, pp: 5 },
+  "Weißnebel": { type: "Eis", power: null, accuracy: null, pp: 30 },
+  "Zahltag": { type: "Normal", power: 40, accuracy: 100, pp: 20 },
+  "Zerschneider": { type: "Normal", power: 50, accuracy: 95, pp: 30 }
+};
+
+const variableDamageMoves = new Set(["Drachenwut", "Dreschflegel", "Fußkick", "Geowurf", "Hornbohrer", "Intensität", "Nachtnebel", "Rückkehr"]);
+
 const bulkySpecialPokemonIds = new Set([
   1, 2, 3, 7, 8, 9, 35, 36, 39, 40, 43, 44, 45, 60, 61, 79, 80, 86, 87, 90, 91, 102, 103, 108, 113, 114, 131, 134, 137, 138, 139, 144
 ]);
@@ -1779,6 +1897,55 @@ function getMoveDescription(moveName) {
     : "PvE-taugliche Attacke für Schaden, Coverage oder Setup.");
 }
 
+function getMoveTypeLabel(type) {
+  if (!type) return "—";
+  if (state.lang === "de") return type;
+  const typeKey = Object.entries(typeNames.de).find(([, germanName]) => germanName === type)?.[0];
+  return typeKey ? typeNames.en[typeKey] : type;
+}
+
+function getMoveCategory(details, moveName) {
+  if (!details) return "status";
+  if (details.power === null && !variableDamageMoves.has(moveName)) return "status";
+  return specialMoveTypes.includes(details.type) ? "special" : "physical";
+}
+
+function getMoveCategoryLabel(category) {
+  const labels = {
+    de: { physical: "Physisch", special: "Spezial", status: "Status" },
+    en: { physical: "Physical", special: "Special", status: "Status" }
+  };
+  return labels[state.lang][category] ?? category;
+}
+
+function formatMoveNumber(value, suffix = "") {
+  return value === null || value === undefined ? "—" : `${value}${suffix}`;
+}
+
+function renderMoveCard(move) {
+  const details = moveDetails[move];
+  const category = getMoveCategory(details, move);
+  const labels = state.lang === "en"
+    ? { type: "Type", category: "Cat.", power: "Power", accuracy: "Acc.", pp: "PP" }
+    : { type: "Typ", category: "Kat.", power: "Stärke", accuracy: "Genau.", pp: "AP" };
+
+  return `
+    <div class="move-card">
+      <div class="move-card-header">
+        <strong>${move}</strong>
+        <span>${getMoveTypeLabel(details?.type)}</span>
+      </div>
+      <div class="move-meta">
+        <span><small>${labels.category}</small><b>${getMoveCategoryLabel(category)}</b></span>
+        <span><small>${labels.power}</small><b>${formatMoveNumber(details?.power)}</b></span>
+        <span><small>${labels.accuracy}</small><b>${formatMoveNumber(details?.accuracy, "%")}</b></span>
+        <span><small>${labels.pp}</small><b>${formatMoveNumber(details?.pp)}</b></span>
+      </div>
+      <p>${getMoveDescription(move)}</p>
+    </div>
+  `;
+}
+
 function getFallbackBuild(active) {
   const evs = { ...getRecommendedTarget(active.types, active.id) };
   const isSpecial = evs.spa >= evs.atk;
@@ -1832,13 +1999,14 @@ function renderBuildRecommendation() {
     </div>
     <div class="move-list">
       <span>${t("moves")}</span>
+      <div class="stab-note">
+        <strong>STAB</strong>
+        <p>${state.lang === "en"
+          ? "Same Type Attack Bonus: if a move has the same type as your Pokemon, its damage is multiplied by 1.5 in FireRed / LeafGreen."
+          : "Same Type Attack Bonus: Wenn eine Attacke denselben Typ wie dein Pokémon hat, macht sie in Feuerrot / Blattgrün x1,5 Schaden."}</p>
+      </div>
       <div class="move-grid">
-        ${build.moves.map((move) => `
-          <div class="move-card">
-            <strong>${move}</strong>
-            <p>${getMoveDescription(move)}</p>
-          </div>
-        `).join("")}
+        ${build.moves.map((move) => renderMoveCard(move)).join("")}
       </div>
     </div>
   `;
