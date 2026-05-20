@@ -621,16 +621,17 @@ input:not([type="checkbox"]):focus-visible,
 
 .move-meta {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(86px, 1.35fr) repeat(3, minmax(64px, 1fr));
   gap: 6px;
   margin-top: 10px;
 }
 
 .move-meta span {
+  min-width: 0;
   border: 1px solid rgba(49, 64, 80, 0.82);
   border-radius: 8px;
   background: rgba(12, 18, 25, 0.42);
-  padding: 7px;
+  padding: 7px 8px;
 }
 
 .move-meta small,
@@ -648,7 +649,9 @@ input:not([type="checkbox"]):focus-visible,
 .move-meta b {
   margin-top: 2px;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: clamp(0.78rem, 1.6vw, 0.9rem);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
 }
 
 .move-card p {
