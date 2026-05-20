@@ -24,6 +24,8 @@ const i18n = {
     applyBuild: "Build als Ziel setzen",
     trainingTitle: "Besiegte Pokémon",
     moveHelpTitle: "Attacken kurz erklärt",
+    pokerus: "Pokérus",
+    machoBrace: "Machoband",
     noResults: "Keine Treffer",
     complete: "Alle Zielwerte sind erreicht.",
     moves: "Attacken",
@@ -68,6 +70,8 @@ const i18n = {
     applyBuild: "Set build goal",
     trainingTitle: "Defeated Pokémon",
     moveHelpTitle: "Move guide",
+    pokerus: "Pokerus",
+    machoBrace: "Macho Brace",
     noResults: "No results",
     complete: "All goal values reached.",
     moves: "Moves",
@@ -754,6 +758,7 @@ const itemDescriptions = {
     Bannsticker: "boosts Ghost-type moves.",
     Überreste: "heals a little HP after each turn.",
     "Scope-Linse": "raises the critical-hit chance.",
+    "Psycho-verstärkendes Item": "boosts Psychic-type moves.",
     "Typ-verstärkendes Item": "boosts your most important attack type."
   }
 };
@@ -1121,6 +1126,175 @@ const moveDetails = {
   "Zerschneider": { type: "Normal", power: 50, accuracy: 95, pp: 30 }
 };
 
+const moveEnglishNames = {
+  "Abgesang": "Perish Song",
+  "Aero-Ass": "Aerial Ace",
+  "Agilität": "Agility",
+  "Aquaknarre": "Water Gun",
+  "Aussetzer": "Disable",
+  "Barriere": "Barrier",
+  "Biss": "Bite",
+  "Blättertanz": "Petal Dance",
+  "Bodyslam": "Body Slam",
+  "Bohrschnabel": "Drill Peck",
+  "Donnerblitz": "Thunderbolt",
+  "Donnerschlag": "Thunder Punch",
+  "Donnerwelle": "Thunder Wave",
+  "Doppelkick": "Double Kick",
+  "Doppelteam": "Double Team",
+  "Drachenklaue": "Dragon Claw",
+  "Drachentanz": "Dragon Dance",
+  "Drachenwut": "Dragon Rage",
+  "Dreschflegel": "Flail",
+  "Duonadel": "Twineedle",
+  "Durchbruch": "Brick Break",
+  "Egelsamen": "Leech Seed",
+  "Eishieb": "Ice Punch",
+  "Eisstrahl": "Ice Beam",
+  "Erdbeben": "Earthquake",
+  "Erholung": "Rest",
+  "Explosion": "Explosion",
+  "Fadenschuss": "String Shot",
+  "Feuerschlag": "Fire Punch",
+  "Feuerwirbel": "Fire Spin",
+  "Flammenwurf": "Flamethrower",
+  "Fliegen": "Fly",
+  "Flügelschlag": "Wing Attack",
+  "Fußkick": "Low Kick",
+  "Gedankengut": "Calm Mind",
+  "Geheimpower": "Secret Power",
+  "Genesung": "Recover",
+  "Geowurf": "Seismic Toss",
+  "Gesang": "Sing",
+  "Giftpuder": "Poison Powder",
+  "Giftstachel": "Poison Sting",
+  "Gigasauger": "Giga Drain",
+  "Glut": "Ember",
+  "Härtner": "Harden",
+  "Hornattacke": "Horn Attack",
+  "Hornbohrer": "Horn Drill",
+  "Hyperzahn": "Hyper Fang",
+  "Hypnose": "Hypnosis",
+  "Intensität": "Magnitude",
+  "Karateschlag": "Karate Chop",
+  "Knochmerang": "Bonemerang",
+  "Konfusion": "Confusion",
+  "Konfusstrahl": "Confuse Ray",
+  "Kopfnuss": "Headbutt",
+  "Krabbhammer": "Crabhammer",
+  "Kratzer": "Scratch",
+  "Kreideschrei": "Screech",
+  "Kreuzhieb": "Cross Chop",
+  "Lichtschild": "Light Screen",
+  "Matschbombe": "Sludge Bomb",
+  "Metallklaue": "Metal Claw",
+  "Metallsound": "Metal Sound",
+  "Mondschein": "Moonlight",
+  "Nachtnebel": "Night Shade",
+  "Pikser": "Peck",
+  "Pilzspore": "Spore",
+  "Platscher": "Splash",
+  "Protzer": "Bulk Up",
+  "Psychokinese": "Psychic",
+  "Rasierblatt": "Razor Leaf",
+  "Rauchwolke": "Smokescreen",
+  "Regentanz": "Rain Dance",
+  "Rückkehr": "Return",
+  "Ruckzuckhieb": "Quick Attack",
+  "Sandwirbel": "Sand Attack",
+  "Säure": "Acid",
+  "Säurepanzer": "Acid Armor",
+  "Schaufler": "Dig",
+  "Schlafpuder": "Sleep Powder",
+  "Schlitzer": "Slash",
+  "Schutzschild": "Protect",
+  "Schwerttanz": "Swords Dance",
+  "Silberblick": "Leer",
+  "Silberhauch": "Silver Wind",
+  "Slam": "Slam",
+  "Smog": "Smog",
+  "Solarstrahl": "Solar Beam",
+  "Sonnentag": "Sunny Day",
+  "Spukball": "Shadow Ball",
+  "Stachelspore": "Stun Spore",
+  "Stahlflügel": "Steel Wing",
+  "Stampfer": "Stomp",
+  "Stärke": "Strength",
+  "Steinhagel": "Rock Slide",
+  "Steinwurf": "Rock Throw",
+  "Sternschauer": "Swift",
+  "Superschall": "Supersonic",
+  "Surfer": "Surf",
+  "Tackle": "Tackle",
+  "Teleport": "Teleport",
+  "Tempohieb": "Mach Punch",
+  "Todeskuss": "Lovely Kiss",
+  "Toxin": "Toxic",
+  "Trugschlag": "False Swipe",
+  "Turbotempo": "Extreme Speed",
+  "Turmkick": "High Jump Kick",
+  "Ultraschall": "Sonic Boom",
+  "Verfolgung": "Pursuit",
+  "Wandler": "Transform",
+  "Weichei": "Soft-Boiled",
+  "Weißnebel": "Mist",
+  "Zahltag": "Pay Day",
+  "Zerschneider": "Cut"
+};
+
+const itemEnglishNames = {
+  Holzkohle: "Charcoal",
+  Mystikwasser: "Mystic Water",
+  Magnet: "Magnet",
+  Wundersaat: "Miracle Seed",
+  "Ewiges Eis": "Never-Melt Ice",
+  "Krummlöffel": "Twisted Spoon",
+  Drachenzahn: "Dragon Fang",
+  Seidenschal: "Silk Scarf",
+  Schwarzgurt: "Black Belt",
+  Pudersand: "Soft Sand",
+  Granitstein: "Hard Stone",
+  Hackattack: "Sharp Beak",
+  Silberstaub: "SilverPowder",
+  Giftstich: "Poison Barb",
+  Bannsticker: "Spell Tag",
+  Überreste: "Leftovers",
+  "Scope-Linse": "Scope Lens",
+  "Typ-verstärkendes Item": "Type-boosting item",
+  "Psycho-verstärkendes Item": "Psychic-boosting item"
+};
+
+const buildTextEnglish = {
+  "Bulky Spezial-Angreifer": "Bulky Special Attacker",
+  "Schneller Spezial-Angreifer": "Fast Special Attacker",
+  "Spezial-Sweeper": "Special Sweeper",
+  "Physischer Wallbreaker": "Physical Wallbreaker",
+  "Physischer Sweeper": "Physical Sweeper",
+  "Bulky Coverage-Angreifer": "Bulky Coverage Attacker",
+  "Bulky Physischer Angreifer": "Bulky Physical Attacker",
+  "Spezial-Angreifer": "Special Attacker",
+  "Legendärer Spezial-Sweeper": "Legendary Special Sweeper",
+  "Stabiler Story-Build: hält viel aus und gewinnt lange Kämpfe über Status und Heilung.": "Stable story build: takes hits well and wins long fights through status and healing.",
+  "Sehr guter Story-Build: schnell, starker Feuer-STAB und genug Coverage für viele Trainer.": "Very good story build: fast, strong Fire STAB, and enough coverage for many trainers.",
+  "Sicherer Story-Build: hält viel aus und nutzt Surfer und Eisstrahl mit starkem Sp. Angriff.": "Safe story build: bulky and uses Surf plus Ice Beam with strong Sp. Atk.",
+  "Pikachu ist fragil, also zuerst zuschlagen oder Gegner paralysieren.": "Pikachu is fragile, so hit first or paralyze opponents.",
+  "Raichu spielt sich wie Pikachu, aber deutlich stabiler und besser für die Story.": "Raichu plays like Pikachu, but is much sturdier and better for the story.",
+  "Bedroher macht Arkani angenehm sicher. Feuer-Attacken sind in Gen 3 speziell, deshalb passt Sp. Angriff gut.": "Intimidate makes Arcanine comfortable and safe. Fire moves are special in Gen 3, so Sp. Atk fits well.",
+  "Extrem stark, aber fragil. Gut spielen heißt: reinkommen, schneller sein, Druck machen.": "Extremely strong but fragile. Use it by switching in safely, moving first, and applying pressure.",
+  "Langsam, aber sehr hart. Gute Wahl gegen Normal-, Gestein- und Eis-Pokémon.": "Slow, but hits very hard. A good pick against Normal, Rock, and Ice Pokemon.",
+  "Gengar lebt von Tempo und Coverage. Schwebe gibt dir einen kostenlosen Boden-Switch.": "Gengar lives off Speed and coverage. Levitate gives you a free Ground switch-in.",
+  "Guter Mix aus Schaden und Kontrolle. Besonders angenehm gegen Wasser- und Boden-Pokémon.": "Good mix of damage and control. Especially comfortable against Water and Ground Pokemon.",
+  "Starmie ist eines der besten Story-Pokémon: schnell, stark und mit sehr guter Coverage.": "Starmie is one of the best story Pokemon: fast, strong, and has excellent coverage.",
+  "Drachentanz macht Garados sehr gefährlich. Bedroher hilft beim sicheren Setup.": "Dragon Dance makes Gyarados very dangerous. Intimidate helps it set up safely.",
+  "Lapras ist langsam, aber sehr verlässlich und trifft viele wichtige Gegner effektiv.": "Lapras is slow, but very reliable and hits many important opponents effectively.",
+  "Blitza ist ein cleaner Speed-Pick. Sehr gut, wenn du schnell Druck machen willst.": "Jolteon is a clean Speed pick. Very good when you want immediate pressure.",
+  "Relaxo ist langsam, aber unglaublich stabil. Perfekt, wenn du sichere Wechsel willst.": "Snorlax is slow, but incredibly sturdy. Perfect when you want safe switches.",
+  "Zapdos ist stark und flexibel: guter Schaden, gute Defensive, starke Typenkombination.": "Zapdos is strong and flexible: good damage, good bulk, and a strong type combination.",
+  "Dragoran spielt sich in der Story stark über Fliegen, Erdbeben und breite Coverage.": "Dragonite is strong in the story with Fly, Earthquake, and broad coverage.",
+  "Mewtu ist absurd stark. Mit Gedankengut wird es schnell komplett außer Kontrolle.": "Mewtwo is absurdly strong. With Calm Mind, it can quickly get out of control.",
+  "PvE-Empfehlung: Story-taugliche Attacken mit STAB, Coverage oder nützlichem Status.": "PvE recommendation: story-friendly moves with STAB, coverage, or useful status."
+};
+
 const variableDamageMoves = new Set(["Drachenwut", "Dreschflegel", "Fußkick", "Geowurf", "Hornbohrer", "Intensität", "Nachtnebel", "Rückkehr"]);
 
 const bulkySpecialPokemonIds = new Set([
@@ -1325,24 +1499,24 @@ const pokemon = kantoPokemon.map(([id, name, types], index) => ({
 }));
 
 const enemies = [
-  { name: "Raupy", stat: "hp", ev: 1, place: "Vertania-Wald", note: "Early Game KP" },
-  { name: "Pummeluff", stat: "hp", ev: 2, place: "Route 3", note: "Mehr KP pro Kampf" },
-  { name: "Flegmon", stat: "hp", ev: 1, place: "Seeschauminseln", note: "KP-Option im Wasser" },
-  { name: "Machollo", stat: "atk", ev: 1, place: "Felstunnel", note: "Angriff trainieren" },
-  { name: "Menki", stat: "atk", ev: 1, place: "Route 22", note: "Frühe Angriffs-Option" },
-  { name: "Krabby", stat: "atk", ev: 1, place: "Angeln", note: "Wasser-Angriffstraining" },
-  { name: "Kleinstein", stat: "def", ev: 1, place: "Mondberg", note: "Verteidigung trainieren" },
-  { name: "Onix", stat: "def", ev: 1, place: "Felstunnel", note: "Verteidigung in Höhlen" },
-  { name: "Muschas", stat: "def", ev: 1, place: "Angeln", note: "Verteidigung per Wasserroute" },
-  { name: "Abra", stat: "spa", ev: 1, place: "Route 24", note: "Early Game Sp. Angriff" },
-  { name: "Nebulak", stat: "spa", ev: 1, place: "Pokémon-Turm", note: "Konstant für Sp. Angriff" },
-  { name: "Myrapla", stat: "spa", ev: 1, place: "Route 5 / 6", note: "Pflanzen-Option für Sp. Angriff" },
-  { name: "Tentacha", stat: "spd", ev: 1, place: "Surfen", note: "Sehr häufig für Sp. Vert." },
-  { name: "Drowzee", stat: "spd", ev: 1, place: "Route 11", note: "Frühe Sp. Vert.-Option" },
-  { name: "Jurob", stat: "spd", ev: 1, place: "Seeschauminseln", note: "Sp. Vert. im Late Game" },
-  { name: "Rattfratz", stat: "spe", ev: 1, place: "Route 1", note: "Sehr früh für Initiative" },
-  { name: "Zubat", stat: "spe", ev: 1, place: "Mondberg", note: "Gute Höhlen-Option" },
-  { name: "Dodu", stat: "spe", ev: 1, place: "Route 16 / 17", note: "Initiative im Mid Game" }
+  { name: "Raupy", nameEn: "Caterpie", stat: "hp", ev: 1, place: "Vertania-Wald", placeEn: "Viridian Forest", note: "Early Game KP" },
+  { name: "Pummeluff", nameEn: "Jigglypuff", stat: "hp", ev: 2, place: "Route 3", placeEn: "Route 3", note: "Mehr KP pro Kampf" },
+  { name: "Flegmon", nameEn: "Slowpoke", stat: "hp", ev: 1, place: "Seeschauminseln", placeEn: "Seafoam Islands", note: "KP-Option im Wasser" },
+  { name: "Machollo", nameEn: "Machop", stat: "atk", ev: 1, place: "Felstunnel", placeEn: "Rock Tunnel", note: "Angriff trainieren" },
+  { name: "Menki", nameEn: "Mankey", stat: "atk", ev: 1, place: "Route 22", placeEn: "Route 22", note: "Frühe Angriffs-Option" },
+  { name: "Krabby", nameEn: "Krabby", stat: "atk", ev: 1, place: "Angeln", placeEn: "Fishing", note: "Wasser-Angriffstraining" },
+  { name: "Kleinstein", nameEn: "Geodude", stat: "def", ev: 1, place: "Mondberg", placeEn: "Mt. Moon", note: "Verteidigung trainieren" },
+  { name: "Onix", nameEn: "Onix", stat: "def", ev: 1, place: "Felstunnel", placeEn: "Rock Tunnel", note: "Verteidigung in Höhlen" },
+  { name: "Muschas", nameEn: "Shellder", stat: "def", ev: 1, place: "Angeln", placeEn: "Fishing", note: "Verteidigung per Wasserroute" },
+  { name: "Abra", nameEn: "Abra", stat: "spa", ev: 1, place: "Route 24", placeEn: "Route 24", note: "Early Game Sp. Angriff" },
+  { name: "Nebulak", nameEn: "Gastly", stat: "spa", ev: 1, place: "Pokémon-Turm", placeEn: "Pokemon Tower", note: "Konstant für Sp. Angriff" },
+  { name: "Myrapla", nameEn: "Oddish", stat: "spa", ev: 1, place: "Route 5 / 6", placeEn: "Route 5 / 6", note: "Pflanzen-Option für Sp. Angriff" },
+  { name: "Tentacha", nameEn: "Tentacool", stat: "spd", ev: 1, place: "Surfen", placeEn: "Surfing", note: "Sehr häufig für Sp. Vert." },
+  { name: "Drowzee", nameEn: "Drowzee", stat: "spd", ev: 1, place: "Route 11", placeEn: "Route 11", note: "Frühe Sp. Vert.-Option" },
+  { name: "Jurob", nameEn: "Seel", stat: "spd", ev: 1, place: "Seeschauminseln", placeEn: "Seafoam Islands", note: "Sp. Vert. im Late Game" },
+  { name: "Rattfratz", nameEn: "Rattata", stat: "spe", ev: 1, place: "Route 1", placeEn: "Route 1", note: "Sehr früh für Initiative" },
+  { name: "Zubat", nameEn: "Zubat", stat: "spe", ev: 1, place: "Mondberg", placeEn: "Mt. Moon", note: "Gute Höhlen-Option" },
+  { name: "Dodu", nameEn: "Doduo", stat: "spe", ev: 1, place: "Route 16 / 17", placeEn: "Route 16 / 17", note: "Initiative im Mid Game" }
 ];
 
 const state = {
@@ -1391,6 +1565,8 @@ const elements = {
   moveHelpContent: document.querySelector("#moveHelpContent"),
   applyBuildButton: document.querySelector("#applyBuildButton"),
   trainingTitle: document.querySelector("#trainingTitle"),
+  pokerusLabel: document.querySelector("#pokerusLabel"),
+  machoLabel: document.querySelector("#machoLabel"),
   undoButton: document.querySelector("#undoButton"),
   trainingHelp: document.querySelector("#trainingHelp"),
   statFilters: document.querySelector("#statFilters"),
@@ -1497,6 +1673,33 @@ function getTypeText(types) {
     .join(" / ");
 }
 
+function translateText(text) {
+  return state.lang === "en" ? buildTextEnglish[text] ?? text : text;
+}
+
+function getMoveDisplayName(moveName) {
+  return state.lang === "en" ? moveEnglishNames[moveName] ?? moveName : moveName;
+}
+
+function getItemDisplayName(itemName) {
+  return state.lang === "en" ? itemEnglishNames[itemName] ?? itemName : itemName;
+}
+
+function getItemDisplayText(itemText) {
+  return itemText
+    .split("/")
+    .map((name) => getItemDisplayName(name.trim()))
+    .join(" / ");
+}
+
+function getEnemyName(enemy) {
+  return state.lang === "en" ? enemy.nameEn ?? enemy.name : enemy.name;
+}
+
+function getEnemyPlace(enemy) {
+  return state.lang === "en" ? enemy.placeEn ?? enemy.place : enemy.place;
+}
+
 function renderLanguage() {
   document.documentElement.lang = state.lang;
   elements.tutorialButton.textContent = t("tutorialButton");
@@ -1518,6 +1721,8 @@ function renderLanguage() {
   elements.moveHelpTitle.textContent = t("moveHelpTitle");
   elements.applyBuildButton.textContent = t("applyBuild");
   elements.trainingTitle.textContent = t("trainingTitle");
+  elements.pokerusLabel.textContent = t("pokerus");
+  elements.machoLabel.textContent = t("machoBrace");
   elements.undoButton.textContent = t("undo");
   elements.currentEvsLabel.textContent = t("currentEvs");
   elements.remainingEvsLabel.textContent = t("remainingEvs");
@@ -1587,17 +1792,17 @@ function renderTutorialAppMock(type, guide) {
     build: [
       [state.lang === "en" ? "Pokemon" : "Pokémon", state.lang === "en" ? "Charmander" : "Glumanda"],
       [t("evGoal"), state.lang === "en" ? "252 Sp. Atk / 252 Speed" : "252 Sp. Ang. / 252 Init."],
-      [t("moves"), "Flammenwurf · Drachenklaue"]
+      [t("moves"), state.lang === "en" ? "Flamethrower · Dragon Claw" : "Flammenwurf · Drachenklaue"]
     ],
     multiplier: [
       [t("multiplier"), "x4"],
-      ["Pokérus", state.lang === "en" ? "On" : "An"],
-      [state.lang === "en" ? "Macho Brace" : "Machoband", state.lang === "en" ? "On" : "An"]
+      [t("pokerus"), state.lang === "en" ? "On" : "An"],
+      [t("machoBrace"), state.lang === "en" ? "On" : "An"]
     ],
     enemy: [
       [state.lang === "en" ? "Target" : "Ziel", "Abra"],
       [state.lang === "en" ? "Where" : "Ort", state.lang === "en" ? "Route 24" : "Route 24"],
-      [state.lang === "en" ? "Now gain" : "Jetzt", "+1 Sp. Ang."]
+      [state.lang === "en" ? "Now gain" : "Jetzt", state.lang === "en" ? "+1 Sp. Atk" : "+1 Sp. Ang."]
     ],
     click: [
       [state.lang === "en" ? "Button" : "Button", "Abra"],
@@ -1605,7 +1810,7 @@ function renderTutorialAppMock(type, guide) {
       [t("currentEvs"), "1 / 510"]
     ],
     progress: [
-      [state.lang === "en" ? "Goal" : "Ziel", "252 Sp. Ang."],
+      [state.lang === "en" ? "Goal" : "Ziel", state.lang === "en" ? "252 Sp. Atk" : "252 Sp. Ang."],
       [t("currentEvs"), "128"],
       [t("remainingEvs"), "382"]
     ],
@@ -1764,6 +1969,7 @@ function pushHistory(action) {
 }
 
 function addEnemyEv(enemy) {
+  const enemyDisplayName = getEnemyName(enemy);
   const gained = enemy.ev * getMultiplier();
   const currentTotal = totalEvs();
   const roomInStat = 252 - state.evs[enemy.stat];
@@ -1773,7 +1979,7 @@ function addEnemyEv(enemy) {
   if (applied <= 0) {
     state.lastAction = {
       type: "blocked",
-      enemy: enemy.name,
+      enemy: enemyDisplayName,
       stat: enemy.stat,
       amount: 0
     };
@@ -1784,7 +1990,7 @@ function addEnemyEv(enemy) {
 
   pushHistory({
     type: "enemy",
-    enemy: enemy.name,
+    enemy: enemyDisplayName,
     stat: enemy.stat,
     amount: applied,
     previousEvs: { ...state.evs }
@@ -1792,7 +1998,7 @@ function addEnemyEv(enemy) {
   state.evs[enemy.stat] += applied;
   state.lastAction = {
     type: "enemy",
-    enemy: enemy.name,
+    enemy: enemyDisplayName,
     stat: enemy.stat,
     amount: applied
   };
@@ -1891,7 +2097,7 @@ function getItemDescription(itemText) {
   return names
     .map((name) => {
       const description = itemDescriptions[state.lang][name] ?? itemDescriptions[state.lang]["Typ-verstärkendes Item"];
-      return `${name}: ${description}`;
+      return `${getItemDisplayName(name)}: ${description}`;
     })
     .join(" ");
 }
@@ -1937,7 +2143,7 @@ function renderMoveCard(move) {
   return `
     <div class="move-card">
       <div class="move-card-header">
-        <strong>${move}</strong>
+        <strong>${getMoveDisplayName(move)}</strong>
         <span>${getMoveTypeLabel(details?.type)}</span>
       </div>
       <div class="move-meta">
@@ -1990,17 +2196,23 @@ function getFallbackBuild(active) {
   const isBulky = evs.hp >= 252 && evs.spe === 0;
 
   return {
-    role: isSpecial
-      ? (isBulky ? "Bulky Spezial-Angreifer" : "Schneller Spezial-Angreifer")
-      : (isBulky ? "Bulky Physischer Angreifer" : "Physischer Angreifer"),
+    role: state.lang === "en"
+      ? (isSpecial
+        ? (isBulky ? "Bulky Special Attacker" : "Fast Special Attacker")
+        : (isBulky ? "Bulky Physical Attacker" : "Physical Attacker"))
+      : (isSpecial
+        ? (isBulky ? "Bulky Spezial-Angreifer" : "Schneller Spezial-Angreifer")
+        : (isBulky ? "Bulky Physischer Angreifer" : "Physischer Angreifer")),
     nature: isSpecial
       ? (state.lang === "en" ? "Timid or Modest" : "Scheu oder Mäßig")
       : (state.lang === "en" ? "Jolly or Adamant" : "Froh oder Hart"),
-    ability: "Beste verfügbare Fähigkeit",
+    ability: state.lang === "en" ? "Best available ability" : "Beste verfügbare Fähigkeit",
     item: getSuggestedItem(active.types, isSpecial),
     evs,
     moves: getSuggestedMoves(active, isSpecial),
-    note: "PvE-Empfehlung: Story-taugliche Attacken mit STAB, Coverage oder nützlichem Status."
+    note: state.lang === "en"
+      ? "PvE recommendation: story-friendly moves with STAB, coverage, or useful status."
+      : "PvE-Empfehlung: Story-taugliche Attacken mit STAB, Coverage oder nützlichem Status."
   };
 }
 
@@ -2017,8 +2229,8 @@ function renderBuildRecommendation() {
   const build = getActiveBuild();
   elements.buildRecommendation.innerHTML = `
     <div class="build-summary">
-      <strong>${build.role}</strong>
-      <p class="muted">${build.note}</p>
+      <strong>${translateText(build.role)}</strong>
+      <p class="muted">${translateText(build.note)}</p>
     </div>
     <div class="build-detail-grid">
       <div class="build-chip">
@@ -2032,7 +2244,7 @@ function renderBuildRecommendation() {
     </div>
     <div class="item-recommendation">
       <span>${t("item")}</span>
-      <strong>${build.item}</strong>
+      <strong>${getItemDisplayText(build.item)}</strong>
       <p>${getItemDescription(build.item)}</p>
     </div>
     <div class="move-list">
@@ -2104,8 +2316,8 @@ function renderEnemies() {
       const enemyIndex = enemies.indexOf(enemy);
       return `
         <button class="enemy-button" type="button" data-enemy="${enemyIndex}">
-          <strong>${enemy.name}</strong>
-          <span>+${gained} ${label} EV ${t("nowGain")} | ${enemy.place}</span>
+          <strong>${getEnemyName(enemy)}</strong>
+          <span>+${gained} ${label} EV ${t("nowGain")} | ${getEnemyPlace(enemy)}</span>
         </button>
       `;
     })
