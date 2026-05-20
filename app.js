@@ -1946,6 +1946,39 @@ function renderMoveCard(move) {
   `;
 }
 
+function renderMoveGlossary() {
+  const entries = state.lang === "en"
+    ? [
+      ["STAB", "Same Type Attack Bonus: same-type moves deal x1.5 damage."],
+      ["Coverage", "A move with a different type so you can hit more opponents effectively."],
+      ["Physical / Special", "In Gen 3 this depends on the move type, not on the move itself."],
+      ["Power", "Base damage. Higher usually means harder hits."],
+      ["Accuracy", "Hit chance. — means it does not use a normal accuracy check."],
+      ["PP", "How many times you can use the move before healing."],
+      ["Status", "Moves that do not directly deal damage, like sleep, paralysis or stat boosts."]
+    ]
+    : [
+      ["STAB", "Same Type Attack Bonus: Attacke mit gleichem Typ macht x1,5 Schaden."],
+      ["Coverage", "Attacke mit anderem Typ, damit du mehr Gegner effektiv treffen kannst."],
+      ["Physisch / Spezial", "In Gen 3 hängt das vom Attacken-Typ ab, nicht von der einzelnen Attacke."],
+      ["Stärke", "Basis-Schaden. Höher heißt meistens: trifft härter."],
+      ["Genauigkeit", "Trefferchance. — heißt: keine normale Genauigkeitsprüfung."],
+      ["AP", "Wie oft du die Attacke benutzen kannst, bevor du heilen musst."],
+      ["Status", "Attacken ohne direkten Schaden, z.B. Schlaf, Paralyse oder Werte-Boosts."]
+    ];
+
+  return `
+    <div class="move-glossary">
+      ${entries.map(([title, text]) => `
+        <div>
+          <strong>${title}</strong>
+          <p>${text}</p>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
 function getFallbackBuild(active) {
   const evs = { ...getRecommendedTarget(active.types, active.id) };
   const isSpecial = evs.spa >= evs.atk;
@@ -1999,12 +2032,7 @@ function renderBuildRecommendation() {
     </div>
     <div class="move-list">
       <span>${t("moves")}</span>
-      <div class="stab-note">
-        <strong>STAB</strong>
-        <p>${state.lang === "en"
-          ? "Same Type Attack Bonus: if a move has the same type as your Pokemon, its damage is multiplied by 1.5 in FireRed / LeafGreen."
-          : "Same Type Attack Bonus: Wenn eine Attacke denselben Typ wie dein Pokémon hat, macht sie in Feuerrot / Blattgrün x1,5 Schaden."}</p>
-      </div>
+      ${renderMoveGlossary()}
       <div class="move-grid">
         ${build.moves.map((move) => renderMoveCard(move)).join("")}
       </div>
