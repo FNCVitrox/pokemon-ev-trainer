@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-20-panel-height" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-20-column-layout" />
   </head>
   <body>
     <main class="app-shell">
@@ -22,93 +22,97 @@
       </header>
 
       <section class="trainer-grid" aria-label="EV Trainer Dashboard">
-        <div class="panel pokemon-panel">
-          <label id="searchLabel" for="pokemonSearch">Suche</label>
-          <input id="pokemonSearch" type="search" placeholder="z.B. Glurak, Pikachu, Mewtu..." autocomplete="off" />
+        <div class="dashboard-column dashboard-column-main">
+          <div class="panel pokemon-panel">
+            <label id="searchLabel" for="pokemonSearch">Suche</label>
+            <input id="pokemonSearch" type="search" placeholder="z.B. Glurak, Pikachu, Mewtu..." autocomplete="off" />
 
-          <label id="pokemonSelectLabel" for="pokemonSelect">Pokémon</label>
-          <select id="pokemonSelect"></select>
+            <label id="pokemonSelectLabel" for="pokemonSelect">Pokémon</label>
+            <select id="pokemonSelect"></select>
 
-          <div class="pokemon-preview">
-            <div class="sprite-frame" id="spriteFrame">
-              <img id="pokemonSprite" alt="" />
+            <div class="pokemon-preview">
+              <div class="sprite-frame" id="spriteFrame">
+                <img id="pokemonSprite" alt="" />
+              </div>
+              <div>
+                <p class="label" id="activeBuildLabel">Aktiver Build</p>
+                <h2 id="pokemonName">Glurak</h2>
+                <p id="pokemonTypes" class="muted">Feuer / Flug</p>
+                <button class="shiny-button" id="shinyButton" type="button">Shiny: Aus</button>
+              </div>
             </div>
-            <div>
-              <p class="label" id="activeBuildLabel">Aktiver Build</p>
-              <h2 id="pokemonName">Glurak</h2>
-              <p id="pokemonTypes" class="muted">Feuer / Flug</p>
-              <button class="shiny-button" id="shinyButton" type="button">Shiny: Aus</button>
+
+            <div id="typeMatchups" class="type-matchups" aria-label="Typen Matchups"></div>
+
+            <div class="mini-grid">
+              <label>
+                <span id="versionLabel">Version</span>
+                <select id="versionSelect"></select>
+              </label>
+              <label>
+                <span id="natureLabel">Wesen</span>
+                <select id="natureSelect"></select>
+              </label>
             </div>
           </div>
 
-          <div id="typeMatchups" class="type-matchups" aria-label="Typen Matchups"></div>
-
-          <div class="mini-grid">
-            <label>
-              <span id="versionLabel">Version</span>
-              <select id="versionSelect"></select>
-            </label>
-            <label>
-              <span id="natureLabel">Wesen</span>
-              <select id="natureSelect"></select>
-            </label>
+          <div class="panel build-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Build</p>
+                <h2 id="buildTitle">Empfohlener Spielstil</h2>
+              </div>
+              <button class="ghost-button small-button" id="applyBuildButton" type="button">Build als Ziel setzen</button>
+            </div>
+            <div id="buildRecommendation" class="build-box"></div>
           </div>
         </div>
 
-        <div class="panel target-panel">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow" id="targetEyebrow">Ziel</p>
-              <h2 id="targetTitle">EV-Verteilung</h2>
+        <div class="dashboard-column dashboard-column-training">
+          <div class="panel target-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow" id="targetEyebrow">Ziel</p>
+                <h2 id="targetTitle">EV-Verteilung</h2>
+              </div>
+              <span id="totalBadge" class="status-badge">0 / 510</span>
             </div>
-            <span id="totalBadge" class="status-badge">0 / 510</span>
-          </div>
-          <div class="ev-summary" aria-label="EV Übersicht">
-            <div class="summary-card">
-              <span id="currentEvsLabel">Aktuell</span>
-              <strong id="currentEvsValue">0</strong>
+            <div class="ev-summary" aria-label="EV Übersicht">
+              <div class="summary-card">
+                <span id="currentEvsLabel">Aktuell</span>
+                <strong id="currentEvsValue">0</strong>
+              </div>
+              <div class="summary-card">
+                <span id="remainingEvsLabel">Übrig</span>
+                <strong id="remainingEvsValue">510</strong>
+              </div>
+              <div class="summary-card">
+                <span id="multiplierLabel">Multiplikator</span>
+                <strong id="multiplierValue">x1</strong>
+              </div>
             </div>
-            <div class="summary-card">
-              <span id="remainingEvsLabel">Übrig</span>
-              <strong id="remainingEvsValue">510</strong>
-            </div>
-            <div class="summary-card">
-              <span id="multiplierLabel">Multiplikator</span>
-              <strong id="multiplierValue">x1</strong>
-            </div>
-          </div>
-          <div id="statRows" class="stat-list"></div>
-        </div>
-
-        <div class="panel build-panel">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Build</p>
-              <h2 id="buildTitle">Empfohlener Spielstil</h2>
-            </div>
-            <button class="ghost-button small-button" id="applyBuildButton" type="button">Build als Ziel setzen</button>
-          </div>
-          <div id="buildRecommendation" class="build-box"></div>
-        </div>
-
-        <div class="panel controls-panel">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Training</p>
-              <h2 id="trainingTitle">Besiegte Pokémon</h2>
-            </div>
-            <button class="ghost-button small-button" id="undoButton" type="button" disabled>Undo</button>
+            <div id="statRows" class="stat-list"></div>
           </div>
 
-          <div class="toggle-row">
-            <label><input id="pokerusToggle" type="checkbox" /> <span id="pokerusLabel">Pokérus</span></label>
-            <label><input id="machoToggle" type="checkbox" /> <span id="machoLabel">Machoband</span></label>
-          </div>
+          <div class="panel controls-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Training</p>
+                <h2 id="trainingTitle">Besiegte Pokémon</h2>
+              </div>
+              <button class="ghost-button small-button" id="undoButton" type="button" disabled>Undo</button>
+            </div>
 
-          <div id="trainingHelp" class="training-help"></div>
-          <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
-          <div id="lastAction" class="last-action"></div>
-          <div id="enemyButtons" class="enemy-grid"></div>
+            <div class="toggle-row">
+              <label><input id="pokerusToggle" type="checkbox" /> <span id="pokerusLabel">Pokérus</span></label>
+              <label><input id="machoToggle" type="checkbox" /> <span id="machoLabel">Machoband</span></label>
+            </div>
+
+            <div id="trainingHelp" class="training-help"></div>
+            <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
+            <div id="lastAction" class="last-action"></div>
+            <div id="enemyButtons" class="enemy-grid"></div>
+          </div>
         </div>
 
         <div class="panel move-help-panel">

@@ -100,6 +100,13 @@ h2 {
   align-items: start;
 }
 
+.dashboard-column {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+}
+
 .panel {
   align-self: start;
   background: linear-gradient(180deg, rgba(21, 27, 34, 0.97), rgba(17, 23, 31, 0.97));
