@@ -1664,6 +1664,26 @@ const pokemon = kantoPokemon.map(([id, name, types], index) => ({
   target: { ...getRecommendedTarget(types, id) }
 }));
 
+const htmlEscapes = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "\"": "&quot;",
+  "'": "&#39;"
+};
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (char) => htmlEscapes[char]);
+}
+
+function clampLanguage(value) {
+  return value === "en" ? "en" : "de";
+}
+
+function clampKnownValue(value, allowedValues, fallback) {
+  return allowedValues.includes(value) ? value : fallback;
+}
+
 const itemGuide = [
   {
     category: "ev",
@@ -2543,13 +2563,13 @@ function loadState() {
 
   try {
     const parsed = JSON.parse(saved);
-    state.lang = parsed.lang ?? "de";
+    state.lang = clampLanguage(parsed.lang);
     state.currentView = ["trainer", "items", "locations"].includes(parsed.currentView) ? parsed.currentView : "trainer";
-    state.selectedItemFilter = parsed.selectedItemFilter ?? "all";
-    state.selectedLocationFilter = parsed.selectedLocationFilter ?? "all";
+    state.selectedItemFilter = clampKnownValue(parsed.selectedItemFilter, ["all", "ev", "vitamin", "battle", "build", "utility", "berry", "wild", "thief", "postgame"], "all");
+    state.selectedLocationFilter = clampKnownValue(parsed.selectedLocationFilter, ["all", "story", "postgame", "important", "ev", "build", "hidden", "wild"], "all");
     state.selectedPokemon = parsed.selectedPokemon ?? 0;
     state.selectedVersion = parsed.selectedVersion ?? 0;
-    state.selectedNature = parsed.selectedNature ?? "timid";
+    state.selectedNature = natures.some((nature) => nature.id === parsed.selectedNature) ? parsed.selectedNature : "timid";
     state.pokerusActive = parsed.pokerusActive ?? false;
     state.machoActive = parsed.machoActive ?? false;
     state.shinyActive = parsed.shinyActive ?? false;
@@ -2649,7 +2669,7 @@ function saveState() {
 }
 
 function t(key) {
-  return i18n[state.lang][key] ?? i18n.de[key] ?? key;
+  return (i18n[state.lang] ?? i18n.de)[key] ?? i18n.de[key] ?? key;
 }
 
 function getStatLabel(key) {
@@ -2725,12 +2745,16 @@ function renderTeamSlots() {
       const shiny = slot.shinyActive ? " shiny" : "";
       const displayName = getSlotDisplayName(slot, entry);
       const pokemonName = getPokemonName(entry);
+      const safeDisplayName = escapeHtml(displayName);
+      const safePokemonName = escapeHtml(pokemonName);
+      const safeSlotLabel = escapeHtml(t("teamSlot"));
+      const safeActiveLabel = escapeHtml(t("activeSlot"));
 
       return `
         <button class="team-slot${active ? " active" : ""}${shiny}" type="button" data-team-slot="${index}">
-          <span>${t("teamSlot")} ${index + 1}${active ? ` · ${t("activeSlot")}` : ""}</span>
-          <strong>${displayName}</strong>
-          <small>${displayName === pokemonName ? `${total} / 510` : `${pokemonName} · ${total} / 510`}</small>
+          <span>${safeSlotLabel} ${index + 1}${active ? ` · ${safeActiveLabel}` : ""}</span>
+          <strong>${safeDisplayName}</strong>
+          <small>${displayName === pokemonName ? `${total} / 510` : `${safePokemonName} · ${total} / 510`}</small>
         </button>
       `;
     })
@@ -3542,7 +3566,7 @@ function renderStats() {
         <div class="stat-row${warning}${complete}">
           <strong class="${warning}">${label}</strong>
           <div class="bar" aria-label="${label} ${value} von ${target}">
-            <span style="width: ${progress}%"></span>
+            <span data-progress="${progress}"></span>
           </div>
           <span class="target-pill">${targetText}</span>
           <input data-stat="${key}" type="number" min="0" max="252" value="${value}" aria-label="${label} EVs" />
@@ -3550,6 +3574,10 @@ function renderStats() {
       `;
     })
     .join("");
+
+  elements.statRows.querySelectorAll("[data-progress]").forEach((bar) => {
+    bar.style.width = `${bar.dataset.progress}%`;
+  });
 }
 
 function renderEnemies() {
