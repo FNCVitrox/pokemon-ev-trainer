@@ -98,102 +98,146 @@ const i18n = {
 
 const tutorialGuide = {
   de: {
-    heroTitle: "So benutzt du die App beim echten Training",
-    heroText: "EVs werden in Feuerrot / Blattgrün nicht als Zahl angezeigt. Du bekommst sie trotzdem sofort, sobald dein Pokémon EP aus dem besiegten Gegner erhält. Die App ist deshalb dein sauberer Zähler.",
-    battleLabel: "Beispiel im Kampf",
+    heroTitle: "EV-Training Schritt für Schritt",
+    heroText: "So läuft es wirklich ab: Du spielst normal auf dem Gameboy/Emulator, und nach jedem besiegten Trainings-Pokémon trägst du denselben Gegner in der Webseite ein.",
+    loopTitle: "Der komplette Loop",
+    loop: ["Build wählen", "Gegner finden", "besiegen", "in der App anklicken", "Balken prüfen", "bei Ziel stoppen"],
+    gameLabel: "Im Spiel",
+    appLabel: "In der Webseite",
     battleText: "Glumanda besiegt Abra",
-    gainLabel: "EV-Gewinn",
-    gainText: "+1 Sp. Ang.",
-    counterLabel: "In der App",
-    counterText: "Abra antippen",
+    resultText: "Abra gibt +1 Sp. Ang. EV",
+    appClickText: "Klick: Abra +1 Sp. Ang.",
     steps: [
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-        title: "1. Build auswählen",
-        text: "Wähle dein Pokémon. Der Build zeigt dir, welche EVs du am Ende haben willst, zum Beispiel 4 KP / 252 Sp. Ang. / 252 Init."
+        title: "1. Pokémon und Build vorbereiten",
+        game: "Nimm das Pokémon ins Team, das du trainieren willst. Beispiel: Glumanda soll ein schneller Spezial-Angreifer werden.",
+        app: "Wähle Glumanda aus, schau dir den empfohlenen Build an und klicke bei Bedarf auf „Build als Ziel setzen“.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/back/4.png",
+        appMock: "build"
       },
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
-        title: "2. Passenden Gegner besiegen",
-        text: "Jeder Gegner gibt feste EVs. Abra gibt Sp. Ang., Rattfratz gibt Init., Raupy gibt KP. Wichtig: Nur zählen, wenn dein Pokémon EP bekommen hat."
+        title: "2. Training-Bonus einstellen",
+        game: "Wenn dein Pokémon Pokérus hat oder Machoband trägt, ist das wichtig. Beides zusammen macht aus +1 EV direkt +4 EV.",
+        app: "Aktiviere Pokérus und/oder Machoband. Der Multiplikator und die Gegnerwerte ändern sich sofort.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+        appMock: "multiplier"
       },
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
-        title: "3. Direkt in der App antippen",
-        text: "Nach jedem besiegten Pokémon tippst du genau diesen Gegner in der App an. Dann weißt du zu 100%, wie viele EVs du gesammelt hast."
+        title: "3. Passenden Gegner suchen",
+        game: "Für Sp. Angriff suchst du z.B. Abra auf Route 24 oder Nebulak im Pokémon-Turm. Der Gegner bestimmt den EV-Stat.",
+        app: "Unten bei „Besiegte Pokémon“ siehst du, welcher Gegner welchen EV-Wert gibt und wo du ihn findest.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
+        appMock: "enemy"
       },
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/25.png",
-        title: "4. Level-Up richtig verstehen",
-        text: "Beim Level-Up siehst du nur die Stat-Erhöhung, nicht die EV-Zahl. Große Sprünge können ein Hinweis sein, aber gezählt wird sicherer mit der App."
+        title: "4. Gegner besiegen und sofort eintragen",
+        game: "Besiege Abra. Sobald dein Pokémon EP bekommt, wurden die EVs vergeben. Das passiert nicht erst beim Level-Up.",
+        app: "Klicke direkt danach auf Abra. Die App addiert den richtigen Wert mit Pokérus/Machoband automatisch.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
+        appMock: "click"
+      },
+      {
+        title: "5. Fortschritt kontrollieren",
+        game: "Du kannst weiterkämpfen. Im Spiel siehst du die genauen EV-Zahlen nicht, nur später stärkere Stat-Steigerungen.",
+        app: "Schau auf Balken, Zielwert und „Übrig“. Wenn ein Stat voll ist, wechselst du zum nächsten Trainingsziel.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/25.png",
+        appMock: "progress"
+      },
+      {
+        title: "6. Stoppen, wenn das Ziel erreicht ist",
+        game: "Wenn Sp. Ang. und Init. fertig sind, trainierst du diese Stats nicht weiter. Sonst verschwendest du EVs.",
+        app: "Bei 510 / 510 oder wenn alle Zielwerte erreicht sind: Stoppen oder mit einem neuen Pokémon anfangen.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+        appMock: "done"
       }
     ],
-    examplesTitle: "Schnelle Beispiele",
+    examplesTitle: "Mini-Rechnung mit Abra",
     examples: [
-      { label: "10 Abra ohne Bonus", value: "10 Sp. Ang. EV" },
-      { label: "10 Abra mit Machoband", value: "20 Sp. Ang. EV" },
-      { label: "10 Abra mit Pokérus", value: "20 Sp. Ang. EV" },
-      { label: "10 Abra mit beidem", value: "40 Sp. Ang. EV" }
+      { label: "1 Abra", value: "+1 Sp. Ang." },
+      { label: "1 Abra + Machoband", value: "+2 Sp. Ang." },
+      { label: "1 Abra + Pokérus", value: "+2 Sp. Ang." },
+      { label: "1 Abra + beides", value: "+4 Sp. Ang." }
     ],
-    rulesTitle: "Die wichtigsten Regeln",
+    rulesTitle: "Wichtig zu merken",
     rules: [
-      "EVs kommen vom besiegten Pokémon, nicht vom Level-Up selbst.",
-      "Alle Pokémon, die aus dem Kampf EP bekommen, bekommen auch die EVs.",
-      "Machoband x2 und Pokérus x2 stapeln sich zu x4.",
-      "Ein Stat kann maximal 252 EVs sinnvoll nutzen, insgesamt sind 510 EVs möglich.",
-      "Vitamine helfen nur bis 100 EVs pro Stat, danach normal weitertrainieren."
+      "Du musst nicht Level-Up abwarten. EVs kommen sofort nach dem Kampf, wenn EP verteilt wurden.",
+      "Wenn mehrere Pokémon EP bekommen, bekommen alle diese EVs.",
+      "Die App stimmt nur, wenn du jeden besiegten Trainingsgegner direkt einträgst.",
+      "Ein einzelner Stat bringt maximal 252 sinnvolle EVs, insgesamt sind 510 EVs möglich."
     ],
-    noteTitle: "Merksatz",
-    note: "Wenn du im Spiel ein Pokémon besiegst, tippst du in der App denselben Gegner an. Dann musst du nicht raten, nicht im Kopf zählen und siehst sofort, wann du stoppen musst."
+    noteTitle: "Kurzform",
+    note: "Spiel: Gegner besiegen. Webseite: denselben Gegner anklicken. Wiederholen, bis der Zielbalken voll ist."
   },
   en: {
-    heroTitle: "How to use the app while training",
-    heroText: "FireRed / LeafGreen does not show EVs as numbers. You still receive them immediately once your Pokémon gains EXP from the defeated enemy. The app is your clean counter.",
-    battleLabel: "Battle example",
+    heroTitle: "EV Training Step by Step",
+    heroText: "This is the real flow: you play normally on your Game Boy or emulator, and after each defeated training target you record that same enemy in the website.",
+    loopTitle: "The full loop",
+    loop: ["choose build", "find target", "defeat it", "tap it in the app", "check bars", "stop at goal"],
+    gameLabel: "In-game",
+    appLabel: "On the website",
     battleText: "Charmander defeats Abra",
-    gainLabel: "EV gain",
-    gainText: "+1 Sp. Atk",
-    counterLabel: "In the app",
-    counterText: "Tap Abra",
+    resultText: "Abra gives +1 Sp. Atk EV",
+    appClickText: "Click: Abra +1 Sp. Atk",
     steps: [
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-        title: "1. Pick a build",
-        text: "Choose your Pokémon. The build shows the final EV spread you want, for example 4 HP / 252 Sp. Atk / 252 Speed."
+        title: "1. Prepare your Pokemon and build",
+        game: "Put the Pokemon you want to train on your team. Example: Charmander should become a fast special attacker.",
+        app: "Select Charmander, review the recommended build, and use Set build goal if needed.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/back/4.png",
+        appMock: "build"
       },
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
-        title: "2. Defeat the right enemy",
-        text: "Every enemy gives fixed EVs. Abra gives Sp. Atk, Rattata gives Speed, Caterpie gives HP. Only count it if your Pokémon gained EXP."
+        title: "2. Set training bonuses",
+        game: "If your Pokemon has Pokerus or holds the Macho Brace, it matters. Both together turn +1 EV into +4 EV.",
+        app: "Enable Pokerus and/or Macho Brace. The multiplier and enemy values update immediately.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+        appMock: "multiplier"
       },
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
-        title: "3. Tap it in the app",
-        text: "After each defeated Pokémon, tap that exact enemy in the app. Then you know exactly how many EVs you collected."
+        title: "3. Find the right enemy",
+        game: "For Sp. Atk, look for Abra on Route 24 or Gastly in Pokemon Tower. The enemy decides the EV stat.",
+        app: "Under Defeated Pokemon you can see which enemy gives which EV value and where to find it.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
+        appMock: "enemy"
       },
       {
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/25.png",
-        title: "4. Understand level-ups",
-        text: "On level-up you only see stat increases, not the EV number. Bigger jumps can be a hint, but the app is the reliable count."
+        title: "4. Defeat it and record it",
+        game: "Defeat Abra. Once your Pokemon gains EXP, the EVs are awarded. This does not wait for a level-up.",
+        app: "Click Abra right after the battle. The app adds the correct value with Pokerus/Macho Brace automatically.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
+        appMock: "click"
+      },
+      {
+        title: "5. Check progress",
+        game: "Keep battling. The game does not show exact EV numbers, only later stat increases on level-up.",
+        app: "Watch the bars, goal value and remaining EVs. When a stat is done, switch to the next target.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/25.png",
+        appMock: "progress"
+      },
+      {
+        title: "6. Stop at the goal",
+        game: "Once Sp. Atk and Speed are complete, stop training those stats. Otherwise you waste EVs.",
+        app: "At 510 / 510, or when all goals are complete, stop or start a new Pokemon.",
+        gameImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+        appMock: "done"
       }
     ],
-    examplesTitle: "Quick examples",
+    examplesTitle: "Mini calculation with Abra",
     examples: [
-      { label: "10 Abra without bonus", value: "10 Sp. Atk EV" },
-      { label: "10 Abra with Macho Brace", value: "20 Sp. Atk EV" },
-      { label: "10 Abra with Pokérus", value: "20 Sp. Atk EV" },
-      { label: "10 Abra with both", value: "40 Sp. Atk EV" }
+      { label: "1 Abra", value: "+1 Sp. Atk" },
+      { label: "1 Abra + Macho Brace", value: "+2 Sp. Atk" },
+      { label: "1 Abra + Pokerus", value: "+2 Sp. Atk" },
+      { label: "1 Abra + both", value: "+4 Sp. Atk" }
     ],
-    rulesTitle: "Most important rules",
+    rulesTitle: "Important to remember",
     rules: [
-      "EVs come from the defeated Pokémon, not from the level-up itself.",
-      "Every Pokémon that gets EXP from the battle also gets the EVs.",
-      "Macho Brace x2 and Pokérus x2 stack to x4.",
-      "One stat can use up to 252 EVs, and the total cap is 510 EVs.",
-      "Vitamins only help up to 100 EVs per stat, then you continue training normally."
+      "You do not need to wait for a level-up. EVs are gained right after EXP is awarded.",
+      "If multiple Pokemon receive EXP, all of them receive those EVs.",
+      "The app is accurate only if you record every defeated training target.",
+      "One stat can use up to 252 meaningful EVs, and the total cap is 510 EVs."
     ],
-    noteTitle: "Remember",
-    note: "When you defeat a Pokémon in-game, tap the same enemy in the app. No guessing, no mental counting, and you immediately see when to stop."
+    noteTitle: "Short version",
+    note: "Game: defeat the target. Website: click the same target. Repeat until the goal bar is full."
   }
 };
 
@@ -1106,6 +1150,52 @@ function renderLastAction() {
   elements.lastAction.textContent = `${t("lastActionPrefix")}: ${state.lastAction.enemy} +${state.lastAction.amount} ${statLabel} EV`;
 }
 
+function renderTutorialAppMock(type, guide) {
+  const labels = {
+    build: [
+      [state.lang === "en" ? "Pokemon" : "Pokémon", state.lang === "en" ? "Charmander" : "Glumanda"],
+      [t("evGoal"), state.lang === "en" ? "252 Sp. Atk / 252 Speed" : "252 Sp. Ang. / 252 Init."],
+      [t("moves"), "Flammenwurf · Drachenklaue"]
+    ],
+    multiplier: [
+      [t("multiplier"), "x4"],
+      ["Pokérus", state.lang === "en" ? "On" : "An"],
+      [state.lang === "en" ? "Macho Brace" : "Machoband", state.lang === "en" ? "On" : "An"]
+    ],
+    enemy: [
+      [state.lang === "en" ? "Target" : "Ziel", "Abra"],
+      [state.lang === "en" ? "Where" : "Ort", state.lang === "en" ? "Route 24" : "Route 24"],
+      [state.lang === "en" ? "Now gain" : "Jetzt", "+1 Sp. Ang."]
+    ],
+    click: [
+      [state.lang === "en" ? "Button" : "Button", "Abra"],
+      [state.lang === "en" ? "Added" : "Eingetragen", guide.appClickText],
+      [t("currentEvs"), "1 / 510"]
+    ],
+    progress: [
+      [state.lang === "en" ? "Goal" : "Ziel", "252 Sp. Ang."],
+      [t("currentEvs"), "128"],
+      [t("remainingEvs"), "382"]
+    ],
+    done: [
+      [state.lang === "en" ? "Goal" : "Ziel", "510 / 510"],
+      [state.lang === "en" ? "Status" : "Status", state.lang === "en" ? "Complete" : "Fertig"],
+      [state.lang === "en" ? "Next" : "Nächster Schritt", state.lang === "en" ? "Stop training" : "Training stoppen"]
+    ]
+  };
+
+  return `
+    <div class="website-mini">
+      ${labels[type].map(([label, value]) => `
+        <div>
+          <span>${label}</span>
+          <strong>${value}</strong>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderTutorial() {
   const guide = tutorialGuide[state.lang];
   elements.tutorialContent.innerHTML = `
@@ -1114,50 +1204,42 @@ function renderTutorial() {
         <h3>${guide.heroTitle}</h3>
         <p>${guide.heroText}</p>
       </div>
-      <div class="battle-demo" aria-hidden="true">
-        <div class="battle-screen">
-          <div class="battle-row enemy-side">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png" alt="" />
-            <div class="hp-box">
-              <strong>Abra</strong>
-              <span></span>
-            </div>
-          </div>
-          <div class="battle-row player-side">
-            <div class="hp-box">
-              <strong>${state.lang === "en" ? "Charmander" : "Glumanda"}</strong>
-              <span></span>
-            </div>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/back/4.png" alt="" />
-          </div>
-          <div class="battle-text">${guide.battleText}</div>
-        </div>
-        <div class="flow-row">
-          <div>
-            <span>${guide.gainLabel}</span>
-            <strong>${guide.gainText}</strong>
-          </div>
-          <div>
-            <span>${guide.counterLabel}</span>
-            <strong>${guide.counterText}</strong>
-          </div>
+      <div class="loop-strip" aria-label="${guide.loopTitle}">
+        <span>${guide.loopTitle}</span>
+        <div>
+          ${guide.loop.map((item, index) => `
+            <strong>${index + 1}. ${item}</strong>
+          `).join("")}
         </div>
       </div>
     </div>
-    <div class="tutorial-grid">
-      ${guide.steps
-        .map((step) => `
-          <article class="tutorial-card">
-            <div class="tutorial-image">
-              <img src="${step.image}" alt="" />
+    <div class="tutorial-flow">
+      ${guide.steps.map((step, index) => `
+        <article class="tutorial-step">
+          <div class="step-number">${index + 1}</div>
+          <div class="step-body">
+            <h3>${step.title}</h3>
+            <div class="step-columns">
+              <section class="step-side game-side">
+                <span>${guide.gameLabel}</span>
+                <div class="mini-battle-screen">
+                  <div class="mini-battle-row">
+                    <img src="${step.gameImage}" alt="" />
+                    <div class="mini-hp-box"><strong>${index === 3 ? "Abra" : (state.lang === "en" ? "Target" : "Gegner")}</strong><i></i></div>
+                  </div>
+                  <div class="mini-battle-text">${index === 3 ? guide.battleText : step.game}</div>
+                </div>
+                <p>${step.game}</p>
+              </section>
+              <section class="step-side app-side">
+                <span>${guide.appLabel}</span>
+                ${renderTutorialAppMock(step.appMock, guide)}
+                <p>${step.app}</p>
+              </section>
             </div>
-            <div>
-              <h3>${step.title}</h3>
-              <p>${step.text}</p>
-            </div>
-          </article>
-        `)
-        .join("")}
+          </div>
+        </article>
+      `).join("")}
     </div>
     <div class="tutorial-split">
       <section class="tutorial-example-box">
