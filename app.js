@@ -24,6 +24,13 @@ const i18n = {
     applyBuild: "Build als Ziel setzen",
     trainingTitle: "Besiegte Pokémon",
     moveHelpTitle: "Attacken kurz erklärt",
+    matchupTitle: "Typen-Check",
+    matchupStrong: "Greift stark an",
+    matchupWeak: "Schwach gegen",
+    matchupResists: "Resistiert",
+    matchupImmune: "Immun gegen",
+    matchupNone: "Keins",
+    matchupNote: "Feuerrot / Blattgrün: Typenlogik ohne Fee.",
     pokerus: "Pokérus",
     machoBrace: "Machoband",
     noResults: "Keine Treffer",
@@ -70,6 +77,13 @@ const i18n = {
     applyBuild: "Set build goal",
     trainingTitle: "Defeated Pokémon",
     moveHelpTitle: "Move guide",
+    matchupTitle: "Type check",
+    matchupStrong: "Hits hard",
+    matchupWeak: "Weak to",
+    matchupResists: "Resists",
+    matchupImmune: "Immune to",
+    matchupNone: "None",
+    matchupNote: "FireRed / LeafGreen: type logic without Fairy.",
     pokerus: "Pokerus",
     machoBrace: "Macho Brace",
     noResults: "No results",
@@ -340,6 +354,28 @@ const typeNames = {
     Dark: "Dark",
     Steel: "Steel"
   }
+};
+
+const typeKeys = Object.keys(typeNames.en);
+
+const typeChart = {
+  Normal: { Rock: 0.5, Ghost: 0, Steel: 0.5 },
+  Fire: { Fire: 0.5, Water: 0.5, Grass: 2, Ice: 2, Bug: 2, Rock: 0.5, Dragon: 0.5, Steel: 2 },
+  Water: { Fire: 2, Water: 0.5, Grass: 0.5, Ground: 2, Rock: 2, Dragon: 0.5 },
+  Electric: { Water: 2, Electric: 0.5, Grass: 0.5, Ground: 0, Flying: 2, Dragon: 0.5 },
+  Grass: { Fire: 0.5, Water: 2, Grass: 0.5, Poison: 0.5, Ground: 2, Flying: 0.5, Bug: 0.5, Rock: 2, Dragon: 0.5, Steel: 0.5 },
+  Ice: { Fire: 0.5, Water: 0.5, Grass: 2, Ice: 0.5, Ground: 2, Flying: 2, Dragon: 2, Steel: 0.5 },
+  Fighting: { Normal: 2, Ice: 2, Poison: 0.5, Flying: 0.5, Psychic: 0.5, Bug: 0.5, Rock: 2, Ghost: 0, Dark: 2, Steel: 2 },
+  Poison: { Grass: 2, Poison: 0.5, Ground: 0.5, Rock: 0.5, Ghost: 0.5, Steel: 0 },
+  Ground: { Fire: 2, Electric: 2, Grass: 0.5, Poison: 2, Flying: 0, Bug: 0.5, Rock: 2, Steel: 2 },
+  Flying: { Electric: 0.5, Grass: 2, Fighting: 2, Bug: 2, Rock: 0.5, Steel: 0.5 },
+  Psychic: { Fighting: 2, Poison: 2, Psychic: 0.5, Dark: 0, Steel: 0.5 },
+  Bug: { Fire: 0.5, Grass: 2, Fighting: 0.5, Poison: 0.5, Flying: 0.5, Psychic: 2, Ghost: 0.5, Dark: 2, Steel: 0.5 },
+  Rock: { Fire: 2, Ice: 2, Fighting: 0.5, Ground: 0.5, Flying: 2, Bug: 2, Steel: 0.5 },
+  Ghost: { Normal: 0, Psychic: 2, Ghost: 2, Dark: 0.5, Steel: 0.5 },
+  Dragon: { Dragon: 2, Steel: 0.5 },
+  Dark: { Fighting: 0.5, Psychic: 2, Ghost: 2, Dark: 0.5, Steel: 0.5 },
+  Steel: { Fire: 0.5, Water: 0.5, Electric: 0.5, Ice: 2, Rock: 2, Steel: 0.5 }
 };
 
 const physicalFastTarget = { hp: 4, atk: 252, def: 0, spa: 0, spd: 0, spe: 252 };
@@ -1551,6 +1587,7 @@ const elements = {
   pokemonSprite: document.querySelector("#pokemonSprite"),
   pokemonName: document.querySelector("#pokemonName"),
   pokemonTypes: document.querySelector("#pokemonTypes"),
+  typeMatchups: document.querySelector("#typeMatchups"),
   shinyButton: document.querySelector("#shinyButton"),
   activeBuildLabel: document.querySelector("#activeBuildLabel"),
   versionLabel: document.querySelector("#versionLabel"),
@@ -1671,6 +1708,59 @@ function getTypeText(types) {
     .split(" / ")
     .map((type) => (state.lang === "en" ? deToEn[type] ?? type : type))
     .join(" / ");
+}
+
+function getTypeKey(germanType) {
+  return Object.entries(typeNames.de).find(([, name]) => name === germanType)?.[0] ?? germanType;
+}
+
+function getDisplayTypeName(typeKey) {
+  return typeNames[state.lang][typeKey] ?? typeKey;
+}
+
+function getTypeMultiplier(attackingType, defendingType) {
+  return typeChart[attackingType]?.[defendingType] ?? 1;
+}
+
+function formatMultiplier(value) {
+  const text = Number.isInteger(value) ? String(value) : String(value);
+  return `x${state.lang === "de" ? text.replace(".", ",") : text}`;
+}
+
+function getMatchupGroups(types) {
+  const ownTypes = types.split(" / ").map(getTypeKey);
+  const attackStrong = typeKeys.filter((targetType) => {
+    return Math.max(...ownTypes.map((ownType) => getTypeMultiplier(ownType, targetType))) > 1;
+  });
+
+  const defensive = typeKeys.map((attackingType) => {
+    const multiplier = ownTypes.reduce((total, ownType) => total * getTypeMultiplier(attackingType, ownType), 1);
+    return { type: attackingType, multiplier };
+  });
+
+  return {
+    attackStrong,
+    weak: defensive.filter((entry) => entry.multiplier > 1),
+    resists: defensive.filter((entry) => entry.multiplier > 0 && entry.multiplier < 1),
+    immune: defensive.filter((entry) => entry.multiplier === 0)
+  };
+}
+
+function renderTypeChips(entries, options = {}) {
+  if (entries.length === 0) {
+    return `<span class="type-chip empty">${t("matchupNone")}</span>`;
+  }
+
+  return entries
+    .map((entry) => {
+      const typeKey = typeof entry === "string" ? entry : entry.type;
+      const multiplier = options.showMultiplier && typeof entry !== "string"
+        ? `<small>${formatMultiplier(entry.multiplier)}</small>`
+        : "";
+
+      return `<span class="type-chip">${getDisplayTypeName(typeKey)}${multiplier}</span>`;
+    })
+    .join("");
 }
 
 function translateText(text) {
@@ -2065,6 +2155,32 @@ function renderPokemon() {
   elements.shinyButton.textContent = state.shinyActive ? t("shinyOn") : t("shinyOff");
   elements.shinyButton.classList.toggle("active", state.shinyActive);
   elements.spriteFrame.classList.toggle("shiny", state.shinyActive);
+  renderTypeMatchups(active);
+}
+
+function renderTypeMatchups(active) {
+  const matchups = getMatchupGroups(active.types);
+  const sections = [
+    [t("matchupStrong"), renderTypeChips(matchups.attackStrong)],
+    [t("matchupWeak"), renderTypeChips(matchups.weak, { showMultiplier: true })],
+    [t("matchupResists"), renderTypeChips(matchups.resists, { showMultiplier: true })],
+    [t("matchupImmune"), renderTypeChips(matchups.immune)]
+  ];
+
+  elements.typeMatchups.innerHTML = `
+    <div class="type-matchup-header">
+      <strong>${t("matchupTitle")}</strong>
+      <span>${t("matchupNote")}</span>
+    </div>
+    <div class="type-matchup-grid">
+      ${sections.map(([title, chips]) => `
+        <div class="type-matchup-card">
+          <span>${title}</span>
+          <div>${chips}</div>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
 function formatEvs(evs) {

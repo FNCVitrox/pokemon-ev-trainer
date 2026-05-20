@@ -234,6 +234,94 @@ input:not([type="checkbox"]):focus-visible,
   transform: translateY(1px);
 }
 
+.type-matchups {
+  display: grid;
+  gap: 10px;
+  margin: -4px 0 18px;
+  padding: 12px;
+  border: 1px solid rgba(49, 64, 80, 0.72);
+  border-radius: 8px;
+  background: rgba(12, 18, 25, 0.38);
+}
+
+.type-matchup-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.type-matchup-header strong {
+  color: var(--accent-2);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.type-matchup-header span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.type-matchup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.type-matchup-card {
+  min-width: 0;
+  min-height: 104px;
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  padding: 10px;
+  background: rgba(29, 38, 48, 0.6);
+}
+
+.type-matchup-card > span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.type-matchup-card > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.type-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  min-height: 26px;
+  border: 1px solid rgba(50, 197, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(50, 197, 255, 0.1);
+  color: var(--accent);
+  padding: 4px 8px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.type-chip small {
+  color: var(--text);
+  font-size: 0.72rem;
+}
+
+.type-chip.empty {
+  border-color: rgba(49, 64, 80, 0.82);
+  background: rgba(12, 18, 25, 0.42);
+  color: var(--muted);
+}
+
 .mini-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1130,7 +1218,16 @@ input:not([type="checkbox"]):focus-visible,
     width: 86px;
   }
 
+  .type-matchup-header {
+    display: grid;
+  }
+
+  .type-matchup-header span {
+    text-align: left;
+  }
+
   .mini-grid,
+  .type-matchup-grid,
   .toggle-row,
   .enemy-grid,
   .ev-summary,
