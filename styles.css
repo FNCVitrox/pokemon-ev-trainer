@@ -97,9 +97,11 @@ h2 {
   display: grid;
   grid-template-columns: 1.05fr 1.25fr;
   gap: 16px;
+  align-items: start;
 }
 
 .panel {
+  align-self: start;
   background: linear-gradient(180deg, rgba(21, 27, 34, 0.97), rgba(17, 23, 31, 0.97));
   border: 1px solid rgba(49, 64, 80, 0.86);
   border-radius: 8px;
