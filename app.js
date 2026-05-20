@@ -27,6 +27,7 @@ const i18n = {
     complete: "Alle Zielwerte sind erreicht.",
     moves: "Attacken",
     role: "Rolle",
+    item: "Item",
     evGoal: "EV-Ziel",
     defeated: "Besiegte Pokémon",
     neutralNature: "neutral",
@@ -69,6 +70,7 @@ const i18n = {
     complete: "All goal values reached.",
     moves: "Moves",
     role: "Role",
+    item: "Item",
     evGoal: "EV goal",
     defeated: "Defeated Pokémon",
     neutralNature: "neutral",
@@ -420,6 +422,87 @@ const buildRecommendations = {
 };
 
 const specialMoveTypes = ["Feuer", "Wasser", "Elektro", "Pflanze", "Eis", "Psycho", "Drache", "Unlicht"];
+
+const moveSuggestions = {
+  Feuer: ["Flammenwurf", "Drachenklaue", "Schaufler", "Sonnentag"],
+  Wasser: ["Surfer", "Eisstrahl", "Biss", "Schutzschild"],
+  Elektro: ["Donnerblitz", "Donnerwelle", "Biss", "Ruckzuckhieb"],
+  Pflanze: ["Gigasauger", "Schlafpuder", "Egelsamen", "Sonnentag"],
+  Eis: ["Eisstrahl", "Surfer", "Erholung", "Schutzschild"],
+  Psycho: ["Psychokinese", "Gedankengut", "Genesung", "Donnerwelle"],
+  Drache: ["Drachenklaue", "Flammenwurf", "Donnerblitz", "Surfer"],
+  Unlicht: ["Biss", "Spukball", "Rückkehr", "Schutzschild"],
+  Normal: ["Rückkehr", "Spukball", "Durchbruch", "Erholung"],
+  Kampf: ["Durchbruch", "Protzer", "Steinhagel", "Erdbeben"],
+  Boden: ["Erdbeben", "Steinhagel", "Rückkehr", "Schaufler"],
+  Gestein: ["Steinhagel", "Erdbeben", "Rückkehr", "Schutzschild"],
+  Flug: ["Fliegen", "Rückkehr", "Stahlflügel", "Doppelteam"],
+  Käfer: ["Silberhauch", "Aero-Ass", "Schwerttanz", "Rückkehr"],
+  Gift: ["Matschbombe", "Biss", "Schaufler", "Doppelteam"],
+  Geist: ["Psychokinese", "Donnerblitz", "Gigasauger", "Hypnose"],
+  Stahl: ["Metallklaue", "Donnerblitz", "Sternschauer", "Donnerwelle"]
+};
+
+const preferredItems = {
+  Feuer: "Holzkohle",
+  Wasser: "Mystikwasser",
+  Elektro: "Magnet",
+  Pflanze: "Wundersaat",
+  Eis: "Ewiges Eis",
+  Psycho: "Krummlöffel",
+  Drache: "Drachenzahn",
+  Normal: "Seidenschal",
+  Kampf: "Schwarzgurt",
+  Boden: "Pudersand",
+  Gestein: "Granitstein",
+  Flug: "Hackattack",
+  Käfer: "Silberstaub",
+  Gift: "Giftstich",
+  Geist: "Bannsticker"
+};
+
+const itemDescriptions = {
+  de: {
+    Holzkohle: "verstärkt Feuer-Attacken.",
+    Mystikwasser: "verstärkt Wasser-Attacken.",
+    Magnet: "verstärkt Elektro-Attacken.",
+    Wundersaat: "verstärkt Pflanzen-Attacken.",
+    "Ewiges Eis": "verstärkt Eis-Attacken.",
+    "Krummlöffel": "verstärkt Psycho-Attacken.",
+    Drachenzahn: "verstärkt Drachen-Attacken.",
+    Seidenschal: "verstärkt Normal-Attacken wie Rückkehr.",
+    Schwarzgurt: "verstärkt Kampf-Attacken.",
+    Pudersand: "verstärkt Boden-Attacken.",
+    Granitstein: "verstärkt Gesteins-Attacken.",
+    Hackattack: "verstärkt Flug-Attacken.",
+    Silberstaub: "verstärkt Käfer-Attacken.",
+    Giftstich: "verstärkt Gift-Attacken.",
+    Bannsticker: "verstärkt Geist-Attacken.",
+    Überreste: "heilt nach jeder Runde etwas KP.",
+    "Scope-Linse": "erhöht die Volltreffer-Chance.",
+    "Typ-verstärkendes Item": "verstärkt deinen wichtigsten Angriffstyp."
+  },
+  en: {
+    Holzkohle: "boosts Fire-type moves.",
+    Mystikwasser: "boosts Water-type moves.",
+    Magnet: "boosts Electric-type moves.",
+    Wundersaat: "boosts Grass-type moves.",
+    "Ewiges Eis": "boosts Ice-type moves.",
+    "Krummlöffel": "boosts Psychic-type moves.",
+    Drachenzahn: "boosts Dragon-type moves.",
+    Seidenschal: "boosts Normal-type moves such as Return.",
+    Schwarzgurt: "boosts Fighting-type moves.",
+    Pudersand: "boosts Ground-type moves.",
+    Granitstein: "boosts Rock-type moves.",
+    Hackattack: "boosts Flying-type moves.",
+    Silberstaub: "boosts Bug-type moves.",
+    Giftstich: "boosts Poison-type moves.",
+    Bannsticker: "boosts Ghost-type moves.",
+    Überreste: "heals a little HP after each turn.",
+    "Scope-Linse": "raises the critical-hit chance.",
+    "Typ-verstärkendes Item": "boosts your most important attack type."
+  }
+};
 
 const bulkySpecialPokemonIds = new Set([
   1, 2, 3, 7, 8, 9, 35, 36, 39, 40, 43, 44, 45, 60, 61, 79, 80, 86, 87, 90, 91, 102, 103, 108, 113, 114, 131, 134, 137, 138, 139, 144
@@ -1072,6 +1155,33 @@ function formatEvs(evs) {
     .join(" / ");
 }
 
+function getPrimaryType(types, isSpecial) {
+  const typeList = types.split(" / ");
+  return typeList.find((type) => isSpecial === specialMoveTypes.includes(type)) ?? typeList[0];
+}
+
+function getSuggestedMoves(types, isSpecial) {
+  const primaryType = getPrimaryType(types, isSpecial);
+  return moveSuggestions[primaryType] ?? (isSpecial
+    ? ["Psychokinese", "Donnerblitz", "Eisstrahl", "Schutzschild"]
+    : ["Rückkehr", "Erdbeben", "Durchbruch", "Schutzschild"]);
+}
+
+function getSuggestedItem(types, isSpecial) {
+  const primaryType = getPrimaryType(types, isSpecial);
+  return preferredItems[primaryType] ?? "Typ-verstärkendes Item";
+}
+
+function getItemDescription(itemText) {
+  const names = itemText.split("/").map((name) => name.trim());
+  return names
+    .map((name) => {
+      const description = itemDescriptions[state.lang][name] ?? itemDescriptions[state.lang]["Typ-verstärkendes Item"];
+      return `${name}: ${description}`;
+    })
+    .join(" ");
+}
+
 function getFallbackBuild(active) {
   const evs = { ...getRecommendedTarget(active.types, active.id) };
   const isSpecial = evs.spa >= evs.atk;
@@ -1085,11 +1195,9 @@ function getFallbackBuild(active) {
       ? (state.lang === "en" ? "Timid or Modest" : "Scheu oder Mäßig")
       : (state.lang === "en" ? "Jolly or Adamant" : "Froh oder Hart"),
     ability: "Beste verfügbare Fähigkeit",
-    item: isSpecial ? "Typ-verstärkendes Item" : "Seidenschal / Typ-verstärkendes Item",
+    item: getSuggestedItem(active.types, isSpecial),
     evs,
-    moves: isSpecial
-      ? ["Starker STAB", "Coverage-Attacke", "Status/Setup", "Utility"]
-      : ["Starker STAB", "Coverage-Attacke", "Setup", "Utility"],
+    moves: getSuggestedMoves(active.types, isSpecial),
     note: "Basis-Empfehlung: schnell trainieren, Hauptangriff maximieren und danach mit Moves feinjustieren."
   };
 }
@@ -1115,6 +1223,11 @@ function renderBuildRecommendation() {
         <span>${t("evGoal")}</span>
         <strong>${formatEvs(build.evs)}</strong>
       </div>
+    </div>
+    <div class="item-recommendation">
+      <span>${t("item")}</span>
+      <strong>${build.item}</strong>
+      <p>${getItemDescription(build.item)}</p>
     </div>
     <div class="move-list">
       <span>${t("moves")}</span>

@@ -527,6 +527,32 @@ input:not([type="checkbox"]):focus-visible,
   margin-top: 4px;
 }
 
+.item-recommendation {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(32, 42, 56, 0.7);
+}
+
+.item-recommendation span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.item-recommendation strong {
+  display: block;
+  margin-top: 4px;
+}
+
+.item-recommendation p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
 .move-list {
   display: grid;
   gap: 8px;
