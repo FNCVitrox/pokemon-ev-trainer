@@ -96,51 +96,105 @@ const i18n = {
   }
 };
 
-const tutorialSteps = {
-  de: [
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-      title: "1. Wähle dein Pokémon und den Build",
-      text: "Der Build legt fest, welche Stats du trainieren willst. Bei Glumanda sind Sp. Ang. und Initiative sinnvoll, weil Feuer-Attacken in Gen 3 speziell sind."
-    },
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
-      title: "2. Besiege passende Pokémon",
-      text: "Jedes besiegte Pokémon gibt EVs. Abra gibt zum Beispiel Sp. Ang.-EVs. Tippe in der App auf den Gegner, den du im Spiel besiegt hast."
-    },
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
-      title: "3. Nutze Multiplikatoren",
-      text: "Machoband verdoppelt EVs. Pokérus verdoppelt EVs ebenfalls. Zusammen wird aus +1 also +4. Die Gegnerbuttons zeigen dir direkt den aktuellen Wert."
-    },
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-      title: "4. So erkennst du EV-Fortschritt",
-      text: "Feuerrot/Blattgrün zeigt EV-Zahlen nicht direkt. Du erkennst es indirekt: Die Stats steigen beim Level-up stärker, und diese App hilft dir, die besiegten Pokémon mitzuzählen."
-    }
-  ],
-  en: [
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-      title: "1. Choose your Pokémon and build",
-      text: "The build defines which stats you want to train. For Charmander, Sp. Atk and Speed make sense because Fire moves are special in Gen 3."
-    },
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
-      title: "2. Defeat matching Pokémon",
-      text: "Every defeated Pokémon gives EVs. Abra gives Sp. Atk EVs, for example. Tap the enemy in the app after defeating it in-game."
-    },
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
-      title: "3. Use multipliers",
-      text: "Macho Brace doubles EVs. Pokérus doubles EVs too. Together, +1 becomes +4. The enemy buttons show the current value directly."
-    },
-    {
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-      title: "4. How to notice EV progress",
-      text: "FireRed/LeafGreen does not show EV numbers directly. You notice it indirectly: stats grow more on level-up, and this app helps you count defeated Pokémon."
-    }
-  ]
+const tutorialGuide = {
+  de: {
+    heroTitle: "So benutzt du die App beim echten Training",
+    heroText: "EVs werden in Feuerrot / Blattgrün nicht als Zahl angezeigt. Du bekommst sie trotzdem sofort, sobald dein Pokémon EP aus dem besiegten Gegner erhält. Die App ist deshalb dein sauberer Zähler.",
+    battleLabel: "Beispiel im Kampf",
+    battleText: "Glumanda besiegt Abra",
+    gainLabel: "EV-Gewinn",
+    gainText: "+1 Sp. Ang.",
+    counterLabel: "In der App",
+    counterText: "Abra antippen",
+    steps: [
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+        title: "1. Build auswählen",
+        text: "Wähle dein Pokémon. Der Build zeigt dir, welche EVs du am Ende haben willst, zum Beispiel 4 KP / 252 Sp. Ang. / 252 Init."
+      },
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
+        title: "2. Passenden Gegner besiegen",
+        text: "Jeder Gegner gibt feste EVs. Abra gibt Sp. Ang., Rattfratz gibt Init., Raupy gibt KP. Wichtig: Nur zählen, wenn dein Pokémon EP bekommen hat."
+      },
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
+        title: "3. Direkt in der App antippen",
+        text: "Nach jedem besiegten Pokémon tippst du genau diesen Gegner in der App an. Dann weißt du zu 100%, wie viele EVs du gesammelt hast."
+      },
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/25.png",
+        title: "4. Level-Up richtig verstehen",
+        text: "Beim Level-Up siehst du nur die Stat-Erhöhung, nicht die EV-Zahl. Große Sprünge können ein Hinweis sein, aber gezählt wird sicherer mit der App."
+      }
+    ],
+    examplesTitle: "Schnelle Beispiele",
+    examples: [
+      { label: "10 Abra ohne Bonus", value: "10 Sp. Ang. EV" },
+      { label: "10 Abra mit Machoband", value: "20 Sp. Ang. EV" },
+      { label: "10 Abra mit Pokérus", value: "20 Sp. Ang. EV" },
+      { label: "10 Abra mit beidem", value: "40 Sp. Ang. EV" }
+    ],
+    rulesTitle: "Die wichtigsten Regeln",
+    rules: [
+      "EVs kommen vom besiegten Pokémon, nicht vom Level-Up selbst.",
+      "Alle Pokémon, die aus dem Kampf EP bekommen, bekommen auch die EVs.",
+      "Machoband x2 und Pokérus x2 stapeln sich zu x4.",
+      "Ein Stat kann maximal 252 EVs sinnvoll nutzen, insgesamt sind 510 EVs möglich.",
+      "Vitamine helfen nur bis 100 EVs pro Stat, danach normal weitertrainieren."
+    ],
+    noteTitle: "Merksatz",
+    note: "Wenn du im Spiel ein Pokémon besiegst, tippst du in der App denselben Gegner an. Dann musst du nicht raten, nicht im Kopf zählen und siehst sofort, wann du stoppen musst."
+  },
+  en: {
+    heroTitle: "How to use the app while training",
+    heroText: "FireRed / LeafGreen does not show EVs as numbers. You still receive them immediately once your Pokémon gains EXP from the defeated enemy. The app is your clean counter.",
+    battleLabel: "Battle example",
+    battleText: "Charmander defeats Abra",
+    gainLabel: "EV gain",
+    gainText: "+1 Sp. Atk",
+    counterLabel: "In the app",
+    counterText: "Tap Abra",
+    steps: [
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+        title: "1. Pick a build",
+        text: "Choose your Pokémon. The build shows the final EV spread you want, for example 4 HP / 252 Sp. Atk / 252 Speed."
+      },
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
+        title: "2. Defeat the right enemy",
+        text: "Every enemy gives fixed EVs. Abra gives Sp. Atk, Rattata gives Speed, Caterpie gives HP. Only count it if your Pokémon gained EXP."
+      },
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png",
+        title: "3. Tap it in the app",
+        text: "After each defeated Pokémon, tap that exact enemy in the app. Then you know exactly how many EVs you collected."
+      },
+      {
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/25.png",
+        title: "4. Understand level-ups",
+        text: "On level-up you only see stat increases, not the EV number. Bigger jumps can be a hint, but the app is the reliable count."
+      }
+    ],
+    examplesTitle: "Quick examples",
+    examples: [
+      { label: "10 Abra without bonus", value: "10 Sp. Atk EV" },
+      { label: "10 Abra with Macho Brace", value: "20 Sp. Atk EV" },
+      { label: "10 Abra with Pokérus", value: "20 Sp. Atk EV" },
+      { label: "10 Abra with both", value: "40 Sp. Atk EV" }
+    ],
+    rulesTitle: "Most important rules",
+    rules: [
+      "EVs come from the defeated Pokémon, not from the level-up itself.",
+      "Every Pokémon that gets EXP from the battle also gets the EVs.",
+      "Macho Brace x2 and Pokérus x2 stack to x4.",
+      "One stat can use up to 252 EVs, and the total cap is 510 EVs.",
+      "Vitamins only help up to 100 EVs per stat, then you continue training normally."
+    ],
+    noteTitle: "Remember",
+    note: "When you defeat a Pokémon in-game, tap the same enemy in the app. No guessing, no mental counting, and you immediately see when to stop."
+  }
 };
 
 const statLabels = {
@@ -501,6 +555,98 @@ const itemDescriptions = {
     Überreste: "heals a little HP after each turn.",
     "Scope-Linse": "raises the critical-hit chance.",
     "Typ-verstärkendes Item": "boosts your most important attack type."
+  }
+};
+
+const moveDescriptions = {
+  de: {
+    "Aero-Ass": "trifft immer und gibt sicheren Flug-Schaden.",
+    Abgesang: "setzt einen Timer, der beide aktiven Pokémon nach 3 Runden besiegt.",
+    Biss: "gibt Coverage und kann den Gegner zurückschrecken lassen.",
+    Bohrschnabel: "starke Flug-Attacke ohne Aufladerunde.",
+    Drachenklaue: "zuverlässiger Drachen-Spezialschaden in Gen 3.",
+    Drachentanz: "erhöht Angriff und Initiative für einen Sweep.",
+    Donnerblitz: "starker und genauer Elektro-STAB oder Coverage.",
+    Donnerschlag: "physische Elektro-Coverage gegen Wasser- und Flug-Pokémon.",
+    Donnerwelle: "paralysiert und macht schnelle Gegner langsamer.",
+    Doppelteam: "erhöht Fluchtwert, damit Gegner öfter verfehlen.",
+    Durchbruch: "solide Kampf-Coverage und bricht Barrieren.",
+    Egelsamen: "zieht jede Runde KP und hilft beim sicheren Spielen.",
+    Eisstrahl: "starke Coverage gegen Pflanze, Boden, Flug und Drache.",
+    Erdbeben: "sehr starke Boden-Attacke mit breiter Coverage.",
+    Erholung: "heilt komplett, schläfert dich aber für 2 Runden ein.",
+    Flammenwurf: "zuverlässiger Feuer-STAB mit guter Genauigkeit.",
+    Fliegen: "Flug-STAB und außerhalb vom Kampf praktisch zum Reisen.",
+    Gedankengut: "erhöht Sp. Angriff und Sp. Verteidigung.",
+    Genesung: "heilt sofort die Hälfte der maximalen KP.",
+    Gigasauger: "Pflanzen-Schaden und heilt einen Teil zurück.",
+    Hypnose: "schläfert den Gegner ein, kann aber verfehlen.",
+    Kreuzhieb: "starke Kampf-Attacke mit erhöhter Volltreffer-Chance.",
+    Lichtschild: "halbiert für einige Runden Spezial-Schaden.",
+    Matschbombe: "starker Gift-STAB und kann vergiften.",
+    Metallklaue: "Stahl-Schaden und kann deinen Angriff erhöhen.",
+    Protzer: "erhöht Angriff und Verteidigung.",
+    Psychokinese: "starker Psycho-STAB und kann Sp. Verteidigung senken.",
+    Rasierblatt: "Pflanzen-STAB mit erhöhter Volltreffer-Chance.",
+    Ruckzuckhieb: "Prioritätsangriff, um angeschlagene Gegner zuerst zu treffen.",
+    Rückkehr: "starker Normal-Schaden bei hoher Freundschaft.",
+    Schlafpuder: "schläfert den Gegner ein und schafft freie Runden.",
+    Schaufler: "Boden-Coverage und kann außerhalb vom Kampf nützlich sein.",
+    Schutzschild: "blockt eine Runde und scoutet gegnerische Attacken.",
+    Schwerttanz: "erhöht Angriff stark für physischen Schaden.",
+    Silberhauch: "Käfer-Schaden und kann alle Werte erhöhen.",
+    Sonnentag: "verstärkt Feuer, schwächt Wasser und hilft Pflanzen-Sets.",
+    Spukball: "starke physische Geist-Coverage in Gen 3.",
+    Stahlflügel: "Flug-Pokémon bekommen Stahl-Coverage gegen Gestein und Eis.",
+    Staralili: "solider früher Flug-Schaden.",
+    Steinhagel: "Gesteins-Coverage und kann zurückschrecken lassen.",
+    Sternschauer: "trifft immer und ist sicher gegen Ausweichen.",
+    Surfer: "starker und genauer Wasser-STAB.",
+    Turbotempo: "sehr starke Priorität, um Gegner sicher zu finishen."
+  },
+  en: {
+    "Aero-Ass": "always hits and gives reliable Flying damage.",
+    Abgesang: "starts a timer that knocks out both active Pokemon after 3 turns.",
+    Biss: "adds coverage and can make the target flinch.",
+    Bohrschnabel: "strong Flying move with no charging turn.",
+    Drachenklaue: "reliable Dragon special damage in Gen 3.",
+    Drachentanz: "raises Attack and Speed for sweeping.",
+    Donnerblitz: "strong and accurate Electric STAB or coverage.",
+    Donnerschlag: "physical Electric coverage against Water and Flying Pokemon.",
+    Donnerwelle: "paralyzes and slows fast opponents.",
+    Doppelteam: "raises evasion so opponents miss more often.",
+    Durchbruch: "solid Fighting coverage and breaks screens.",
+    Egelsamen: "drains HP every turn and helps safe play.",
+    Eisstrahl: "strong coverage against Grass, Ground, Flying and Dragon.",
+    Erdbeben: "very strong Ground move with wide coverage.",
+    Erholung: "fully heals you, but puts you to sleep for 2 turns.",
+    Flammenwurf: "reliable Fire STAB with good accuracy.",
+    Fliegen: "Flying STAB and useful for travel outside battle.",
+    Gedankengut: "raises Sp. Atk and Sp. Def.",
+    Genesung: "instantly heals half of your max HP.",
+    Gigasauger: "Grass damage that heals part of the damage back.",
+    Hypnose: "puts the target to sleep, but can miss.",
+    Kreuzhieb: "strong Fighting move with a higher critical-hit chance.",
+    Lichtschild: "reduces special damage for several turns.",
+    Matschbombe: "strong Poison STAB and can poison.",
+    Metallklaue: "Steel damage and can raise your Attack.",
+    Protzer: "raises Attack and Defense.",
+    Psychokinese: "strong Psychic STAB and can lower Sp. Def.",
+    Rasierblatt: "Grass STAB with a higher critical-hit chance.",
+    Ruckzuckhieb: "priority move to hit weakened opponents first.",
+    Rückkehr: "strong Normal damage at high friendship.",
+    Schlafpuder: "puts the target to sleep and creates free turns.",
+    Schaufler: "Ground coverage and can be useful outside battle.",
+    Schutzschild: "blocks one turn and scouts enemy moves.",
+    Schwerttanz: "sharply raises Attack for physical damage.",
+    Silberhauch: "Bug damage and can raise all stats.",
+    Sonnentag: "boosts Fire, weakens Water and helps Grass sets.",
+    Spukball: "strong physical Ghost coverage in Gen 3.",
+    Stahlflügel: "gives Flying Pokemon Steel coverage against Rock and Ice.",
+    Steinhagel: "Rock coverage and can make the target flinch.",
+    Sternschauer: "always hits and is safe against evasion.",
+    Surfer: "strong and accurate Water STAB.",
+    Turbotempo: "very strong priority to finish targets safely."
   }
 };
 
@@ -961,9 +1107,45 @@ function renderLastAction() {
 }
 
 function renderTutorial() {
+  const guide = tutorialGuide[state.lang];
   elements.tutorialContent.innerHTML = `
+    <div class="tutorial-hero">
+      <div>
+        <h3>${guide.heroTitle}</h3>
+        <p>${guide.heroText}</p>
+      </div>
+      <div class="battle-demo" aria-hidden="true">
+        <div class="battle-screen">
+          <div class="battle-row enemy-side">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/63.png" alt="" />
+            <div class="hp-box">
+              <strong>Abra</strong>
+              <span></span>
+            </div>
+          </div>
+          <div class="battle-row player-side">
+            <div class="hp-box">
+              <strong>${state.lang === "en" ? "Charmander" : "Glumanda"}</strong>
+              <span></span>
+            </div>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/back/4.png" alt="" />
+          </div>
+          <div class="battle-text">${guide.battleText}</div>
+        </div>
+        <div class="flow-row">
+          <div>
+            <span>${guide.gainLabel}</span>
+            <strong>${guide.gainText}</strong>
+          </div>
+          <div>
+            <span>${guide.counterLabel}</span>
+            <strong>${guide.counterText}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="tutorial-grid">
-      ${tutorialSteps[state.lang]
+      ${guide.steps
         .map((step) => `
           <article class="tutorial-card">
             <div class="tutorial-image">
@@ -977,11 +1159,28 @@ function renderTutorial() {
         `)
         .join("")}
     </div>
+    <div class="tutorial-split">
+      <section class="tutorial-example-box">
+        <h3>${guide.examplesTitle}</h3>
+        <div class="example-list">
+          ${guide.examples.map((example) => `
+            <div>
+              <span>${example.label}</span>
+              <strong>${example.value}</strong>
+            </div>
+          `).join("")}
+        </div>
+      </section>
+      <section class="tutorial-rule-box">
+        <h3>${guide.rulesTitle}</h3>
+        <ul>
+          ${guide.rules.map((rule) => `<li>${rule}</li>`).join("")}
+        </ul>
+      </section>
+    </div>
     <div class="tutorial-note">
-      <strong>${state.lang === "en" ? "Important" : "Wichtig"}</strong>
-      <p>${state.lang === "en"
-        ? "EVs are hidden in FireRed/LeafGreen. The app is your counter: only tap enemies you actually defeated or gained EXP from."
-        : "EVs sind in Feuerrot/Blattgrün versteckt. Die App ist dein Zähler: Tippe nur Gegner an, die du wirklich besiegt hast oder von denen du EP bekommen hast."}</p>
+      <strong>${guide.noteTitle}</strong>
+      <p>${guide.note}</p>
     </div>
   `;
 }
@@ -1182,6 +1381,12 @@ function getItemDescription(itemText) {
     .join(" ");
 }
 
+function getMoveDescription(moveName) {
+  return moveDescriptions[state.lang][moveName] ?? (state.lang === "en"
+    ? "Useful move for damage, coverage or setup."
+    : "Nützliche Attacke für Schaden, Coverage oder Setup.");
+}
+
 function getFallbackBuild(active) {
   const evs = { ...getRecommendedTarget(active.types, active.id) };
   const isSpecial = evs.spa >= evs.atk;
@@ -1232,7 +1437,12 @@ function renderBuildRecommendation() {
     <div class="move-list">
       <span>${t("moves")}</span>
       <div class="move-grid">
-        ${build.moves.map((move) => `<strong>${move}</strong>`).join("")}
+        ${build.moves.map((move) => `
+          <div class="move-card">
+            <strong>${move}</strong>
+            <p>${getMoveDescription(move)}</p>
+          </div>
+        `).join("")}
       </div>
     </div>
   `;

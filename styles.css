@@ -564,11 +564,22 @@ input:not([type="checkbox"]):focus-visible,
   gap: 8px;
 }
 
-.move-grid strong {
+.move-card {
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 9px;
+  padding: 10px;
   background: rgba(32, 42, 56, 0.7);
+}
+
+.move-card strong {
+  display: block;
+}
+
+.move-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
 
 .warning {
@@ -596,7 +607,7 @@ input:not([type="checkbox"]):focus-visible,
 
 .tutorial-dialog {
   position: relative;
-  width: min(980px, 100%);
+  width: min(1120px, 100%);
   max-height: min(820px, calc(100vh - 40px));
   overflow: auto;
   border: 1px solid rgba(49, 64, 80, 0.9);
@@ -612,6 +623,128 @@ input:not([type="checkbox"]):focus-visible,
   justify-content: space-between;
   gap: 14px;
   margin-bottom: 18px;
+}
+
+.tutorial-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 14px;
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  background: rgba(16, 24, 32, 0.72);
+  padding: 16px;
+}
+
+.tutorial-hero h3,
+.tutorial-example-box h3,
+.tutorial-rule-box h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.tutorial-hero p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.battle-demo {
+  display: grid;
+  gap: 10px;
+}
+
+.battle-screen {
+  min-height: 236px;
+  border: 2px solid rgba(178, 195, 216, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(151, 205, 146, 0.28), rgba(54, 98, 71, 0.16) 56%, rgba(38, 50, 41, 0.52) 56%),
+    rgba(16, 24, 32, 0.92);
+  padding: 12px;
+}
+
+.battle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.battle-row img {
+  width: 96px;
+  image-rendering: pixelated;
+}
+
+.enemy-side {
+  margin-bottom: 18px;
+}
+
+.player-side {
+  margin-bottom: 8px;
+}
+
+.hp-box {
+  min-width: 148px;
+  border: 2px solid rgba(232, 231, 207, 0.9);
+  border-radius: 8px;
+  background: rgba(245, 244, 217, 0.94);
+  color: #14212b;
+  padding: 8px;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
+}
+
+.hp-box strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.hp-box span {
+  display: block;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #42c66d 0 78%, #e8e4c7 78% 100%);
+}
+
+.battle-text {
+  border: 2px solid rgba(232, 231, 207, 0.9);
+  border-radius: 8px;
+  background: rgba(245, 244, 217, 0.94);
+  color: #14212b;
+  padding: 10px;
+  font-weight: 800;
+}
+
+.flow-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.flow-row div,
+.example-list div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(32, 42, 56, 0.75);
+  padding: 10px;
+}
+
+.flow-row span,
+.example-list span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.flow-row strong,
+.example-list strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--accent);
 }
 
 .tutorial-grid {
@@ -649,6 +782,38 @@ input:not([type="checkbox"]):focus-visible,
 .tutorial-card h3 {
   margin: 0 0 8px;
   font-size: 1.05rem;
+}
+
+.tutorial-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tutorial-example-box,
+.tutorial-rule-box {
+  border: 1px solid rgba(49, 64, 80, 0.82);
+  border-radius: 8px;
+  background: rgba(29, 38, 48, 0.68);
+  padding: 14px;
+}
+
+.example-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tutorial-rule-box ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.tutorial-rule-box li + li {
+  margin-top: 6px;
 }
 
 .tutorial-card p,
@@ -712,7 +877,10 @@ input:not([type="checkbox"]):focus-visible,
   .ev-summary,
   .build-detail-grid,
   .move-grid,
-  .tutorial-grid {
+  .tutorial-grid,
+  .tutorial-hero,
+  .tutorial-split,
+  .example-list {
     grid-template-columns: 1fr;
   }
 
@@ -725,16 +893,29 @@ input:not([type="checkbox"]):focus-visible,
   }
 
   .tutorial-card {
-    grid-template-columns: 86px 1fr;
-    min-height: 140px;
+    grid-template-columns: 1fr;
+    min-height: 0;
   }
 
   .tutorial-image {
-    width: 86px;
+    width: 100%;
+    min-height: 92px;
   }
 
   .tutorial-image img {
-    width: 70px;
+    width: 76px;
+  }
+
+  .battle-screen {
+    min-height: 210px;
+  }
+
+  .battle-row img {
+    width: 76px;
+  }
+
+  .hp-box {
+    min-width: 130px;
   }
 
   .stat-row {
