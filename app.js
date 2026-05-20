@@ -27,6 +27,8 @@ const i18n = {
     teamTitle: "Team-Slots",
     teamSlot: "Slot",
     activeSlot: "Aktiv",
+    resetSlot: "Slot zurücksetzen",
+    slotResetMessage: "Aktiver Slot wurde zurückgesetzt.",
     teamSlotHint: "Klick einen Slot an, um EVs, Wesen und Shiny separat zu speichern.",
     matchupTitle: "Typen-Check",
     matchupStrong: "Greift stark an",
@@ -84,6 +86,8 @@ const i18n = {
     teamTitle: "Team slots",
     teamSlot: "Slot",
     activeSlot: "Active",
+    resetSlot: "Reset slot",
+    slotResetMessage: "Active slot was reset.",
     teamSlotHint: "Click a slot to store EVs, nature and shiny separately.",
     matchupTitle: "Type check",
     matchupStrong: "Hits hard",
@@ -1605,6 +1609,7 @@ const elements = {
   languageButton: document.querySelector("#languageButton"),
   appSubtitle: document.querySelector("#appSubtitle"),
   teamTitle: document.querySelector("#teamTitle"),
+  resetSlotButton: document.querySelector("#resetSlotButton"),
   teamSlots: document.querySelector("#teamSlots"),
   searchLabel: document.querySelector("#searchLabel"),
   pokemonSearch: document.querySelector("#pokemonSearch"),
@@ -1919,6 +1924,7 @@ function renderLanguage() {
   elements.resetButton.textContent = t("reset");
   elements.appSubtitle.textContent = t("subtitle");
   elements.teamTitle.textContent = t("teamTitle");
+  elements.resetSlotButton.textContent = t("resetSlot");
   elements.searchLabel.textContent = t("search");
   elements.pokemonSearch.placeholder = t("searchPlaceholder");
   elements.pokemonSelectLabel.textContent = t("pokemon");
@@ -2600,6 +2606,25 @@ elements.teamSlots.addEventListener("click", (event) => {
   syncActiveTeamSlot();
   state.selectedTeamSlot = Number(button.dataset.teamSlot);
   applyTeamSlot(state.selectedTeamSlot);
+  saveState();
+  render();
+});
+
+elements.resetSlotButton.addEventListener("click", () => {
+  const selectedPokemon = state.selectedPokemon;
+  state.selectedNature = "timid";
+  state.shinyActive = false;
+  state.evs = blankEvs();
+  state.history = [];
+  state.lastAction = { type: "info", message: t("slotResetMessage") };
+  state.teamSlots[state.selectedTeamSlot] = createTeamSlot(state.selectedTeamSlot, {
+    selectedPokemon,
+    selectedNature: state.selectedNature,
+    shinyActive: state.shinyActive,
+    evs: state.evs,
+    history: state.history,
+    lastAction: state.lastAction
+  });
   saveState();
   render();
 });
