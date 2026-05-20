@@ -24,6 +24,17 @@ const i18n = {
     itemCategoryBattle: "Kampf",
     itemCategoryUtility: "Utility",
     itemCategoryBuild: "Build",
+    itemCategoryBerry: "Beeren",
+    itemSource: "Quelle",
+    itemMethodGift: "Geschenk",
+    itemMethodShop: "Kaufbar",
+    itemMethodHidden: "Versteckt",
+    itemMethodOverworld: "Fundort",
+    itemMethodWild: "Wildes Pokémon",
+    itemMethodThief: "Raub/Dieb",
+    itemMethodPostgame: "Postgame",
+    itemMethodTrainerTower: "Trainer-Turm",
+    itemMethodPickup: "Mitnahme",
     itemLocation: "Fundort",
     itemEffect: "Effekt",
     itemNote: "Hinweis",
@@ -115,6 +126,17 @@ const i18n = {
     itemCategoryBattle: "Battle",
     itemCategoryUtility: "Utility",
     itemCategoryBuild: "Build",
+    itemCategoryBerry: "Berries",
+    itemSource: "Source",
+    itemMethodGift: "Gift",
+    itemMethodShop: "Buyable",
+    itemMethodHidden: "Hidden",
+    itemMethodOverworld: "Location",
+    itemMethodWild: "Wild Pokemon",
+    itemMethodThief: "Thief/Covet",
+    itemMethodPostgame: "Postgame",
+    itemMethodTrainerTower: "Trainer Tower",
+    itemMethodPickup: "Pickup",
     itemLocation: "Location",
     itemEffect: "Effect",
     itemNote: "Note",
@@ -1613,84 +1635,267 @@ const pokemon = kantoPokemon.map(([id, name, types], index) => ({
 const itemGuide = [
   {
     category: "ev",
+    method: "hidden",
     de: { name: "Machoband", location: "Vertania-Arena: nach Giovanni mit dem Itemfinder auf seinem Platz suchen.", effect: "Verdoppelt alle erhaltenen EVs, senkt im Kampf aber die Initiative des Trägers.", note: "Stackt mit Pokérus zu x4 EVs." },
     en: { name: "Macho Brace", location: "Viridian Gym: after Giovanni, use the Itemfinder on the exact spot where he stood.", effect: "Doubles all EVs gained, but lowers the holder's Speed in battle.", note: "Stacks with Pokerus for x4 EVs." }
   },
   {
     category: "ev",
+    method: "gift",
     de: { name: "EP-Teiler", location: "Route 15: Professor Eichs Assistent im Obergeschoss, wenn du 50 Pokémon im Pokédex hast.", effect: "Pokémon bekommt EP und dadurch auch die EVs des besiegten Gegners.", note: "Gut, wenn ein schwaches Teammitglied EVs bekommen soll." },
     en: { name: "Exp. Share", location: "Route 15: Professor Oak's aide upstairs after you have 50 Pokemon registered.", effect: "The holder gains EXP and therefore also receives EVs from the defeated enemy.", note: "Good when a weaker team member should receive EVs." }
   },
   {
     category: "vitamin",
+    method: "shop",
     stat: "hp",
     de: { name: "KP-Plus", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 KP-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Spart frühes EV-Training." },
     en: { name: "HP Up", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 HP EVs while the stat is still below the vitamin limit.", note: "Saves early EV training time." }
   },
   {
     category: "vitamin",
+    method: "shop",
     stat: "atk",
     de: { name: "Protein", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Angriffs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Für physische Angreifer." },
     en: { name: "Protein", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Attack EVs while the stat is still below the vitamin limit.", note: "For physical attackers." }
   },
   {
     category: "vitamin",
+    method: "shop",
     stat: "def",
     de: { name: "Eisen", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Verteidigungs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Für defensivere Builds." },
     en: { name: "Iron", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Defense EVs while the stat is still below the vitamin limit.", note: "For bulkier builds." }
   },
   {
     category: "vitamin",
+    method: "shop",
     stat: "spa",
     de: { name: "Kalzium", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Sp.-Angriffs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Für Spezial-Angreifer." },
     en: { name: "Calcium", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Sp. Atk EVs while the stat is still below the vitamin limit.", note: "For special attackers." }
   },
   {
     category: "vitamin",
+    method: "shop",
     stat: "spd",
     de: { name: "Zink", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Sp.-Verteidigungs-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Nützlich für Tanks und Wasser/Eis-Matchups." },
     en: { name: "Zinc", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Sp. Def EVs while the stat is still below the vitamin limit.", note: "Useful for tanks and Water/Ice matchups." }
   },
   {
     category: "vitamin",
+    method: "shop",
     stat: "spe",
     de: { name: "Carbon", location: "Prismania-Kaufhaus: im Vitamin-Shop kaufen.", effect: "+10 Initiative-EVs, solange der Stat noch unter der Vitamin-Grenze liegt.", note: "Sehr gut für schnelle Story-Sweeper." },
     en: { name: "Carbos", location: "Celadon Department Store: buy it in the vitamin shop.", effect: "+10 Speed EVs while the stat is still below the vitamin limit.", note: "Very good for fast story sweepers." }
   },
   {
     category: "battle",
+    method: "hidden",
     de: { name: "Überreste", location: "Route 12 und Route 16: mit Itemfinder an den Relaxo-Plätzen suchen.", effect: "Heilt jede Runde 1/16 der maximalen KP.", note: "Eines der besten Story-Items für lange Kämpfe." },
     en: { name: "Leftovers", location: "Route 12 and Route 16: use the Itemfinder on the Snorlax spots.", effect: "Restores 1/16 of max HP every turn.", note: "One of the best story items for long battles." }
   },
   {
     category: "utility",
+    method: "gift",
     de: { name: "Münzamulett", location: "Route 16: Professor Eichs Assistent, wenn du 40 Pokémon im Pokédex hast.", effect: "Verdoppelt das Preisgeld, wenn der Träger am Kampf teilnimmt.", note: "Sehr gut, um Vitamine zu finanzieren." },
     en: { name: "Amulet Coin", location: "Route 16: Professor Oak's aide after you have 40 Pokemon registered.", effect: "Doubles prize money if the holder joins the battle.", note: "Great for funding vitamins." }
   },
   {
     category: "utility",
+    method: "hidden",
     de: { name: "Sanftglocke", location: "Pokémon-Turm: mit Itemfinder an dem Ort suchen, an dem Mr. Fuji stand.", effect: "Erhöht Freundschaft schneller.", note: "Praktisch für Rückkehr." },
     en: { name: "Soothe Bell", location: "Pokemon Tower: use the Itemfinder where Mr. Fuji stood.", effect: "Raises friendship faster.", note: "Useful for Return." }
   },
   {
     category: "build",
+    method: "thief",
     de: { name: "Schwarzgurt", location: "Mit Raub/Dieb von bestimmten Trainern, z.B. Kampf-Dojo, Vertania-Arena, Route 15 oder Siegesstraße.", effect: "Verstärkt Kampf-Attacken.", note: "Kein normaler Geschenk-Pickup. Vor dem Trainerkampf Dieb/Raub planen." },
     en: { name: "Black Belt", location: "Steal it with Thief/Covet from specific trainers, e.g. Fighting Dojo, Viridian Gym, Route 15 or Victory Road.", effect: "Boosts Fighting-type moves.", note: "Not a normal gift pickup. Plan Thief/Covet before the trainer battle." }
   },
   {
     category: "build",
+    method: "overworld",
     de: { name: "Schattenglas", location: "Rocket-Versteck in Prismania City.", effect: "Verstärkt Unlicht-Attacken.", note: "Nützlich für Biss/Verfolgung-Coverage." },
     en: { name: "BlackGlasses", location: "Rocket Hideout in Celadon City.", effect: "Boosts Dark-type moves.", note: "Useful for Bite/Pursuit coverage." }
   },
   {
     category: "build",
+    method: "wild",
     de: { name: "Bannsticker", location: "Wildes Alpollo im Pokémon-Turm oder Lost Cave kann ihn selten tragen. Mit Raub/Dieb holen.", effect: "Verstärkt Geist-Attacken.", note: "Für Gengar/Alpollo mit Spukball." },
     en: { name: "Spell Tag", location: "Wild Haunter in Pokemon Tower or Lost Cave can rarely hold it. Take it with Thief/Covet.", effect: "Boosts Ghost-type moves.", note: "For Gengar/Haunter with Shadow Ball." }
   },
   {
     category: "build",
+    method: "postgame",
     de: { name: "Metallmantel", location: "Eiland 5: Gedenksäule.", effect: "Verstärkt Stahl-Attacken.", note: "Auch wichtig für bestimmte Entwicklungen in späteren Games." },
     en: { name: "Metal Coat", location: "Five Island: Memorial Pillar.", effect: "Boosts Steel-type moves.", note: "Also important for certain evolutions in later games." }
+  },
+  {
+    category: "build",
+    method: "shop",
+    de: { name: "Holzkohle", location: "Rocket-Spielhalle in Prismania City: gegen Münzen eintauschen.", effect: "Verstärkt Feuer-Attacken.", note: "Sehr passend für Glurak, Vulnona, Arkani und Lavados." },
+    en: { name: "Charcoal", location: "Celadon Game Corner: exchange for coins.", effect: "Boosts Fire-type moves.", note: "Great for Charizard, Ninetales, Arcanine and Moltres." }
+  },
+  {
+    category: "build",
+    method: "shop",
+    de: { name: "Mystikwasser", location: "Rocket-Spielhalle in Prismania City: gegen Münzen eintauschen.", effect: "Verstärkt Wasser-Attacken.", note: "Solide für Turtok, Lapras, Aquana und Starmie." },
+    en: { name: "Mystic Water", location: "Celadon Game Corner: exchange for coins.", effect: "Boosts Water-type moves.", note: "Solid for Blastoise, Lapras, Vaporeon and Starmie." }
+  },
+  {
+    category: "build",
+    method: "shop",
+    de: { name: "Wundersaat", location: "Rocket-Spielhalle in Prismania City: gegen Münzen eintauschen.", effect: "Verstärkt Pflanzen-Attacken.", note: "Gut für Bisaflor, Giflor, Sarzenia und Tangela." },
+    en: { name: "Miracle Seed", location: "Celadon Game Corner: exchange for coins.", effect: "Boosts Grass-type moves.", note: "Good for Venusaur, Vileplume, Victreebel and Tangela." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Magnet", location: "Wildes Magneton kann ihn selten tragen.", effect: "Verstärkt Elektro-Attacken.", note: "Mit Raub/Dieb farmen. Stark für Pikachu, Raichu, Blitza und Zapdos." },
+    en: { name: "Magnet", location: "Wild Magneton can rarely hold it.", effect: "Boosts Electric-type moves.", note: "Farm with Thief/Covet. Strong for Pikachu, Raichu, Jolteon and Zapdos." }
+  },
+  {
+    category: "build",
+    method: "overworld",
+    de: { name: "Ewiges Eis", location: "Eiskaskadenhöhle auf Eiland 4; wildes Jugong kann es ebenfalls selten tragen.", effect: "Verstärkt Eis-Attacken.", note: "Gut für Lapras, Austos, Arktos und Eisstrahl-Nutzer." },
+    en: { name: "NeverMeltIce", location: "Icefall Cave on Four Island; wild Dewgong can also rarely hold it.", effect: "Boosts Ice-type moves.", note: "Good for Lapras, Cloyster, Articuno and Ice Beam users." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Krummlöffel", location: "Wildes Abra oder Kadabra kann ihn selten tragen.", effect: "Verstärkt Psycho-Attacken.", note: "Sehr gut für Simsala, Starmie, Rossana, Mewtu und Mew." },
+    en: { name: "TwistedSpoon", location: "Wild Abra or Kadabra can rarely hold it.", effect: "Boosts Psychic-type moves.", note: "Very good for Alakazam, Starmie, Jynx, Mewtwo and Mew." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Drachenzahn", location: "Wildes Dragonir kann ihn selten tragen.", effect: "Verstärkt Drachen-Attacken.", note: "Nischig, aber passend für Dragoran mit Drachenklaue." },
+    en: { name: "Dragon Fang", location: "Wild Dragonair can rarely hold it.", effect: "Boosts Dragon-type moves.", note: "Niche, but fits Dragonite with Dragon Claw." }
+  },
+  {
+    category: "build",
+    method: "postgame",
+    de: { name: "Seidenschal", location: "Lost Cave auf Eiland 5.", effect: "Verstärkt Normal-Attacken.", note: "Gut für Rückkehr, Stärke und Bodyslam." },
+    en: { name: "Silk Scarf", location: "Lost Cave on Five Island.", effect: "Boosts Normal-type moves.", note: "Good for Return, Strength and Body Slam." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Giftstich", location: "Wildes Bibor oder Arbok kann ihn selten tragen.", effect: "Verstärkt Gift-Attacken.", note: "Für Arbok, Nidoking/Nidoqueen oder Giflor mit Matschbombe." },
+    en: { name: "Poison Barb", location: "Wild Beedrill or Arbok can rarely hold it.", effect: "Boosts Poison-type moves.", note: "For Arbok, Nidoking/Nidoqueen or Vileplume with Sludge Bomb." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Pudersand", location: "Wildes Sandamer kann ihn selten tragen.", effect: "Verstärkt Boden-Attacken.", note: "Gut für Erdbeben-Nutzer wie Nidoking, Rizeros oder Dragoran." },
+    en: { name: "Soft Sand", location: "Wild Sandslash can rarely hold it.", effect: "Boosts Ground-type moves.", note: "Good for Earthquake users like Nidoking, Rhydon or Dragonite." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Granitstein", location: "Wildes Kleinstein, Georok oder Onix kann ihn selten tragen.", effect: "Verstärkt Gestein-Attacken.", note: "Passend für Aerodactyl, Rizeros, Geowaz und Kabutops." },
+    en: { name: "Hard Stone", location: "Wild Geodude, Graveler or Onix can rarely hold it.", effect: "Boosts Rock-type moves.", note: "Fits Aerodactyl, Rhydon, Golem and Kabutops." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Hackattack", location: "Wildes Ibitak, Dodri oder Panzaeron kann ihn selten tragen.", effect: "Verstärkt Flug-Attacken.", note: "Gut für Flug-STAB wie Fliegen oder Bohrschnabel." },
+    en: { name: "Sharp Beak", location: "Wild Fearow, Dodrio or Skarmory can rarely hold it.", effect: "Boosts Flying-type moves.", note: "Good for Flying STAB like Fly or Drill Peck." }
+  },
+  {
+    category: "build",
+    method: "wild",
+    de: { name: "Silberstaub", location: "Wildes Smettbo oder Omot kann ihn selten tragen.", effect: "Verstärkt Käfer-Attacken.", note: "Nischig, aber passend für Pinsir, Sichlor oder Omot." },
+    en: { name: "SilverPowder", location: "Wild Butterfree or Venomoth can rarely hold it.", effect: "Boosts Bug-type moves.", note: "Niche, but fits Pinsir, Scyther or Venomoth." }
+  },
+  {
+    category: "build",
+    method: "postgame",
+    de: { name: "Seerauch", location: "Lost Cave auf Eiland 5.", effect: "Verstärkt Wasser-Attacken leicht und wird für Azurill-Zucht genutzt.", note: "Mystikwasser ist für reinen Schaden meist die klarere Option." },
+    en: { name: "Sea Incense", location: "Lost Cave on Five Island.", effect: "Slightly boosts Water-type moves and is used for Azurill breeding.", note: "Mystic Water is usually the clearer pure damage option." }
+  },
+  {
+    category: "battle",
+    method: "postgame",
+    de: { name: "King-Stein", location: "Trainer-Turm auf Eiland 7; teils auch über wilde Pokémon/Übertragungen je nach Version.", effect: "Kann bei passenden Attacken Zurückschrecken auslösen.", note: "Praktisch für schnelle Pokémon mit Multi-Hit oder häufigen Treffern." },
+    en: { name: "King's Rock", location: "Trainer Tower on Seven Island; sometimes also via wild Pokemon/transfers depending on version.", effect: "Can make compatible damaging moves cause flinching.", note: "Useful on fast Pokemon with multi-hit or frequent attacks." }
+  },
+  {
+    category: "battle",
+    method: "postgame",
+    de: { name: "Drachenhaut", location: "Trainer-Turm auf Eiland 7; wildes Seeper/Seemon kann sie selten tragen.", effect: "Entwicklungsitem für Seemon in späteren Games.", note: "In FR/BG vor allem Sammel-/Tauschwert." },
+    en: { name: "Dragon Scale", location: "Trainer Tower on Seven Island; wild Horsea/Seadra can rarely hold it.", effect: "Evolution item for Seadra in later games.", note: "In FR/LG it is mostly useful for collection/trading." }
+  },
+  {
+    category: "battle",
+    method: "trainerTower",
+    de: { name: "Scope-Linse", location: "Japanische Trainer-Turm/e-Reader-Inhalte oder per Tausch aus anderen Gen-3-Spielen.", effect: "Erhöht die Volltrefferquote.", note: "In normalen internationalen FR/BG-Spielständen nicht zuverlässig frei verfügbar." },
+    en: { name: "Scope Lens", location: "Japanese Trainer Tower/e-Reader content or trade from other Gen 3 games.", effect: "Raises critical-hit ratio.", note: "Not reliably available in normal international FR/LG saves." }
+  },
+  {
+    category: "battle",
+    method: "trainerTower",
+    de: { name: "Fokus-Band", location: "Japanische Trainer-Turm/e-Reader-Inhalte oder per Tausch aus anderen Gen-3-Spielen.", effect: "Kann den Träger mit 1 KP überleben lassen.", note: "Glücksitem, eher Spielerei als verlässlicher Build." },
+    en: { name: "Focus Band", location: "Japanese Trainer Tower/e-Reader content or trade from other Gen 3 games.", effect: "May let the holder survive with 1 HP.", note: "Luck-based, more gimmick than reliable build." }
+  },
+  {
+    category: "battle",
+    method: "trainerTower",
+    de: { name: "Blendpuder", location: "Japanische Trainer-Turm/e-Reader-Inhalte oder per Tausch aus anderen Gen-3-Spielen.", effect: "Senkt die gegnerische Genauigkeit leicht.", note: "Nützlich auf defensiven Pokémon, aber nicht einfach normal erhältlich." },
+    en: { name: "BrightPowder", location: "Japanese Trainer Tower/e-Reader content or trade from other Gen 3 games.", effect: "Slightly lowers the opponent's accuracy.", note: "Useful on defensive Pokemon, but not normally easy to obtain." }
+  },
+  {
+    category: "utility",
+    method: "shop",
+    de: { name: "Rauchball", location: "Rocket-Spielhalle in Prismania City: gegen Münzen eintauschen.", effect: "Erlaubt Flucht aus wilden Kämpfen.", note: "Praktisch beim Reisen und Farmen." },
+    en: { name: "Smoke Ball", location: "Celadon Game Corner: exchange for coins.", effect: "Allows escape from wild battles.", note: "Useful while traveling and farming." }
+  },
+  {
+    category: "utility",
+    method: "overworld",
+    de: { name: "Schutzband", location: "Pokémon-Turm.", effect: "Reduziert wilde Begegnungen, wenn der Träger vorne im Team ist.", note: "Gut, wenn du durch Höhlen/Routen willst ohne dauernde Kämpfe." },
+    en: { name: "Cleanse Tag", location: "Pokemon Tower.", effect: "Reduces wild encounters if the holder leads the party.", note: "Good when you want to move through caves/routes with fewer battles." }
+  },
+  {
+    category: "utility",
+    method: "postgame",
+    de: { name: "Laxrauch", location: "Lost Cave auf Eiland 5.", effect: "Senkt die gegnerische Genauigkeit leicht und wird für Isso-Zucht genutzt.", note: "Defensives Utility-Item." },
+    en: { name: "Lax Incense", location: "Lost Cave on Five Island.", effect: "Slightly lowers the opponent's accuracy and is used for Wynaut breeding.", note: "Defensive utility item." }
+  },
+  {
+    category: "berry",
+    method: "hidden",
+    de: { name: "Prunusbeere", location: "Mehrere versteckte Beerenstellen auf Routen; außerdem teils über Mitnahme.", effect: "Heilt jedes große Statusproblem einmal automatisch.", note: "Eine der besten allgemeinen Story-Beeren." },
+    en: { name: "Lum Berry", location: "Several hidden Berry spots on routes; also sometimes via Pickup.", effect: "Automatically cures any major status condition once.", note: "One of the best general story Berries." }
+  },
+  {
+    category: "berry",
+    method: "pickup",
+    de: { name: "Jonagobeere", location: "Versteckte Beerenstellen oder Mitnahme.", effect: "Stellt 10 AP einer Attacke wieder her.", note: "Nützlich vor Top Vier oder langen Höhlen." },
+    en: { name: "Leppa Berry", location: "Hidden Berry spots or Pickup.", effect: "Restores 10 PP to one move.", note: "Useful before the Elite Four or long caves." }
+  },
+  {
+    category: "berry",
+    method: "hidden",
+    de: { name: "Sinelbeere", location: "Versteckte Beerenstellen auf frühen Routen.", effect: "Heilt 10 KP automatisch, wenn die KP niedrig sind.", note: "Frühes Spiel, später eher schwach." },
+    en: { name: "Oran Berry", location: "Hidden Berry spots on early routes.", effect: "Automatically restores 10 HP when HP is low.", note: "Early game item, later rather weak." }
+  },
+  {
+    category: "berry",
+    method: "pickup",
+    de: { name: "Tsitrubeere", location: "Mitnahme oder spätere/versteckte Beerenquellen.", effect: "Heilt 30 KP automatisch, wenn die KP niedrig sind.", note: "Besser als Sinelbeere für Story-Kämpfe." },
+    en: { name: "Sitrus Berry", location: "Pickup or later/hidden Berry sources.", effect: "Automatically restores 30 HP when HP is low.", note: "Better than Oran Berry for story battles." }
+  },
+  {
+    category: "berry",
+    method: "hidden",
+    de: { name: "Maronbeere", location: "Versteckte Beerenstellen.", effect: "Heilt Schlaf automatisch.", note: "Gut gegen Schlafpuder/Hypnose." },
+    en: { name: "Chesto Berry", location: "Hidden Berry spots.", effect: "Automatically cures sleep.", note: "Good against Sleep Powder/Hypnosis." }
+  },
+  {
+    category: "berry",
+    method: "hidden",
+    de: { name: "Pirsifbeere", location: "Versteckte Beerenstellen.", effect: "Heilt Vergiftung automatisch.", note: "Nützlich in Gift-Routen und gegen Team Rocket." },
+    en: { name: "Pecha Berry", location: "Hidden Berry spots.", effect: "Automatically cures poison.", note: "Useful on poison-heavy routes and against Team Rocket." }
   }
 ];
 
@@ -1955,8 +2160,23 @@ function getItemCategoryLabel(category) {
     vitamin: t("itemCategoryVitamin"),
     battle: t("itemCategoryBattle"),
     utility: t("itemCategoryUtility"),
-    build: t("itemCategoryBuild")
+    build: t("itemCategoryBuild"),
+    berry: t("itemCategoryBerry")
   }[category] ?? category;
+}
+
+function getItemMethodLabel(method) {
+  return {
+    gift: t("itemMethodGift"),
+    shop: t("itemMethodShop"),
+    hidden: t("itemMethodHidden"),
+    overworld: t("itemMethodOverworld"),
+    wild: t("itemMethodWild"),
+    thief: t("itemMethodThief"),
+    postgame: t("itemMethodPostgame"),
+    trainerTower: t("itemMethodTrainerTower"),
+    pickup: t("itemMethodPickup")
+  }[method] ?? method;
 }
 
 function formatNatureText(text) {
@@ -2876,7 +3096,11 @@ function renderItemFilters() {
     ["vitamin", t("itemCategoryVitamin")],
     ["battle", t("itemCategoryBattle")],
     ["build", t("itemCategoryBuild")],
-    ["utility", t("itemCategoryUtility")]
+    ["utility", t("itemCategoryUtility")],
+    ["berry", t("itemCategoryBerry")],
+    ["wild", t("itemMethodWild")],
+    ["thief", t("itemMethodThief")],
+    ["postgame", t("itemMethodPostgame")]
   ];
 
   elements.itemFilters.innerHTML = filters
@@ -2892,9 +3116,11 @@ function renderItemGuide() {
   const searchTerm = elements.itemSearch.value.trim().toLowerCase();
   const filteredItems = itemGuide.filter((item) => {
     const text = getGuideItemText(item);
-    const haystack = `${text.name} ${text.location} ${text.effect} ${text.note} ${getItemCategoryLabel(item.category)}`.toLowerCase();
-    const categoryMatches = state.selectedItemFilter === "all" || item.category === state.selectedItemFilter;
-    return categoryMatches && haystack.includes(searchTerm);
+    const haystack = `${text.name} ${text.location} ${text.effect} ${text.note} ${getItemCategoryLabel(item.category)} ${getItemMethodLabel(item.method)}`.toLowerCase();
+    const filterMatches = state.selectedItemFilter === "all"
+      || item.category === state.selectedItemFilter
+      || item.method === state.selectedItemFilter;
+    return filterMatches && haystack.includes(searchTerm);
   });
 
   elements.itemCards.innerHTML = filteredItems
@@ -2912,6 +3138,10 @@ function renderItemGuide() {
             ${statBadge}
           </div>
           <dl>
+            <div>
+              <dt>${t("itemSource")}</dt>
+              <dd><span class="item-source-badge">${getItemMethodLabel(item.method)}</span></dd>
+            </div>
             <div>
               <dt>${t("itemLocation")}</dt>
               <dd>${text.location}</dd>
