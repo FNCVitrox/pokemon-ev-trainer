@@ -2193,14 +2193,14 @@ const locationGuide = [
       place: "Route 16 / 17 / 18 und Radweg",
       when: "Mit Pokéflöte oder über Prismania-Zugang.",
       action: "Zweiter Relaxo-Platz gibt Überreste. Professor Eichs Assistent auf Route 16 gibt Münzamulett bei 40 Pokédex-Einträgen.",
-      items: ["Überreste versteckt bei Relaxo Route 16", "Münzamulett", "Dodu: +1 Initiative-EV"],
+      items: ["Überreste versteckt bei Relaxo Route 16", "Münzamulett", "Habitak: +1 Initiative-EV"],
       tip: "Das Münzamulett finanziert später Vitamine, also lohnt sich der Abstecher."
     },
     en: {
       place: "Route 16 / 17 / 18 and Cycling Road",
       when: "With the Poke Flute or from the Celadon side.",
       action: "The second Snorlax spot gives Leftovers. Oak's aide on Route 16 gives Amulet Coin at 40 Pokedex entries.",
-      items: ["Hidden Leftovers at Route 16 Snorlax spot", "Amulet Coin", "Doduo: +1 Speed EV"],
+      items: ["Hidden Leftovers at Route 16 Snorlax spot", "Amulet Coin", "Spearow: +1 Speed EV"],
       tip: "Amulet Coin funds later vitamins, so the detour is worth it."
     }
   },
@@ -2456,7 +2456,7 @@ const enemies = [
   { name: "Jurob", nameEn: "Seel", stat: "spd", ev: 1, place: "Seeschauminseln", placeEn: "Seafoam Islands", note: "Sp. Vert. im Late Game" },
   { name: "Rattfratz", nameEn: "Rattata", stat: "spe", ev: 1, place: "Route 1", placeEn: "Route 1", note: "Sehr früh für Initiative" },
   { name: "Zubat", nameEn: "Zubat", stat: "spe", ev: 1, place: "Mondberg", placeEn: "Mt. Moon", note: "Gute Höhlen-Option" },
-  { name: "Dodu", nameEn: "Doduo", stat: "spe", ev: 1, place: "Route 16 / 17", placeEn: "Route 16 / 17", note: "Initiative im Mid Game" }
+  { name: "Habitak", nameEn: "Spearow", stat: "spe", ev: 1, place: "Route 16 / 17", placeEn: "Route 16 / 17", note: "Initiative im Mid Game" }
 ];
 
 const state = {
