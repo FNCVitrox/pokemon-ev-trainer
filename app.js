@@ -84,6 +84,11 @@ const i18n = {
     teamOverviewTitle: "Team-Fortschritt",
     teamOverviewDone: "fertige Slots",
     teamOverviewTotal: "Team-EVs",
+    teamRecipients: "EVs bekommen",
+    teamRecipientsHint: "Aktiviere alle Slots, die im Kampf EP bekommen haben.",
+    teamActiveOnly: "Nur aktiv",
+    teamAll: "Alle",
+    noTeamRecipients: "Wähle mindestens einen Team-Slot aus, der EP bekommen hat.",
     trainingPlanTitle: "Trainingsplan",
     trainingPlanDone: "Alle Zielwerte sind fertig.",
     trainingPlanStep: "noch",
@@ -202,6 +207,11 @@ const i18n = {
     teamOverviewTitle: "Team progress",
     teamOverviewDone: "finished slots",
     teamOverviewTotal: "team EVs",
+    teamRecipients: "Receives EVs",
+    teamRecipientsHint: "Enable every slot that received EXP in the battle.",
+    teamActiveOnly: "Active only",
+    teamAll: "All",
+    noTeamRecipients: "Choose at least one team slot that received EXP.",
     trainingPlanTitle: "Training plan",
     trainingPlanDone: "All goal values are done.",
     trainingPlanStep: "left",
@@ -2466,6 +2476,7 @@ const state = {
   selectedLocationFilter: "all",
   selectedTeamSlot: 0,
   teamSlots: Array.from({ length: 6 }, (_, index) => createTeamSlot(index)),
+  teamRecipients: [true, false, false, false, false, false],
   selectedPokemon: 0,
   selectedVersion: 0,
   selectedNature: "timid",
@@ -2510,6 +2521,11 @@ const elements = {
   exportTeamButton: document.querySelector("#exportTeamButton"),
   importTeamButton: document.querySelector("#importTeamButton"),
   teamSlots: document.querySelector("#teamSlots"),
+  teamRecipientsLabel: document.querySelector("#teamRecipientsLabel"),
+  teamRecipientsHint: document.querySelector("#teamRecipientsHint"),
+  teamActiveOnlyButton: document.querySelector("#teamActiveOnlyButton"),
+  teamAllButton: document.querySelector("#teamAllButton"),
+  teamRecipientOptions: document.querySelector("#teamRecipientOptions"),
   slotNameLabel: document.querySelector("#slotNameLabel"),
   slotNameInput: document.querySelector("#slotNameInput"),
   teamOverview: document.querySelector("#teamOverview"),
@@ -2581,10 +2597,19 @@ function loadState() {
     state.evs = { ...state.evs, ...parsed.evs };
     state.selectedTeamSlot = Math.min(Math.max(Number(parsed.selectedTeamSlot ?? 0), 0), 5);
     state.teamSlots = normalizeTeamSlots(parsed);
+    state.teamRecipients = normalizeTeamRecipients(parsed.teamRecipients, state.selectedTeamSlot);
     applyTeamSlot(state.selectedTeamSlot);
   } catch {
     localStorage.removeItem("pokemonEvTrainerState");
   }
+}
+
+function normalizeTeamRecipients(value, activeIndex = 0) {
+  const recipients = Array.from({ length: 6 }, (_, index) => Boolean(value?.[index]));
+  if (!recipients.some(Boolean)) {
+    recipients[Math.min(Math.max(Number(activeIndex) || 0, 0), 5)] = true;
+  }
+  return recipients;
 }
 
 function normalizeTeamSlots(parsed) {
@@ -2739,12 +2764,14 @@ function getSlotDisplayName(slot, entry) {
 }
 
 function renderTeamSlots() {
+  state.teamRecipients = normalizeTeamRecipients(state.teamRecipients, state.selectedTeamSlot);
   elements.teamSlots.innerHTML = state.teamSlots
     .map((slot, index) => {
       const entry = pokemon[clampPokemonIndex(slot.selectedPokemon)];
       const total = getTeamSlotTotal(slot);
       const active = index === state.selectedTeamSlot;
       const shiny = slot.shinyActive ? " shiny" : "";
+      const recipient = state.teamRecipients[index] ? " recipient" : "";
       const displayName = getSlotDisplayName(slot, entry);
       const pokemonName = getPokemonName(entry);
       const safeDisplayName = escapeHtml(displayName);
@@ -2753,11 +2780,31 @@ function renderTeamSlots() {
       const safeActiveLabel = escapeHtml(t("activeSlot"));
 
       return `
-        <button class="team-slot${active ? " active" : ""}${shiny}" type="button" data-team-slot="${index}">
+        <button class="team-slot${active ? " active" : ""}${shiny}${recipient}" type="button" data-team-slot="${index}">
           <span>${safeSlotLabel} ${index + 1}${active ? ` · ${safeActiveLabel}` : ""}</span>
           <strong>${safeDisplayName}</strong>
           <small>${displayName === pokemonName ? `${total} / 510` : `${safePokemonName} · ${total} / 510`}</small>
         </button>
+      `;
+    })
+    .join("");
+}
+
+function renderTeamRecipients() {
+  state.teamRecipients = normalizeTeamRecipients(state.teamRecipients, state.selectedTeamSlot);
+  elements.teamRecipientOptions.innerHTML = state.teamSlots
+    .map((slot, index) => {
+      const entry = pokemon[clampPokemonIndex(slot.selectedPokemon)];
+      const displayName = escapeHtml(getSlotDisplayName(slot, entry));
+      const checked = state.teamRecipients[index] ? " checked" : "";
+      const active = index === state.selectedTeamSlot ? " active" : "";
+
+      return `
+        <label class="team-recipient${active}">
+          <input type="checkbox" data-team-recipient="${index}"${checked} />
+          <span>${index + 1}</span>
+          <strong>${displayName}</strong>
+        </label>
       `;
     })
     .join("");
@@ -2904,6 +2951,7 @@ function createExportPayload() {
     app: "pokemon-ev-trainer",
     version: 1,
     selectedTeamSlot: state.selectedTeamSlot,
+    teamRecipients: normalizeTeamRecipients(state.teamRecipients, state.selectedTeamSlot),
     teamSlots: state.teamSlots.map((slot) => ({
       nickname: sanitizeSlotName(slot.nickname),
       selectedPokemon: clampPokemonIndex(slot.selectedPokemon),
@@ -2960,6 +3008,10 @@ function renderLanguage() {
   elements.locationsIntro.textContent = t("locationsIntro");
   elements.teamTitle.textContent = t("teamTitle");
   elements.resetSlotButton.textContent = t("resetSlot");
+  elements.teamRecipientsLabel.textContent = t("teamRecipients");
+  elements.teamRecipientsHint.textContent = t("teamRecipientsHint");
+  elements.teamActiveOnlyButton.textContent = t("teamActiveOnly");
+  elements.teamAllButton.textContent = t("teamAll");
   elements.searchLabel.textContent = t("search");
   elements.pokemonSearch.placeholder = t("searchPlaceholder");
   elements.pokemonSelectLabel.textContent = t("pokemon");
@@ -3230,15 +3282,62 @@ function pushHistory(action) {
   state.history = state.history.slice(-20);
 }
 
+function getRecipientIndexes() {
+  state.teamRecipients = normalizeTeamRecipients(state.teamRecipients, state.selectedTeamSlot);
+  return state.teamRecipients
+    .map((selected, index) => selected ? index : -1)
+    .filter((index) => index >= 0);
+}
+
+function getAppliedEvAmount(evs, stat, gained) {
+  const currentTotal = Object.values(evs).reduce((sum, value) => sum + value, 0);
+  const roomInStat = 252 - evs[stat];
+  const roomTotal = 510 - currentTotal;
+  return Math.max(0, Math.min(gained, roomInStat, roomTotal));
+}
+
+function formatTeamTrainingMessage(enemyName, changes, statLabel) {
+  const totalApplied = changes.reduce((sum, change) => sum + change.amount, 0);
+  return state.lang === "en"
+    ? `${enemyName}: +${totalApplied} ${statLabel} EV across ${changes.length} slot${changes.length === 1 ? "" : "s"}`
+    : `${enemyName}: +${totalApplied} ${statLabel} EV auf ${changes.length} Slot${changes.length === 1 ? "" : "s"}`;
+}
+
 function addEnemyEv(enemy) {
+  syncActiveTeamSlot();
   const enemyDisplayName = getEnemyName(enemy);
   const gained = enemy.ev * getMultiplier();
-  const currentTotal = totalEvs();
-  const roomInStat = 252 - state.evs[enemy.stat];
-  const roomTotal = 510 - currentTotal;
-  const applied = Math.max(0, Math.min(gained, roomInStat, roomTotal));
+  const recipientIndexes = getRecipientIndexes();
+  const changes = [];
 
-  if (applied <= 0) {
+  if (recipientIndexes.length === 0) {
+    state.lastAction = { type: "blocked", message: t("noTeamRecipients") };
+    saveState();
+    render();
+    return;
+  }
+
+  recipientIndexes.forEach((slotIndex) => {
+    const slot = state.teamSlots[slotIndex] ?? createTeamSlot(slotIndex);
+    const previousEvs = normalizeEvs(slot.evs);
+    const applied = getAppliedEvAmount(previousEvs, enemy.stat, gained);
+    if (applied <= 0) return;
+
+    const nextEvs = { ...previousEvs, [enemy.stat]: previousEvs[enemy.stat] + applied };
+    changes.push({ slotIndex, previousEvs, amount: applied });
+    state.teamSlots[slotIndex] = createTeamSlot(slotIndex, {
+      ...slot,
+      evs: nextEvs,
+      lastAction: {
+        type: "enemy",
+        enemy: enemyDisplayName,
+        stat: enemy.stat,
+        amount: applied
+      }
+    });
+  });
+
+  if (changes.length === 0) {
     state.lastAction = {
       type: "blocked",
       enemy: enemyDisplayName,
@@ -3250,19 +3349,23 @@ function addEnemyEv(enemy) {
     return;
   }
 
+  const selectedSlot = state.teamSlots[state.selectedTeamSlot] ?? createTeamSlot(state.selectedTeamSlot);
+  state.evs = normalizeEvs(selectedSlot.evs);
+  state.history = Array.isArray(selectedSlot.history) ? selectedSlot.history.slice(-20) : [];
+  const message = formatTeamTrainingMessage(enemyDisplayName, changes, getStatLabel(enemy.stat));
   pushHistory({
-    type: "enemy",
+    type: "team-enemy",
     enemy: enemyDisplayName,
     stat: enemy.stat,
-    amount: applied,
-    previousEvs: { ...state.evs }
+    amount: gained,
+    slotChanges: changes
   });
-  state.evs[enemy.stat] += applied;
   state.lastAction = {
-    type: "enemy",
+    type: "team-enemy",
     enemy: enemyDisplayName,
     stat: enemy.stat,
-    amount: applied
+    amount: gained,
+    message
   };
   saveState();
   render();
@@ -3270,6 +3373,28 @@ function addEnemyEv(enemy) {
 
 function undoLastAction() {
   const action = state.history.pop();
+  if (Array.isArray(action?.slotChanges)) {
+    action.slotChanges.forEach((change) => {
+      const slot = state.teamSlots[change.slotIndex] ?? createTeamSlot(change.slotIndex);
+      state.teamSlots[change.slotIndex] = createTeamSlot(change.slotIndex, {
+        ...slot,
+        evs: normalizeEvs(change.previousEvs),
+        lastAction: null
+      });
+    });
+    const selectedSlot = state.teamSlots[state.selectedTeamSlot] ?? createTeamSlot(state.selectedTeamSlot);
+    state.evs = normalizeEvs(selectedSlot.evs);
+    state.lastAction = {
+      type: "undo",
+      message: state.lang === "en"
+        ? `Undid ${action.enemy} for ${action.slotChanges.length} slot${action.slotChanges.length === 1 ? "" : "s"}.`
+        : `${action.enemy} für ${action.slotChanges.length} Slot${action.slotChanges.length === 1 ? "" : "s"} rückgängig.`
+    };
+    saveState();
+    render();
+    return;
+  }
+
   if (!action?.previousEvs) {
     state.lastAction = { type: "info", message: t("nothingToUndo") };
     saveState();
@@ -3805,6 +3930,7 @@ function render() {
   renderLanguage();
   renderView();
   renderTeamSlots();
+  renderTeamRecipients();
   renderTeamTools();
   renderTutorial();
   renderVersionSelect();
@@ -3856,7 +3982,33 @@ elements.slotNameInput.addEventListener("input", (event) => {
   state.teamSlots[state.selectedTeamSlot].nickname = sanitizeSlotName(event.target.value);
   saveState();
   renderTeamSlots();
+  renderTeamRecipients();
   renderTeamTools();
+});
+
+elements.teamRecipientOptions.addEventListener("change", (event) => {
+  const checkbox = event.target.closest("[data-team-recipient]");
+  if (!checkbox) return;
+  const index = Number(checkbox.dataset.teamRecipient);
+  state.teamRecipients[index] = checkbox.checked;
+  state.teamRecipients = normalizeTeamRecipients(state.teamRecipients, state.selectedTeamSlot);
+  saveState();
+  renderTeamSlots();
+  renderTeamRecipients();
+});
+
+elements.teamActiveOnlyButton.addEventListener("click", () => {
+  state.teamRecipients = Array.from({ length: 6 }, (_, index) => index === state.selectedTeamSlot);
+  saveState();
+  renderTeamSlots();
+  renderTeamRecipients();
+});
+
+elements.teamAllButton.addEventListener("click", () => {
+  state.teamRecipients = Array.from({ length: 6 }, () => true);
+  saveState();
+  renderTeamSlots();
+  renderTeamRecipients();
 });
 
 elements.exportTeamButton.addEventListener("click", async () => {
@@ -3882,6 +4034,7 @@ elements.importTeamButton.addEventListener("click", () => {
     const parsed = decodeTeamCode(elements.teamCodeField.value);
     state.teamSlots = normalizeTeamSlots(parsed);
     state.selectedTeamSlot = Math.min(Math.max(Number(parsed.selectedTeamSlot ?? 0), 0), 5);
+    state.teamRecipients = normalizeTeamRecipients(parsed.teamRecipients, state.selectedTeamSlot);
     applyTeamSlot(state.selectedTeamSlot);
     state.lastAction = { type: "info", message: t("importDone") };
     saveState();

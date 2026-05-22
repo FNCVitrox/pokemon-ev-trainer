@@ -9,7 +9,7 @@
     />
     <meta name="referrer" content="no-referrer" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-22-live-mobile-check" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-22-team-training" />
   </head>
   <body>
     <main class="app-shell">
@@ -44,6 +44,19 @@
             </div>
           </div>
           <div id="teamSlots" class="team-slots" aria-label="Team Slots"></div>
+          <div class="team-recipient-panel">
+            <div class="team-recipient-heading">
+              <div>
+                <span id="teamRecipientsLabel">EVs bekommen</span>
+                <p id="teamRecipientsHint">Aktiviere alle Slots, die im Kampf EP bekommen haben.</p>
+              </div>
+              <div>
+                <button class="ghost-button small-button" id="teamActiveOnlyButton" type="button">Nur aktiv</button>
+                <button class="ghost-button small-button" id="teamAllButton" type="button">Alle</button>
+              </div>
+            </div>
+            <div id="teamRecipientOptions" class="team-recipient-options"></div>
+          </div>
           <div class="team-tools">
             <label>
               <span id="slotNameLabel">Slot-Name</span>
@@ -214,6 +227,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-22-live-mobile-check"></script>
+    <script src="app.js?v=2026-05-22-team-training"></script>
   </body>
 </html>

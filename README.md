@@ -13,6 +13,7 @@ Live site: [https://fncvitrox.github.io/pokemon-ev-trainer/](https://fncvitrox.g
 - Build suggestions with natures, items, moves, and short move explanations
 - Manual EV editing with stat caps
 - Training target buttons for common FireRed / LeafGreen EV spots
+- Team EV recipient selection for Pokemon that received EXP in the same battle
 - Pokerus and Macho Brace multiplier support
 - Undo for training clicks
 - Shiny artwork toggle
