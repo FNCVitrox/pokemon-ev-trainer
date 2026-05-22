@@ -540,7 +540,7 @@ const buildRecommendations = {
     role: "Schneller Spezial-Angreifer",
     nature: "Scheu oder Mäßig",
     ability: "Großbrand",
-    item: "Holzkohle / Scope-Linse",
+    item: "Holzkohle / Überreste",
     evs: { hp: 4, atk: 0, def: 0, spa: 252, spd: 0, spe: 252 },
     moves: ["Flammenwurf", "Fliegen", "Drachenklaue", "Erdbeben"],
     note: "Sehr guter Story-Build: schnell, starker Feuer-STAB und genug Coverage für viele Trainer."
@@ -585,7 +585,7 @@ const buildRecommendations = {
     role: "Spezial-Sweeper",
     nature: "Scheu",
     ability: "Synchro",
-    item: "Psycho-verstärkendes Item",
+    item: "Krummlöffel",
     evs: { hp: 4, atk: 0, def: 0, spa: 252, spd: 0, spe: 252 },
     moves: ["Psychokinese", "Gedankengut", "Genesung", "Donnerwelle"],
     note: "Extrem stark, aber fragil. Gut spielen heißt: reinkommen, schneller sein, Druck machen."
@@ -603,7 +603,7 @@ const buildRecommendations = {
     role: "Spezial-Sweeper",
     nature: "Scheu oder Mäßig",
     ability: "Schwebe",
-    item: "Scope-Linse / Psycho-verstärkendes Item",
+    item: "Krummlöffel / Überreste",
     evs: { hp: 4, atk: 0, def: 0, spa: 252, spd: 0, spe: 252 },
     moves: ["Psychokinese", "Donnerblitz", "Gigasauger", "Hypnose"],
     note: "Gengar lebt von Tempo und Coverage. Schwebe gibt dir einen kostenlosen Boden-Switch."
@@ -630,7 +630,7 @@ const buildRecommendations = {
     role: "Physischer Sweeper",
     nature: "Hart oder Froh",
     ability: "Bedroher",
-    item: "Mystikwasser",
+    item: "Überreste / Seidenschal",
     evs: { hp: 0, atk: 252, def: 0, spa: 0, spd: 4, spe: 252 },
     moves: ["Surfer", "Erdbeben", "Drachentanz", "Rückkehr"],
     note: "Drachentanz macht Garados sehr gefährlich. Bedroher hilft beim sicheren Setup."
@@ -675,7 +675,7 @@ const buildRecommendations = {
     role: "Physischer Sweeper",
     nature: "Hart oder Froh",
     ability: "Konzentrator",
-    item: "Drachenzahn",
+    item: "Hackattack / Überreste",
     evs: { hp: 0, atk: 252, def: 0, spa: 0, spd: 4, spe: 252 },
     moves: ["Drachenklaue", "Erdbeben", "Fliegen", "Rückkehr"],
     note: "Dragoran spielt sich in der Story stark über Fliegen, Erdbeben und breite Coverage."
@@ -684,7 +684,7 @@ const buildRecommendations = {
     role: "Legendärer Spezial-Sweeper",
     nature: "Scheu oder Mäßig",
     ability: "Erzwinger",
-    item: "Psycho-verstärkendes Item",
+    item: "Krummlöffel / Überreste",
     evs: { hp: 4, atk: 0, def: 0, spa: 252, spd: 0, spe: 252 },
     moves: ["Psychokinese", "Gedankengut", "Donnerblitz", "Eisstrahl"],
     note: "Mewtu ist absurd stark. Mit Gedankengut wird es schnell komplett außer Kontrolle."
@@ -716,7 +716,7 @@ const moveSuggestions = {
 const pveMoveSets = {
   1: ["Rasierblatt", "Schlafpuder", "Egelsamen", "Tackle"],
   2: ["Rasierblatt", "Schlafpuder", "Egelsamen", "Gigasauger"],
-  3: ["Gigasauger", "Rasierblatt", "Schlafpuder", "Egelsamen"],
+  3: ["Rasierblatt", "Gigasauger", "Schlafpuder", "Egelsamen"],
   4: ["Glut", "Metallklaue", "Schaufler", "Schlitzer"],
   5: ["Flammenwurf", "Metallklaue", "Schaufler", "Schlitzer"],
   6: ["Flammenwurf", "Fliegen", "Drachenklaue", "Erdbeben"],
@@ -816,7 +816,7 @@ const pveMoveSets = {
   100: ["Donnerblitz", "Donnerwelle", "Sternschauer", "Explosion"],
   101: ["Donnerblitz", "Donnerwelle", "Sternschauer", "Explosion"],
   102: ["Schlafpuder", "Konfusion", "Gigasauger", "Egelsamen"],
-  103: ["Psychokinese", "Solarstrahl", "Hypnose", "Stampfer"],
+  103: ["Psychokinese", "Gigasauger", "Schlafpuder", "Egelsamen"],
   104: ["Knochmerang", "Kopfnuss", "Schaufler", "Trugschlag"],
   105: ["Knochmerang", "Erdbeben", "Steinhagel", "Durchbruch"],
   106: ["Turmkick", "Durchbruch", "Steinhagel", "Protzer"],
@@ -848,7 +848,7 @@ const pveMoveSets = {
   132: ["Wandler"],
   133: ["Rückkehr", "Biss", "Schaufler", "Doppelteam"],
   134: ["Surfer", "Eisstrahl", "Biss", "Säurepanzer"],
-  135: ["Donnerblitz", "Donnerwelle", "Doppelkick", "Doppelteam"],
+  135: ["Donnerblitz", "Donnerwelle", "Biss", "Doppelteam"],
   136: ["Flammenwurf", "Biss", "Schaufler", "Rückkehr"],
   137: ["Psychokinese", "Donnerblitz", "Eisstrahl", "Genesung"],
   138: ["Surfer", "Eisstrahl", "Schutzschild", "Biss"],
