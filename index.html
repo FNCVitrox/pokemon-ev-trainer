@@ -9,7 +9,7 @@
     />
     <meta name="referrer" content="no-referrer" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-22-team-training" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-22-layout-flow" />
   </head>
   <body>
     <main class="app-shell">
@@ -25,7 +25,7 @@
             <button class="view-tab" id="itemsViewButton" type="button">Items</button>
             <button class="view-tab" id="locationsViewButton" type="button">Orte</button>
           </div>
-          <button class="ghost-button" id="tutorialButton" type="button">Tutorial</button>
+          <button class="ghost-button" id="tutorialButton" type="button">Guides</button>
           <button class="ghost-button" id="languageButton" type="button">EN</button>
         </div>
       </header>
@@ -65,6 +65,27 @@
             <div id="teamOverview" class="team-overview"></div>
           </div>
           <textarea id="teamCodeField" class="team-code-field" rows="3" spellcheck="false"></textarea>
+        </div>
+
+        <div class="panel controls-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Training</p>
+              <h2 id="trainingTitle">Besiegte Pokémon</h2>
+            </div>
+            <button class="ghost-button small-button" id="undoButton" type="button" disabled>Undo</button>
+          </div>
+
+          <div class="toggle-row">
+            <label><input id="pokerusToggle" type="checkbox" /> <span id="pokerusLabel">Pokérus</span></label>
+            <label><input id="machoToggle" type="checkbox" /> <span id="machoLabel">Machoband</span></label>
+          </div>
+
+          <div id="trainingHelp" class="training-help"></div>
+          <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
+          <div id="lastAction" class="last-action"></div>
+          <div id="trainingPlan" class="training-plan"></div>
+          <div id="enemyButtons" class="enemy-grid"></div>
         </div>
 
         <div class="dashboard-column dashboard-column-main">
@@ -141,37 +162,6 @@
             </div>
             <div id="statRows" class="stat-list"></div>
           </div>
-
-          <div class="panel controls-panel">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">Training</p>
-                <h2 id="trainingTitle">Besiegte Pokémon</h2>
-              </div>
-              <button class="ghost-button small-button" id="undoButton" type="button" disabled>Undo</button>
-            </div>
-
-            <div class="toggle-row">
-              <label><input id="pokerusToggle" type="checkbox" /> <span id="pokerusLabel">Pokérus</span></label>
-              <label><input id="machoToggle" type="checkbox" /> <span id="machoLabel">Machoband</span></label>
-            </div>
-
-            <div id="trainingHelp" class="training-help"></div>
-            <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
-            <div id="lastAction" class="last-action"></div>
-            <div id="trainingPlan" class="training-plan"></div>
-            <div id="enemyButtons" class="enemy-grid"></div>
-          </div>
-        </div>
-
-        <div class="panel move-help-panel">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Guide</p>
-              <h2 id="moveHelpTitle">Attacken kurz erklärt</h2>
-            </div>
-          </div>
-          <div id="moveHelpContent"></div>
         </div>
       </section>
 
@@ -227,6 +217,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-22-team-training"></script>
+    <script src="app.js?v=2026-05-22-layout-flow"></script>
   </body>
 </html>

@@ -115,9 +115,9 @@ const i18n = {
     remainingEvs: "Übrig",
     multiplier: "Multiplikator",
     nowGain: "jetzt",
-    tutorialButton: "Tutorial",
+    tutorialButton: "Guides",
     tutorialEyebrow: "Guide",
-    tutorialTitle: "EV-Training verstehen",
+    tutorialTitle: "Guides & Hilfe",
     tutorialClose: "Schließen",
     allStats: "Alle",
     undo: "Undo",
@@ -238,9 +238,9 @@ const i18n = {
     remainingEvs: "Remaining",
     multiplier: "Multiplier",
     nowGain: "now",
-    tutorialButton: "Tutorial",
+    tutorialButton: "Guides",
     tutorialEyebrow: "Guide",
-    tutorialTitle: "Understanding EV training",
+    tutorialTitle: "Guides & help",
     tutorialClose: "Close",
     allStats: "All",
     undo: "Undo",
@@ -2550,8 +2550,6 @@ const elements = {
   targetTitle: document.querySelector("#targetTitle"),
   buildTitle: document.querySelector("#buildTitle"),
   buildRecommendation: document.querySelector("#buildRecommendation"),
-  moveHelpTitle: document.querySelector("#moveHelpTitle"),
-  moveHelpContent: document.querySelector("#moveHelpContent"),
   applyBuildButton: document.querySelector("#applyBuildButton"),
   trainingTitle: document.querySelector("#trainingTitle"),
   pokerusLabel: document.querySelector("#pokerusLabel"),
@@ -3021,7 +3019,6 @@ function renderLanguage() {
   elements.targetEyebrow.textContent = t("target");
   elements.targetTitle.textContent = t("targetTitle");
   elements.buildTitle.textContent = t("buildTitle");
-  elements.moveHelpTitle.textContent = t("moveHelpTitle");
   elements.applyBuildButton.textContent = t("applyBuild");
   elements.trainingTitle.textContent = t("trainingTitle");
   elements.pokerusLabel.textContent = t("pokerus");
@@ -3214,6 +3211,15 @@ function renderTutorial() {
     <div class="tutorial-note">
       <strong>${guide.noteTitle}</strong>
       <p>${guide.note}</p>
+    </div>
+    <div class="guide-section">
+      <div class="section-heading compact-heading">
+        <div>
+          <p class="eyebrow">Guide</p>
+          <h3>${t("moveHelpTitle")}</h3>
+        </div>
+      </div>
+      ${renderMoveGlossary()}
     </div>
   `;
 }
@@ -3669,10 +3675,6 @@ function renderBuildRecommendation() {
   `;
 }
 
-function renderMoveHelp() {
-  elements.moveHelpContent.innerHTML = renderMoveGlossary();
-}
-
 function renderStats() {
   const active = pokemon[state.selectedPokemon];
   const total = totalEvs();
@@ -3938,7 +3940,6 @@ function render() {
   renderPokemonSelect();
   renderPokemon();
   renderBuildRecommendation();
-  renderMoveHelp();
   renderStats();
   renderTrainingHelp();
   renderStatFilters();
