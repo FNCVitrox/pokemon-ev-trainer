@@ -9,7 +9,7 @@
     />
     <meta name="referrer" content="no-referrer" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-22-column-flow" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-22-dense-layout" />
   </head>
   <body>
     <main class="app-shell">
@@ -31,7 +31,7 @@
       </header>
 
       <section class="app-view trainer-grid active" id="trainerView" aria-label="EV Trainer Dashboard">
-        <div class="dashboard-column dashboard-column-main">
+        <div class="dashboard-column dashboard-column-team">
           <div class="panel team-panel">
             <div class="section-heading compact-heading">
               <div>
@@ -66,39 +66,6 @@
               <div id="teamOverview" class="team-overview"></div>
             </div>
             <textarea id="teamCodeField" class="team-code-field" rows="3" spellcheck="false"></textarea>
-          </div>
-
-          <div class="panel pokemon-panel">
-            <label id="searchLabel" for="pokemonSearch">Suche</label>
-            <input id="pokemonSearch" type="search" placeholder="z.B. Glurak, Pikachu, Mewtu..." autocomplete="off" />
-
-            <label id="pokemonSelectLabel" for="pokemonSelect">Pokémon</label>
-            <select id="pokemonSelect"></select>
-
-            <div class="pokemon-preview">
-              <div class="sprite-frame" id="spriteFrame">
-                <img id="pokemonSprite" alt="" />
-              </div>
-              <div>
-                <p class="label" id="activeBuildLabel">Aktiver Build</p>
-                <h2 id="pokemonName">Glurak</h2>
-                <p id="pokemonTypes" class="muted">Feuer / Flug</p>
-                <button class="shiny-button" id="shinyButton" type="button">Shiny: Aus</button>
-              </div>
-            </div>
-
-            <div id="typeMatchups" class="type-matchups" aria-label="Typen Matchups"></div>
-
-            <div class="mini-grid">
-              <label>
-                <span id="versionLabel">Version</span>
-                <select id="versionSelect"></select>
-              </label>
-              <label>
-                <span id="natureLabel">Wesen</span>
-                <select id="natureSelect"></select>
-              </label>
-            </div>
           </div>
 
           <div class="panel build-panel">
@@ -163,6 +130,42 @@
             <div id="statRows" class="stat-list"></div>
           </div>
         </div>
+
+        <div class="dashboard-column dashboard-column-selection">
+          <div class="panel pokemon-panel">
+            <label id="searchLabel" for="pokemonSearch">Suche</label>
+            <input id="pokemonSearch" type="search" placeholder="z.B. Glurak, Pikachu, Mewtu..." autocomplete="off" />
+
+            <label id="pokemonSelectLabel" for="pokemonSelect">Pokémon</label>
+            <select id="pokemonSelect"></select>
+
+            <div class="pokemon-preview">
+              <div class="sprite-frame" id="spriteFrame">
+                <img id="pokemonSprite" alt="" />
+              </div>
+              <div>
+                <p class="label" id="activeBuildLabel">Aktiver Build</p>
+                <h2 id="pokemonName">Glurak</h2>
+                <p id="pokemonTypes" class="muted">Feuer / Flug</p>
+                <button class="shiny-button" id="shinyButton" type="button">Shiny: Aus</button>
+              </div>
+            </div>
+
+            <div id="typeMatchups" class="type-matchups" aria-label="Typen Matchups"></div>
+
+            <div class="mini-grid">
+              <label>
+                <span id="versionLabel">Version</span>
+                <select id="versionSelect"></select>
+              </label>
+              <label>
+                <span id="natureLabel">Wesen</span>
+                <select id="natureSelect"></select>
+              </label>
+            </div>
+          </div>
+
+        </div>
       </section>
 
       <section class="app-view items-view" id="itemsView" aria-label="Item Fundorte">
@@ -217,6 +220,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-22-column-flow"></script>
+    <script src="app.js?v=2026-05-22-dense-layout"></script>
   </body>
 </html>
