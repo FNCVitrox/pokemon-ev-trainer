@@ -175,7 +175,7 @@ const i18n = {
     locationNoResults: "No locations found.",
     search: "Search",
     searchPlaceholder: "e.g. Charizard, Pikachu, Mewtwo...",
-    pokemon: "Pokémon",
+    pokemon: "Pokemon",
     activeBuild: "Active build",
     version: "Version",
     nature: "Nature",
@@ -183,7 +183,7 @@ const i18n = {
     targetTitle: "EV spread",
     buildTitle: "Recommended playstyle",
     applyBuild: "Set build goal",
-    trainingTitle: "Defeated Pokémon",
+    trainingTitle: "Defeated Pokemon",
     moveHelpTitle: "Move guide",
     teamTitle: "Team slots",
     teamSlot: "Slot",
@@ -222,7 +222,7 @@ const i18n = {
     role: "Role",
     item: "Item",
     evGoal: "EV goal",
-    defeated: "Defeated Pokémon",
+    defeated: "Defeated Pokemon",
     neutralNature: "neutral",
     currentEvs: "Current",
     remainingEvs: "Remaining",
@@ -236,7 +236,7 @@ const i18n = {
     undo: "Undo",
     nothingToUndo: "Nothing to undo yet.",
     noTrainingOptions: "No training enemies are entered for this goal yet.",
-    trainingHelp: "Toggle Pokérus or Macho Brace and the multiplier plus EV gains update immediately.",
+    trainingHelp: "Toggle Pokerus or Macho Brace and the multiplier plus EV gains update immediately.",
     trainingComplete: "Goal reached. Stop training for this build.",
     lastActionPrefix: "Added",
     overTarget: "over goal",
@@ -2479,6 +2479,7 @@ const state = {
 };
 
 const elements = {
+  viewTabs: document.querySelector(".view-tabs"),
   tutorialButton: document.querySelector("#tutorialButton"),
   tutorialModal: document.querySelector("#tutorialModal"),
   tutorialBackdrop: document.querySelector("#tutorialBackdrop"),
@@ -2522,6 +2523,7 @@ const elements = {
   pokemonName: document.querySelector("#pokemonName"),
   pokemonTypes: document.querySelector("#pokemonTypes"),
   typeMatchups: document.querySelector("#typeMatchups"),
+  evSummary: document.querySelector(".ev-summary"),
   shinyButton: document.querySelector("#shinyButton"),
   activeBuildLabel: document.querySelector("#activeBuildLabel"),
   versionLabel: document.querySelector("#versionLabel"),
@@ -2930,6 +2932,16 @@ function decodeTeamCode(code) {
 
 function renderLanguage() {
   document.documentElement.lang = state.lang;
+  elements.viewTabs.setAttribute("aria-label", state.lang === "en" ? "App navigation" : "App Navigation");
+  elements.trainerView.setAttribute("aria-label", state.lang === "en" ? "EV trainer dashboard" : "EV-Trainer-Dashboard");
+  elements.teamSlots.setAttribute("aria-label", state.lang === "en" ? "Team slots" : "Team-Slots");
+  elements.typeMatchups.setAttribute("aria-label", state.lang === "en" ? "Type matchups" : "Typen-Matchups");
+  elements.evSummary.setAttribute("aria-label", state.lang === "en" ? "EV overview" : "EV-Übersicht");
+  elements.statFilters.setAttribute("aria-label", state.lang === "en" ? "EV stat filters" : "EV-Stat-Filter");
+  elements.itemsView.setAttribute("aria-label", state.lang === "en" ? "Item locations" : "Item-Fundorte");
+  elements.itemFilters.setAttribute("aria-label", state.lang === "en" ? "Item filters" : "Item-Filter");
+  elements.locationsView.setAttribute("aria-label", state.lang === "en" ? "Location route" : "Orte-Route");
+  elements.locationFilters.setAttribute("aria-label", state.lang === "en" ? "Location filters" : "Orte-Filter");
   elements.trainerViewButton.textContent = t("navTrainer");
   elements.itemsViewButton.textContent = t("navItems");
   elements.locationsViewButton.textContent = t("navLocations");
@@ -3565,7 +3577,7 @@ function renderStats() {
       return `
         <div class="stat-row${warning}${complete}">
           <strong class="${warning}">${label}</strong>
-          <div class="bar" aria-label="${label} ${value} von ${target}">
+          <div class="bar" aria-label="${label} ${value} ${state.lang === "en" ? "of" : "von"} ${target}">
             <span data-progress="${progress}"></span>
           </div>
           <span class="target-pill">${targetText}</span>
