@@ -1760,8 +1760,8 @@ const itemGuide = [
   {
     category: "build",
     method: "thief",
-    de: { name: "Schwarzgurt", location: "Mit Raub/Dieb von bestimmten Trainern, z.B. Kampf-Dojo, Vertania-Arena, Route 15 oder Siegesstraße.", effect: "Verstärkt Kampf-Attacken.", note: "Kein normaler Geschenk-Pickup. Vor dem Trainerkampf Dieb/Raub planen." },
-    en: { name: "Black Belt", location: "Steal it with Thief/Covet from specific trainers, e.g. Fighting Dojo, Viridian Gym, Route 15 or Victory Road.", effect: "Boosts Fighting-type moves.", note: "Not a normal gift pickup. Plan Thief/Covet before the trainer battle." }
+    de: { name: "Schwarzgurt", location: "Mit Raub/Dieb von bestimmten Trainern, z.B. Kampf-Dojo, Vertania-Arena, Route 15, Kindle Road oder Siegesstraße.", effect: "Verstärkt Kampf-Attacken.", note: "Kein normaler Geschenk-Pickup. Vor dem Trainerkampf Dieb/Raub planen." },
+    en: { name: "Black Belt", location: "Steal it with Thief/Covet from specific trainers, e.g. Fighting Dojo, Viridian Gym, Route 15, Kindle Road or Victory Road.", effect: "Boosts Fighting-type moves.", note: "Not a normal gift pickup. Plan Thief/Covet before the trainer battle." }
   },
   {
     category: "build",
@@ -1844,8 +1844,8 @@ const itemGuide = [
   {
     category: "build",
     method: "wild",
-    de: { name: "Granitstein", location: "Wildes Kleinstein, Georok oder Onix kann ihn selten tragen.", effect: "Verstärkt Gestein-Attacken.", note: "Passend für Aerodactyl, Rizeros, Geowaz und Kabutops." },
-    en: { name: "Hard Stone", location: "Wild Geodude, Graveler or Onix can rarely hold it.", effect: "Boosts Rock-type moves.", note: "Fits Aerodactyl, Rhydon, Golem and Kabutops." }
+    de: { name: "Granitstein", location: "Wildes Georok oder Onix kann ihn selten tragen.", effect: "Verstärkt Gestein-Attacken.", note: "Passend für Aerodactyl, Rizeros, Geowaz und Kabutops." },
+    en: { name: "Hard Stone", location: "Wild Graveler or Onix can rarely hold it.", effect: "Boosts Rock-type moves.", note: "Fits Aerodactyl, Rhydon, Golem and Kabutops." }
   },
   {
     category: "build",
@@ -1868,14 +1868,14 @@ const itemGuide = [
   {
     category: "battle",
     method: "postgame",
-    de: { name: "King-Stein", location: "Trainer-Turm auf Eiland 7; teils auch über wilde Pokémon/Übertragungen je nach Version.", effect: "Kann bei passenden Attacken Zurückschrecken auslösen.", note: "Praktisch für schnelle Pokémon mit Multi-Hit oder häufigen Treffern." },
-    en: { name: "King's Rock", location: "Trainer Tower on Seven Island; sometimes also via wild Pokemon/transfers depending on version.", effect: "Can make compatible damaging moves cause flinching.", note: "Useful on fast Pokemon with multi-hit or frequent attacks." }
+    de: { name: "King-Stein", location: "Sevault Canyon auf Eiland 7; international auch als Mixed-Mode-Belohnung im Trainer-Turm.", effect: "Kann bei passenden Attacken Zurückschrecken auslösen.", note: "Der Sevault-Canyon-Fundort braucht Stärke und Zertrümmerer." },
+    en: { name: "King's Rock", location: "Sevault Canyon on Seven Island; also an international Trainer Tower Mixed Mode reward.", effect: "Can make compatible damaging moves cause flinching.", note: "The Sevault Canyon pickup requires Strength and Rock Smash." }
   },
   {
     category: "battle",
     method: "postgame",
-    de: { name: "Drachenhaut", location: "Trainer-Turm auf Eiland 7; wildes Seeper/Seemon kann sie selten tragen.", effect: "Entwicklungsitem für Seemon in späteren Games.", note: "In FR/BG vor allem Sammel-/Tauschwert." },
-    en: { name: "Dragon Scale", location: "Trainer Tower on Seven Island; wild Horsea/Seadra can rarely hold it.", effect: "Evolution item for Seadra in later games.", note: "In FR/LG it is mostly useful for collection/trading." }
+    de: { name: "Drachenhaut", location: "Water Path auf Eiland 6; international auch als Double-Mode-Belohnung im Trainer-Turm.", effect: "Entwicklungsitem für Seemon in späteren Games.", note: "Der Water-Path-Fundort braucht Surfer." },
+    en: { name: "Dragon Scale", location: "Water Path on Six Island; also an international Trainer Tower Double Mode reward.", effect: "Evolution item for Seadra in later games.", note: "The Water Path pickup requires Surf." }
   },
   {
     category: "battle",
@@ -1885,9 +1885,9 @@ const itemGuide = [
   },
   {
     category: "battle",
-    method: "trainerTower",
-    de: { name: "Fokus-Band", location: "Japanische Trainer-Turm/e-Reader-Inhalte oder per Tausch aus anderen Gen-3-Spielen.", effect: "Kann den Träger mit 1 KP überleben lassen.", note: "Glücksitem, eher Spielerei als verlässlicher Build." },
-    en: { name: "Focus Band", location: "Japanese Trainer Tower/e-Reader content or trade from other Gen 3 games.", effect: "May let the holder survive with 1 HP.", note: "Luck-based, more gimmick than reliable build." }
+    method: "wild",
+    de: { name: "Fokus-Band", location: "Wildes Maschock kann es selten tragen; japanische Trainer-Turm/e-Reader-Inhalte sind eine weitere Spezialquelle.", effect: "Kann den Träger mit 1 KP überleben lassen.", note: "Glücksitem, eher Spielerei als verlässlicher Build." },
+    en: { name: "Focus Band", location: "Wild Machoke can rarely hold it; Japanese Trainer Tower/e-Reader content is another special source.", effect: "May let the holder survive with 1 HP.", note: "Luck-based, more gimmick than reliable build." }
   },
   {
     category: "battle",
@@ -1916,38 +1916,38 @@ const itemGuide = [
   {
     category: "berry",
     method: "hidden",
-    de: { name: "Prunusbeere", location: "Mehrere versteckte Beerenstellen auf Routen; außerdem teils über Mitnahme.", effect: "Heilt jedes große Statusproblem einmal automatisch.", note: "Eine der besten allgemeinen Story-Beeren." },
-    en: { name: "Lum Berry", location: "Several hidden Berry spots on routes; also sometimes via Pickup.", effect: "Automatically cures any major status condition once.", note: "One of the best general story Berries." }
+    de: { name: "Prunusbeere", location: "Versteckt auf Route 8, im Beerenforst und auf Route 23.", effect: "Heilt jedes große Statusproblem einmal automatisch.", note: "Eine der besten allgemeinen Story-Beeren." },
+    en: { name: "Lum Berry", location: "Hidden on Route 8, in Berry Forest, and on Route 23.", effect: "Automatically cures any major status condition once.", note: "One of the best general story Berries." }
+  },
+  {
+    category: "berry",
+    method: "hidden",
+    de: { name: "Jonagobeere", location: "Versteckt auf Route 8, Route 23 und Eiland 6.", effect: "Stellt 10 AP einer Attacke wieder her.", note: "Nützlich vor Top Vier oder langen Höhlen." },
+    en: { name: "Leppa Berry", location: "Hidden on Route 8, Route 23, and Six Island.", effect: "Restores 10 PP to one move.", note: "Useful before the Elite Four or long caves." }
   },
   {
     category: "berry",
     method: "pickup",
-    de: { name: "Jonagobeere", location: "Versteckte Beerenstellen oder Mitnahme.", effect: "Stellt 10 AP einer Attacke wieder her.", note: "Nützlich vor Top Vier oder langen Höhlen." },
-    en: { name: "Leppa Berry", location: "Hidden Berry spots or Pickup.", effect: "Restores 10 PP to one move.", note: "Useful before the Elite Four or long caves." }
+    de: { name: "Sinelbeere", location: "Versteckte Beerenstellen auf frühen Routen; außerdem über Mitnahme und wilde Rattikarl/Pummeluff.", effect: "Heilt 10 KP automatisch, wenn die KP niedrig sind.", note: "Frühes Spiel, später eher schwach." },
+    en: { name: "Oran Berry", location: "Hidden Berry spots on early routes; also via Pickup and wild Raticate/Jigglypuff.", effect: "Automatically restores 10 HP when HP is low.", note: "Early game item, later rather weak." }
   },
   {
     category: "berry",
     method: "hidden",
-    de: { name: "Sinelbeere", location: "Versteckte Beerenstellen auf frühen Routen.", effect: "Heilt 10 KP automatisch, wenn die KP niedrig sind.", note: "Frühes Spiel, später eher schwach." },
-    en: { name: "Oran Berry", location: "Hidden Berry spots on early routes.", effect: "Automatically restores 10 HP when HP is low.", note: "Early game item, later rather weak." }
+    de: { name: "Tsitrubeere", location: "Versteckt auf Route 6, Route 23 und bei der Gedenksäule; wildes Rattikarl kann sie selten tragen.", effect: "Heilt 30 KP automatisch, wenn die KP niedrig sind.", note: "Besser als Sinelbeere für Story-Kämpfe." },
+    en: { name: "Sitrus Berry", location: "Hidden on Route 6, Route 23, and Memorial Pillar; wild Raticate can rarely hold it.", effect: "Automatically restores 30 HP when HP is low.", note: "Better than Oran Berry for story battles." }
   },
   {
     category: "berry",
     method: "pickup",
-    de: { name: "Tsitrubeere", location: "Mitnahme oder spätere/versteckte Beerenquellen.", effect: "Heilt 30 KP automatisch, wenn die KP niedrig sind.", note: "Besser als Sinelbeere für Story-Kämpfe." },
-    en: { name: "Sitrus Berry", location: "Pickup or later/hidden Berry sources.", effect: "Automatically restores 30 HP when HP is low.", note: "Better than Oran Berry for story battles." }
+    de: { name: "Maronbeere", location: "Versteckte Beerenstellen, Mitnahme oder wildes Relaxo.", effect: "Heilt Schlaf automatisch.", note: "Gut gegen Schlafpuder/Hypnose." },
+    en: { name: "Chesto Berry", location: "Hidden Berry spots, Pickup, or wild Snorlax.", effect: "Automatically cures sleep.", note: "Good against Sleep Powder/Hypnosis." }
   },
   {
     category: "berry",
-    method: "hidden",
-    de: { name: "Maronbeere", location: "Versteckte Beerenstellen.", effect: "Heilt Schlaf automatisch.", note: "Gut gegen Schlafpuder/Hypnose." },
-    en: { name: "Chesto Berry", location: "Hidden Berry spots.", effect: "Automatically cures sleep.", note: "Good against Sleep Powder/Hypnosis." }
-  },
-  {
-    category: "berry",
-    method: "hidden",
-    de: { name: "Pirsifbeere", location: "Versteckte Beerenstellen.", effect: "Heilt Vergiftung automatisch.", note: "Nützlich in Gift-Routen und gegen Team Rocket." },
-    en: { name: "Pecha Berry", location: "Hidden Berry spots.", effect: "Automatically cures poison.", note: "Useful on poison-heavy routes and against Team Rocket." }
+    method: "pickup",
+    de: { name: "Pirsifbeere", location: "Versteckte Beerenstellen oder Mitnahme.", effect: "Heilt Vergiftung automatisch.", note: "Nützlich in Gift-Routen und gegen Team Rocket." },
+    en: { name: "Pecha Berry", location: "Hidden Berry spots or Pickup.", effect: "Automatically cures poison.", note: "Useful on poison-heavy routes and against Team Rocket." }
   }
 ];
 
@@ -2084,14 +2084,14 @@ const locationGuide = [
     de: {
       place: "Felstunnel und Route 10",
       when: "Auf dem Weg nach Lavandia.",
-      action: "Machollo trainiert Angriff, Onix Verteidigung. Kleinstein/Georok/Onix können später Granitstein tragen.",
+      action: "Machollo trainiert Angriff, Onix Verteidigung. Georok/Onix können später Granitstein tragen.",
       items: ["Machollo: +1 Angriffs-EV", "Onix: +1 Verteidigungs-EV", "Granitstein-Farm mit Raub/Dieb möglich"],
       tip: "Gut für physische Pokémon, aber mische Angriff und Verteidigung nicht aus Versehen."
     },
     en: {
       place: "Rock Tunnel and Route 10",
       when: "On the way to Lavender Town.",
-      action: "Machop trains Attack, Onix trains Defense. Geodude/Graveler/Onix can later hold Hard Stone.",
+      action: "Machop trains Attack, Onix trains Defense. Graveler/Onix can later hold Hard Stone.",
       items: ["Machop: +1 Attack EV", "Onix: +1 Defense EV", "Hard Stone farm with Thief/Covet"],
       tip: "Good for physical Pokemon, but do not accidentally mix Attack and Defense."
     }
@@ -2391,15 +2391,15 @@ const locationGuide = [
       place: "Eiland 6 / Eiland 7 und Trainer-Turm",
       when: "Spätes Postgame.",
       action: "Spezielle Belohnungen und spätere Farm-/Tauschitems gehören hierhin.",
-      items: ["King-Stein", "Drachenhaut", "Scope-Linse / Fokus-Band / Blendpuder je nach Version/Spezialinhalt"],
-      tip: "Trainer-Turm-Items sind versionsabhängig. Für internationale normale Spielstände lieber als Bonus, nicht als Pflicht planen."
+      items: ["King-Stein im Sevault Canyon", "Drachenhaut am Water Path", "Scope-Linse / Blendpuder je nach Version/Spezialinhalt", "Fokus-Band über wildes Maschock"],
+      tip: "Trainer-Turm-Items sind versionsabhängig. Die direkten Sevii-Fundorte und Wild-Held-Items sind verlässlicher planbar."
     },
     en: {
       place: "Six Island / Seven Island and Trainer Tower",
       when: "Late postgame.",
       action: "Special rewards and later farm/trade items belong here.",
-      items: ["King's Rock", "Dragon Scale", "Scope Lens / Focus Band / BrightPowder depending on version/special content"],
-      tip: "Trainer Tower items are version-dependent. For normal international saves, treat them as a bonus, not mandatory."
+      items: ["King's Rock in Sevault Canyon", "Dragon Scale on Water Path", "Scope Lens / BrightPowder depending on version/special content", "Focus Band from wild Machoke"],
+      tip: "Trainer Tower items are version-dependent. The direct Sevii pickups and wild-held items are easier to plan around."
     }
   },
   {
@@ -3645,7 +3645,8 @@ function renderItemFilters() {
     ["berry", t("itemCategoryBerry")],
     ["wild", t("itemMethodWild")],
     ["thief", t("itemMethodThief")],
-    ["postgame", t("itemMethodPostgame")]
+    ["postgame", t("itemMethodPostgame")],
+    ["pickup", t("itemMethodPickup")]
   ];
 
   elements.itemFilters.innerHTML = filters
