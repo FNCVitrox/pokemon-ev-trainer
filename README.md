@@ -70,6 +70,7 @@ You can also serve it with any static file server if you prefer.
 - The app focuses on FireRed / LeafGreen training.
 - EV recommendations are meant to be practical and beginner-friendly, not strict competitive Smogon sets.
 - Pokemon artwork is loaded from the public PokeAPI sprites repository.
+- Data sources and audit notes are documented in [`DATA_SOURCES.md`](DATA_SOURCES.md).
 
 ## License
 
