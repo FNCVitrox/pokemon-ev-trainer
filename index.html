@@ -9,7 +9,7 @@
     />
     <meta name="referrer" content="no-referrer" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-22-layout-flow" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-22-column-flow" />
   </head>
   <body>
     <main class="app-shell">
@@ -31,64 +31,43 @@
       </header>
 
       <section class="app-view trainer-grid active" id="trainerView" aria-label="EV Trainer Dashboard">
-        <div class="panel team-panel">
-          <div class="section-heading compact-heading">
-            <div>
-              <p class="eyebrow">Team</p>
-              <h2 id="teamTitle">Team-Slots</h2>
-            </div>
-            <div class="team-actions">
-              <button class="ghost-button small-button" id="exportTeamButton" type="button">Export</button>
-              <button class="ghost-button small-button" id="importTeamButton" type="button">Import</button>
-              <button class="ghost-button small-button" id="resetSlotButton" type="button">Slot zurücksetzen</button>
-            </div>
-          </div>
-          <div id="teamSlots" class="team-slots" aria-label="Team Slots"></div>
-          <div class="team-recipient-panel">
-            <div class="team-recipient-heading">
-              <div>
-                <span id="teamRecipientsLabel">EVs bekommen</span>
-                <p id="teamRecipientsHint">Aktiviere alle Slots, die im Kampf EP bekommen haben.</p>
-              </div>
-              <div>
-                <button class="ghost-button small-button" id="teamActiveOnlyButton" type="button">Nur aktiv</button>
-                <button class="ghost-button small-button" id="teamAllButton" type="button">Alle</button>
-              </div>
-            </div>
-            <div id="teamRecipientOptions" class="team-recipient-options"></div>
-          </div>
-          <div class="team-tools">
-            <label>
-              <span id="slotNameLabel">Slot-Name</span>
-              <input id="slotNameInput" type="text" maxlength="18" placeholder="z.B. Starter" autocomplete="off" />
-            </label>
-            <div id="teamOverview" class="team-overview"></div>
-          </div>
-          <textarea id="teamCodeField" class="team-code-field" rows="3" spellcheck="false"></textarea>
-        </div>
-
-        <div class="panel controls-panel">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Training</p>
-              <h2 id="trainingTitle">Besiegte Pokémon</h2>
-            </div>
-            <button class="ghost-button small-button" id="undoButton" type="button" disabled>Undo</button>
-          </div>
-
-          <div class="toggle-row">
-            <label><input id="pokerusToggle" type="checkbox" /> <span id="pokerusLabel">Pokérus</span></label>
-            <label><input id="machoToggle" type="checkbox" /> <span id="machoLabel">Machoband</span></label>
-          </div>
-
-          <div id="trainingHelp" class="training-help"></div>
-          <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
-          <div id="lastAction" class="last-action"></div>
-          <div id="trainingPlan" class="training-plan"></div>
-          <div id="enemyButtons" class="enemy-grid"></div>
-        </div>
-
         <div class="dashboard-column dashboard-column-main">
+          <div class="panel team-panel">
+            <div class="section-heading compact-heading">
+              <div>
+                <p class="eyebrow">Team</p>
+                <h2 id="teamTitle">Team-Slots</h2>
+              </div>
+              <div class="team-actions">
+                <button class="ghost-button small-button" id="exportTeamButton" type="button">Export</button>
+                <button class="ghost-button small-button" id="importTeamButton" type="button">Import</button>
+                <button class="ghost-button small-button" id="resetSlotButton" type="button">Slot zurücksetzen</button>
+              </div>
+            </div>
+            <div id="teamSlots" class="team-slots" aria-label="Team Slots"></div>
+            <div class="team-recipient-panel">
+              <div class="team-recipient-heading">
+                <div>
+                  <span id="teamRecipientsLabel">EVs bekommen</span>
+                  <p id="teamRecipientsHint">Aktiviere alle Slots, die im Kampf EP bekommen haben.</p>
+                </div>
+                <div>
+                  <button class="ghost-button small-button" id="teamActiveOnlyButton" type="button">Nur aktiv</button>
+                  <button class="ghost-button small-button" id="teamAllButton" type="button">Alle</button>
+                </div>
+              </div>
+              <div id="teamRecipientOptions" class="team-recipient-options"></div>
+            </div>
+            <div class="team-tools">
+              <label>
+                <span id="slotNameLabel">Slot-Name</span>
+                <input id="slotNameInput" type="text" maxlength="18" placeholder="z.B. Starter" autocomplete="off" />
+              </label>
+              <div id="teamOverview" class="team-overview"></div>
+            </div>
+            <textarea id="teamCodeField" class="team-code-field" rows="3" spellcheck="false"></textarea>
+          </div>
+
           <div class="panel pokemon-panel">
             <label id="searchLabel" for="pokemonSearch">Suche</label>
             <input id="pokemonSearch" type="search" placeholder="z.B. Glurak, Pikachu, Mewtu..." autocomplete="off" />
@@ -135,6 +114,27 @@
         </div>
 
         <div class="dashboard-column dashboard-column-training">
+          <div class="panel controls-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Training</p>
+                <h2 id="trainingTitle">Besiegte Pokémon</h2>
+              </div>
+              <button class="ghost-button small-button" id="undoButton" type="button" disabled>Undo</button>
+            </div>
+
+            <div class="toggle-row">
+              <label><input id="pokerusToggle" type="checkbox" /> <span id="pokerusLabel">Pokérus</span></label>
+              <label><input id="machoToggle" type="checkbox" /> <span id="machoLabel">Machoband</span></label>
+            </div>
+
+            <div id="trainingHelp" class="training-help"></div>
+            <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
+            <div id="lastAction" class="last-action"></div>
+            <div id="trainingPlan" class="training-plan"></div>
+            <div id="enemyButtons" class="enemy-grid"></div>
+          </div>
+
           <div class="panel target-panel">
             <div class="section-heading">
               <div>
@@ -217,6 +217,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-22-layout-flow"></script>
+    <script src="app.js?v=2026-05-22-column-flow"></script>
   </body>
 </html>
