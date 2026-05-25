@@ -85,27 +85,6 @@ input {
   text-transform: uppercase;
 }
 
-.splash-skip {
-  min-height: 32px;
-  margin-top: 6px;
-  border: 1px solid rgba(255, 212, 71, 0.48);
-  border-radius: 999px;
-  background: rgba(255, 212, 71, 0.1);
-  color: var(--accent-2);
-  padding: 0 14px;
-  cursor: pointer;
-  font-weight: 900;
-  font-size: 0.74rem;
-  text-transform: uppercase;
-}
-
-.splash-skip:hover,
-.splash-skip:focus-visible {
-  border-color: rgba(255, 212, 71, 0.86);
-  background: rgba(255, 212, 71, 0.18);
-  outline: none;
-}
-
 @keyframes splashRise {
   from {
     opacity: 0;

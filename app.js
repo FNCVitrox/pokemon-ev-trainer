@@ -10,7 +10,6 @@
 const i18n = {
   de: {
     splashPresents: "presents",
-    splashSkip: "Klick/Tap zum Skippen",
     languageButton: "EN",
     reset: "EVs resetten",
     navTrainer: "Trainer",
@@ -135,7 +134,6 @@ const i18n = {
   },
   en: {
     splashPresents: "presents",
-    splashSkip: "Click/tap to skip",
     languageButton: "DE",
     reset: "Reset EVs",
     navTrainer: "Trainer",
@@ -2496,7 +2494,6 @@ const state = {
 const elements = {
   splashScreen: document.querySelector("#splashScreen"),
   splashPresents: document.querySelector("#splashPresents"),
-  splashSkipButton: document.querySelector("#splashSkipButton"),
   viewTabs: document.querySelector(".view-tabs"),
   tutorialButton: document.querySelector("#tutorialButton"),
   tutorialModal: document.querySelector("#tutorialModal"),
@@ -2986,7 +2983,6 @@ function decodeTeamCode(code) {
 function renderLanguage() {
   document.documentElement.lang = state.lang;
   elements.splashPresents.textContent = t("splashPresents");
-  elements.splashSkipButton.textContent = t("splashSkip");
   elements.viewTabs.setAttribute("aria-label", state.lang === "en" ? "App navigation" : "App Navigation");
   elements.trainerView.setAttribute("aria-label", state.lang === "en" ? "EV trainer dashboard" : "EV-Trainer-Dashboard");
   elements.teamSlots.setAttribute("aria-label", state.lang === "en" ? "Team slots" : "Team-Slots");
@@ -4091,7 +4087,6 @@ function hideSplash() {
   }, splashFadeMs);
 }
 
-elements.splashSkipButton.addEventListener("click", hideSplash);
 elements.splashScreen.addEventListener("click", hideSplash);
 window.setTimeout(hideSplash, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 350 : splashTotalMs - splashFadeMs);
 
