@@ -9,8 +9,8 @@
 
 const i18n = {
   de: {
-    splashPresents: "präsentiert",
-    splashSkip: "Weiter",
+    splashPresents: "presents",
+    splashSkip: "Klick/Tap zum Skippen",
     languageButton: "EN",
     reset: "EVs resetten",
     navTrainer: "Trainer",
@@ -135,7 +135,7 @@ const i18n = {
   },
   en: {
     splashPresents: "presents",
-    splashSkip: "Continue",
+    splashSkip: "Click/tap to skip",
     languageButton: "DE",
     reset: "Reset EVs",
     navTrainer: "Trainer",
@@ -4079,16 +4079,40 @@ elements.tutorialButton.addEventListener("click", openTutorial);
 elements.tutorialCloseButton.addEventListener("click", closeTutorial);
 elements.tutorialBackdrop.addEventListener("click", closeTutorial);
 
+function hasSeenSplash() {
+  try {
+    return window.sessionStorage?.getItem("nemurenaiSplashSeen") === "1";
+  } catch {
+    return false;
+  }
+}
+
+function rememberSplash() {
+  try {
+    window.sessionStorage?.setItem("nemurenaiSplashSeen", "1");
+  } catch {
+    // Storage can be disabled in strict browser modes; the splash still works.
+  }
+}
+
 function hideSplash() {
   if (!elements.splashScreen || elements.splashScreen.classList.contains("is-hidden")) return;
   elements.splashScreen.classList.add("is-hidden");
+  document.body.classList.remove("splash-active");
+  rememberSplash();
   window.setTimeout(() => {
     elements.splashScreen.hidden = true;
   }, 540);
 }
 
 elements.splashSkipButton.addEventListener("click", hideSplash);
-window.setTimeout(hideSplash, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 650 : 1850);
+elements.splashScreen.addEventListener("click", hideSplash);
+window.setTimeout(
+  hideSplash,
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches || hasSeenSplash()
+    ? 650
+    : 1600
+);
 
 elements.languageButton.addEventListener("click", () => {
   state.lang = state.lang === "de" ? "en" : "de";
