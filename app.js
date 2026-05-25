@@ -9,6 +9,8 @@
 
 const i18n = {
   de: {
+    splashPresents: "präsentiert",
+    splashSkip: "Weiter",
     languageButton: "EN",
     reset: "EVs resetten",
     navTrainer: "Trainer",
@@ -132,6 +134,8 @@ const i18n = {
     shinyOff: "Shiny: Aus"
   },
   en: {
+    splashPresents: "presents",
+    splashSkip: "Continue",
     languageButton: "DE",
     reset: "Reset EVs",
     navTrainer: "Trainer",
@@ -2490,6 +2494,9 @@ const state = {
 };
 
 const elements = {
+  splashScreen: document.querySelector("#splashScreen"),
+  splashPresents: document.querySelector("#splashPresents"),
+  splashSkipButton: document.querySelector("#splashSkipButton"),
   viewTabs: document.querySelector(".view-tabs"),
   tutorialButton: document.querySelector("#tutorialButton"),
   tutorialModal: document.querySelector("#tutorialModal"),
@@ -2978,6 +2985,8 @@ function decodeTeamCode(code) {
 
 function renderLanguage() {
   document.documentElement.lang = state.lang;
+  elements.splashPresents.textContent = t("splashPresents");
+  elements.splashSkipButton.textContent = t("splashSkip");
   elements.viewTabs.setAttribute("aria-label", state.lang === "en" ? "App navigation" : "App Navigation");
   elements.trainerView.setAttribute("aria-label", state.lang === "en" ? "EV trainer dashboard" : "EV-Trainer-Dashboard");
   elements.teamSlots.setAttribute("aria-label", state.lang === "en" ? "Team slots" : "Team-Slots");
@@ -4069,6 +4078,17 @@ elements.resetSlotButton.addEventListener("click", () => {
 elements.tutorialButton.addEventListener("click", openTutorial);
 elements.tutorialCloseButton.addEventListener("click", closeTutorial);
 elements.tutorialBackdrop.addEventListener("click", closeTutorial);
+
+function hideSplash() {
+  if (!elements.splashScreen || elements.splashScreen.classList.contains("is-hidden")) return;
+  elements.splashScreen.classList.add("is-hidden");
+  window.setTimeout(() => {
+    elements.splashScreen.hidden = true;
+  }, 540);
+}
+
+elements.splashSkipButton.addEventListener("click", hideSplash);
+window.setTimeout(hideSplash, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 650 : 1850);
 
 elements.languageButton.addEventListener("click", () => {
   state.lang = state.lang === "de" ? "en" : "de";

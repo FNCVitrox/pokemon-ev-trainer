@@ -32,6 +32,97 @@ input {
   font: inherit;
 }
 
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(128, 35, 255, 0.28), transparent 34%),
+    radial-gradient(circle at 50% 58%, rgba(255, 147, 20, 0.18), transparent 24%),
+    #020307;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 520ms ease, visibility 520ms ease;
+}
+
+.splash-screen.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.splash-card {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: min(420px, 86vw);
+  transform: translateY(0) scale(1);
+  animation: splashRise 900ms ease both;
+}
+
+.splash-logo {
+  width: min(310px, 72vw);
+  height: auto;
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.75));
+}
+
+.splash-studio {
+  color: var(--text);
+  font-size: 1.08rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.splash-presents {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.splash-skip {
+  min-height: 36px;
+  margin-top: 8px;
+  border: 1px solid rgba(255, 212, 71, 0.48);
+  border-radius: 999px;
+  background: rgba(255, 212, 71, 0.1);
+  color: var(--accent-2);
+  padding: 0 18px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.splash-skip:hover,
+.splash-skip:focus-visible {
+  border-color: rgba(255, 212, 71, 0.86);
+  background: rgba(255, 212, 71, 0.18);
+  outline: none;
+}
+
+@keyframes splashRise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen,
+  .splash-card {
+    animation: none;
+    transition: none;
+  }
+}
+
 .app-shell {
   width: min(1720px, calc(100% - 32px));
   margin: 0 auto;

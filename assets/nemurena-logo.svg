@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">Nemurena logo</title>
+  <desc id="desc">A purple owl shield logo for Nemurena Game Studio.</desc>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="42%" r="58%">
+      <stop offset="0" stop-color="#1b0638"/>
+      <stop offset="0.54" stop-color="#080b18"/>
+      <stop offset="1" stop-color="#020307"/>
+    </radialGradient>
+    <linearGradient id="violet" x1="120" x2="520" y1="90" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d256ff"/>
+      <stop offset="0.45" stop-color="#8e1fff"/>
+      <stop offset="1" stop-color="#3c087d"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="185" x2="455" y1="400" y2="516" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff16b"/>
+      <stop offset="0.38" stop-color="#ffb21d"/>
+      <stop offset="1" stop-color="#ff5517"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#000" flood-opacity="0.7"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#b33cff" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <rect width="640" height="640" fill="#000"/>
+  <g filter="url(#shadow)">
+    <path d="M320 45c112 0 214 48 248 142v232l31 28-50 61-76-18-153 103-153-103-76 18-50-61 31-28V187C106 93 208 45 320 45Z" fill="url(#glow)" stroke="url(#violet)" stroke-width="14" stroke-linejoin="round"/>
+    <path d="M130 389h380l38 52-39 45-89-17-100 68-100-68-89 17-39-45 38-52Z" fill="#070815" stroke="#7b18df" stroke-width="11" stroke-linejoin="round"/>
+    <path d="M153 394h334l24 34-23 27H152l-23-27 24-34Z" fill="#120827" stroke="#a82fff" stroke-width="7" stroke-linejoin="round"/>
+    <g stroke="#09000e" stroke-width="10" stroke-linejoin="round">
+      <path d="M159 152c45 59 95 92 150 102-82 6-130-26-164-87Z" fill="#a334ff"/>
+      <path d="M481 152c-45 59-95 92-150 102 82 6 130-26 164-87Z" fill="#a334ff"/>
+      <path d="M222 229c-42 9-74 43-87 91 35-35 73-47 111-35-21 20-44 38-70 55 60-8 101-41 123-98Z" fill="#5f16c8"/>
+      <path d="M418 229c42 9 74 43 87 91-35-35-73-47-111-35 21 20 44 38 70 55-60-8-101-41-123-98Z" fill="#5f16c8"/>
+      <path d="M250 180c49-41 93-41 140 0-12 61-35 107-70 139-35-32-58-78-70-139Z" fill="#3c0d96"/>
+      <path d="M320 292l-39 72 39 80 39-80Z" fill="#30086f"/>
+    </g>
+    <path d="M273 254c-31-3-56 9-74 36 21 21 58 18 78-8 7-9 5-19-4-28Z" fill="#ff741b"/>
+    <path d="M367 254c31-3 56 9 74 36-21 21-58 18-78-8-7-9-5-19 4-28Z" fill="#ff741b"/>
+    <path d="M220 285c15-20 35-28 59-22-2 30-34 52-59 22Z" fill="#ffe96b"/>
+    <path d="M420 285c-15-20-35-28-59-22 2 30 34 52 59 22Z" fill="#ffe96b"/>
+    <path d="M320 309l-32 59 32 75 32-75Z" fill="#ffae17" stroke="#09000e" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M320 320v91M297 364l23-44 23 44" fill="none" stroke="#fff07b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="320" y="472" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="71" font-weight="900" fill="url(#gold)" stroke="#4d0707" stroke-width="7" paint-order="stroke">NEMURENA</text>
+  </g>
+</svg>
