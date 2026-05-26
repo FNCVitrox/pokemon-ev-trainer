@@ -13,7 +13,7 @@ Used for:
 - Kanto Pokemon IDs, names, types, and sprite paths
 - FireRed / LeafGreen move learnability through `version_group_details`
 - Move data such as type, power, accuracy, and PP
-- EV yields for training targets
+- EV yields for training targets and the all-Kanto EV Dex
 - Ability checks for recommended builds
 - Generation-specific type checks where available
 

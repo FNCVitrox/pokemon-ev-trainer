@@ -125,6 +125,10 @@ const i18n = {
     nothingToUndo: "Noch nichts zum Rückgängig machen.",
     noTrainingOptions: "Für diesen Zielwert sind aktuell keine Trainingsgegner eingetragen.",
     trainingHelp: "Aktiviere Pokérus oder Machoband, dann ändern sich Multiplikator und EV-Werte sofort.",
+    trainingSourceQuick: "EV-Training",
+    trainingSourceDex: "Alle Pokémon",
+    evDexSearchPlaceholder: "z.B. Schiggy, Raupy, Abra...",
+    evDexPlace: "EV-Dex",
     trainingComplete: "Ziel erreicht. Stoppe das Training für diesen Build.",
     lastActionPrefix: "Eingetragen",
     overTarget: "über Ziel",
@@ -249,6 +253,10 @@ const i18n = {
     nothingToUndo: "Nothing to undo yet.",
     noTrainingOptions: "No training enemies are entered for this goal yet.",
     trainingHelp: "Toggle Pokerus or Macho Brace and the multiplier plus EV gains update immediately.",
+    trainingSourceQuick: "EV training",
+    trainingSourceDex: "All Pokemon",
+    evDexSearchPlaceholder: "e.g. Squirtle, Caterpie, Abra...",
+    evDexPlace: "EV Dex",
     trainingComplete: "Goal reached. Stop training for this build.",
     lastActionPrefix: "Added",
     overTarget: "over goal",
@@ -1676,6 +1684,51 @@ const pokemon = kantoPokemon.map(([id, name, types], index) => ({
   target: { ...getRecommendedTarget(types, id) }
 }));
 
+const pokemonEvYields = {
+  1: { spa: 1 }, 2: { spa: 1, spd: 1 }, 3: { spa: 2, spd: 1 }, 4: { spe: 1 }, 5: { spa: 1, spe: 1 },
+  6: { spa: 3 }, 7: { def: 1 }, 8: { def: 1, spd: 1 }, 9: { spd: 3 }, 10: { hp: 1 },
+  11: { def: 2 }, 12: { spa: 2, spd: 1 }, 13: { spe: 1 }, 14: { def: 2 }, 15: { atk: 2, spd: 1 },
+  16: { spe: 1 }, 17: { spe: 2 }, 18: { spe: 3 }, 19: { spe: 1 }, 20: { spe: 2 },
+  21: { spe: 1 }, 22: { spe: 2 }, 23: { atk: 1 }, 24: { atk: 2 }, 25: { spe: 2 },
+  26: { spe: 3 }, 27: { def: 1 }, 28: { def: 2 }, 29: { hp: 1 }, 30: { hp: 2 },
+  31: { hp: 3 }, 32: { atk: 1 }, 33: { atk: 2 }, 34: { atk: 3 }, 35: { hp: 2 },
+  36: { hp: 3 }, 37: { spe: 1 }, 38: { spd: 1, spe: 1 }, 39: { hp: 2 }, 40: { hp: 3 },
+  41: { spe: 1 }, 42: { spe: 2 }, 43: { spa: 1 }, 44: { spa: 2 }, 45: { spa: 3 },
+  46: { atk: 1 }, 47: { atk: 2, def: 1 }, 48: { spd: 1 }, 49: { spa: 1, spe: 1 }, 50: { spe: 1 },
+  51: { spe: 2 }, 52: { spe: 1 }, 53: { spe: 2 }, 54: { spa: 1 }, 55: { spa: 2 },
+  56: { atk: 1 }, 57: { atk: 2 }, 58: { atk: 1 }, 59: { atk: 2 }, 60: { spe: 1 },
+  61: { spe: 2 }, 62: { def: 3 }, 63: { spa: 1 }, 64: { spa: 2 }, 65: { spa: 3 },
+  66: { atk: 1 }, 67: { atk: 2 }, 68: { atk: 3 }, 69: { atk: 1 }, 70: { atk: 2 },
+  71: { atk: 3 }, 72: { spd: 1 }, 73: { spd: 2 }, 74: { def: 1 }, 75: { def: 2 },
+  76: { def: 3 }, 77: { spe: 1 }, 78: { spe: 2 }, 79: { hp: 1 }, 80: { def: 2 },
+  81: { spa: 1 }, 82: { spa: 2 }, 83: { atk: 1 }, 84: { atk: 1 }, 85: { atk: 2 },
+  86: { spd: 1 }, 87: { spd: 2 }, 88: { hp: 1 }, 89: { hp: 1, atk: 1 }, 90: { def: 1 },
+  91: { def: 2 }, 92: { spa: 1 }, 93: { spa: 2 }, 94: { spa: 3 }, 95: { def: 1 },
+  96: { spd: 1 }, 97: { spd: 2 }, 98: { atk: 1 }, 99: { atk: 2 }, 100: { spe: 1 },
+  101: { spe: 2 }, 102: { def: 1 }, 103: { spa: 2 }, 104: { def: 1 }, 105: { def: 2 },
+  106: { atk: 2 }, 107: { spd: 2 }, 108: { hp: 2 }, 109: { def: 1 }, 110: { def: 2 },
+  111: { def: 1 }, 112: { atk: 2 }, 113: { hp: 2 }, 114: { def: 1 }, 115: { hp: 2 },
+  116: { spa: 1 }, 117: { def: 1, spa: 1 }, 118: { atk: 1 }, 119: { atk: 2 }, 120: { spe: 1 },
+  121: { spe: 2 }, 122: { spd: 2 }, 123: { atk: 1 }, 124: { spa: 2 }, 125: { spe: 2 },
+  126: { spa: 2 }, 127: { atk: 2 }, 128: { atk: 1, spe: 1 }, 129: { spe: 1 }, 130: { atk: 2 },
+  131: { hp: 2 }, 132: { hp: 1 }, 133: { spd: 1 }, 134: { hp: 2 }, 135: { spe: 2 },
+  136: { atk: 2 }, 137: { spa: 1 }, 138: { def: 1 }, 139: { def: 2 }, 140: { def: 1 },
+  141: { atk: 2 }, 142: { spe: 2 }, 143: { hp: 2 }, 144: { spd: 3 }, 145: { spa: 3 },
+  146: { spa: 3 }, 147: { atk: 1 }, 148: { atk: 2 }, 149: { atk: 3 }, 150: { spa: 3 },
+  151: { hp: 3 }
+};
+
+const evDexEnemies = pokemon.map((entry) => ({
+  name: entry.name,
+  nameEn: entry.nameEn,
+  stat: Object.keys(pokemonEvYields[entry.id])[0],
+  ev: Object.values(pokemonEvYields[entry.id])[0],
+  yields: pokemonEvYields[entry.id],
+  place: "EV-Dex",
+  placeEn: "EV Dex",
+  note: "Alle Kanto-Pokémon"
+}));
+
 const htmlEscapes = {
   "&": "&amp;",
   "<": "&lt;",
@@ -2485,6 +2538,7 @@ const state = {
   pokerusActive: false,
   machoActive: false,
   shinyActive: false,
+  trainingSource: "quick",
   selectedStatFilter: "needed",
   history: [],
   lastAction: null,
@@ -2560,6 +2614,8 @@ const elements = {
   machoLabel: document.querySelector("#machoLabel"),
   undoButton: document.querySelector("#undoButton"),
   trainingHelp: document.querySelector("#trainingHelp"),
+  trainingSourceButtons: document.querySelector("#trainingSourceButtons"),
+  evDexSearch: document.querySelector("#evDexSearch"),
   statFilters: document.querySelector("#statFilters"),
   lastAction: document.querySelector("#lastAction"),
   trainingPlan: document.querySelector("#trainingPlan"),
@@ -2593,6 +2649,7 @@ function loadState() {
     state.pokerusActive = parsed.pokerusActive ?? false;
     state.machoActive = parsed.machoActive ?? false;
     state.shinyActive = parsed.shinyActive ?? false;
+    state.trainingSource = clampKnownValue(parsed.trainingSource, ["quick", "dex"], "quick");
     state.selectedStatFilter = parsed.selectedStatFilter ?? "needed";
     state.history = Array.isArray(parsed.history) ? parsed.history.slice(-20) : [];
     state.lastAction = parsed.lastAction ?? null;
@@ -2943,6 +3000,24 @@ function getEnemyPlace(enemy) {
   return state.lang === "en" ? enemy.placeEn ?? enemy.place : enemy.place;
 }
 
+function getEnemyYieldEntries(enemy) {
+  if (enemy.yields) return Object.entries(enemy.yields).filter(([, value]) => value > 0);
+  return [[enemy.stat, enemy.ev]];
+}
+
+function formatEnemyYield(enemy, multiplier = getMultiplier()) {
+  return getEnemyYieldEntries(enemy)
+    .map(([stat, ev]) => `+${ev * multiplier} ${getStatLabel(stat)} EV`)
+    .join(" / ");
+}
+
+function enemyMatchesStatFilter(enemy, neededStats) {
+  const statsForEnemy = getEnemyYieldEntries(enemy).map(([stat]) => stat);
+  if (state.selectedStatFilter === "all") return true;
+  if (state.selectedStatFilter === "needed") return statsForEnemy.some((stat) => neededStats.includes(stat));
+  return statsForEnemy.includes(state.selectedStatFilter);
+}
+
 function getGuideItemText(item) {
   return item[state.lang] ?? item.de;
 }
@@ -3029,6 +3104,9 @@ function renderLanguage() {
   elements.pokerusLabel.textContent = t("pokerus");
   elements.machoLabel.textContent = t("machoBrace");
   elements.undoButton.textContent = t("undo");
+  elements.trainingSourceButtons.querySelector('[data-training-source="quick"]').textContent = t("trainingSourceQuick");
+  elements.trainingSourceButtons.querySelector('[data-training-source="dex"]').textContent = t("trainingSourceDex");
+  elements.evDexSearch.placeholder = t("evDexSearchPlaceholder");
   elements.currentEvsLabel.textContent = t("currentEvs");
   elements.remainingEvsLabel.textContent = t("remainingEvs");
   elements.multiplierLabel.textContent = t("multiplier");
@@ -3039,6 +3117,13 @@ function renderTrainingHelp() {
     <strong>${t("multiplier")}: x${getMultiplier()}</strong>
     <span>${isTrainingComplete() ? t("trainingComplete") : t("trainingHelp")}</span>
   `;
+}
+
+function renderTrainingSourceControls() {
+  elements.trainingSourceButtons.querySelectorAll("[data-training-source]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.trainingSource === state.trainingSource);
+  });
+  elements.evDexSearch.hidden = state.trainingSource !== "dex";
 }
 
 function renderView() {
@@ -3309,6 +3394,11 @@ function getAppliedEvAmount(evs, stat, gained) {
 
 function formatTeamTrainingMessage(enemyName, changes, statLabel) {
   const totalApplied = changes.reduce((sum, change) => sum + change.amount, 0);
+  if (!statLabel) {
+    return state.lang === "en"
+      ? `${enemyName}: +${totalApplied} EV across ${changes.length} slot${changes.length === 1 ? "" : "s"}`
+      : `${enemyName}: +${totalApplied} EV auf ${changes.length} Slot${changes.length === 1 ? "" : "s"}`;
+  }
   return state.lang === "en"
     ? `${enemyName}: +${totalApplied} ${statLabel} EV across ${changes.length} slot${changes.length === 1 ? "" : "s"}`
     : `${enemyName}: +${totalApplied} ${statLabel} EV auf ${changes.length} Slot${changes.length === 1 ? "" : "s"}`;
@@ -3317,7 +3407,8 @@ function formatTeamTrainingMessage(enemyName, changes, statLabel) {
 function addEnemyEv(enemy) {
   syncActiveTeamSlot();
   const enemyDisplayName = getEnemyName(enemy);
-  const gained = enemy.ev * getMultiplier();
+  const yieldEntries = getEnemyYieldEntries(enemy);
+  const multiplier = getMultiplier();
   const recipientIndexes = getRecipientIndexes();
   const changes = [];
 
@@ -3331,19 +3422,28 @@ function addEnemyEv(enemy) {
   recipientIndexes.forEach((slotIndex) => {
     const slot = state.teamSlots[slotIndex] ?? createTeamSlot(slotIndex);
     const previousEvs = normalizeEvs(slot.evs);
-    const applied = getAppliedEvAmount(previousEvs, enemy.stat, gained);
-    if (applied <= 0) return;
+    const nextEvs = { ...previousEvs };
+    const appliedByStat = {};
 
-    const nextEvs = { ...previousEvs, [enemy.stat]: previousEvs[enemy.stat] + applied };
-    changes.push({ slotIndex, previousEvs, amount: applied });
+    yieldEntries.forEach(([stat, ev]) => {
+      const applied = getAppliedEvAmount(nextEvs, stat, ev * multiplier);
+      if (applied <= 0) return;
+      nextEvs[stat] += applied;
+      appliedByStat[stat] = (appliedByStat[stat] ?? 0) + applied;
+    });
+
+    const appliedTotal = Object.values(appliedByStat).reduce((sum, value) => sum + value, 0);
+    if (appliedTotal <= 0) return;
+
+    changes.push({ slotIndex, previousEvs, amount: appliedTotal, amounts: appliedByStat });
     state.teamSlots[slotIndex] = createTeamSlot(slotIndex, {
       ...slot,
       evs: nextEvs,
       lastAction: {
         type: "enemy",
         enemy: enemyDisplayName,
-        stat: enemy.stat,
-        amount: applied
+        stat: yieldEntries[0][0],
+        amount: appliedTotal
       }
     });
   });
@@ -3352,7 +3452,7 @@ function addEnemyEv(enemy) {
     state.lastAction = {
       type: "blocked",
       enemy: enemyDisplayName,
-      stat: enemy.stat,
+      stat: yieldEntries[0][0],
       amount: 0
     };
     saveState();
@@ -3363,19 +3463,19 @@ function addEnemyEv(enemy) {
   const selectedSlot = state.teamSlots[state.selectedTeamSlot] ?? createTeamSlot(state.selectedTeamSlot);
   state.evs = normalizeEvs(selectedSlot.evs);
   state.history = Array.isArray(selectedSlot.history) ? selectedSlot.history.slice(-20) : [];
-  const message = formatTeamTrainingMessage(enemyDisplayName, changes, getStatLabel(enemy.stat));
+  const message = formatTeamTrainingMessage(enemyDisplayName, changes, yieldEntries.length === 1 ? getStatLabel(yieldEntries[0][0]) : "");
   pushHistory({
     type: "team-enemy",
     enemy: enemyDisplayName,
-    stat: enemy.stat,
-    amount: gained,
+    stat: yieldEntries[0][0],
+    amount: yieldEntries.reduce((sum, [, ev]) => sum + ev * multiplier, 0),
     slotChanges: changes
   });
   state.lastAction = {
     type: "team-enemy",
     enemy: enemyDisplayName,
-    stat: enemy.stat,
-    amount: gained,
+    stat: yieldEntries[0][0],
+    amount: yieldEntries.reduce((sum, [, ev]) => sum + ev * multiplier, 0),
     message
   };
   saveState();
@@ -3727,21 +3827,21 @@ function renderStats() {
 function renderEnemies() {
   const multiplier = getMultiplier();
   const neededStats = getNeededStats();
-  const filteredEnemies = enemies.filter((enemy) => {
-    if (state.selectedStatFilter === "all") return true;
-    if (state.selectedStatFilter === "needed") return neededStats.includes(enemy.stat);
-    return enemy.stat === state.selectedStatFilter;
+  const sourceEnemies = state.trainingSource === "dex" ? evDexEnemies : enemies;
+  const search = elements.evDexSearch.value.trim().toLowerCase();
+  const filteredEnemies = sourceEnemies.filter((enemy) => {
+    if (!enemyMatchesStatFilter(enemy, neededStats)) return false;
+    if (!search || state.trainingSource !== "dex") return true;
+    return [enemy.name, enemy.nameEn].some((name) => name.toLowerCase().includes(search));
   });
 
   elements.enemyButtons.innerHTML = filteredEnemies
     .map((enemy, index) => {
-      const label = getStatLabel(enemy.stat);
-      const gained = enemy.ev * multiplier;
-      const enemyIndex = enemies.indexOf(enemy);
+      const enemyIndex = sourceEnemies.indexOf(enemy);
       return `
-        <button class="enemy-button" type="button" data-enemy="${enemyIndex}">
+        <button class="enemy-button" type="button" data-enemy="${enemyIndex}" data-source="${state.trainingSource}">
           <strong>${getEnemyName(enemy)}</strong>
-          <span>+${gained} ${label} EV ${t("nowGain")} | ${getEnemyPlace(enemy)}</span>
+          <span>${formatEnemyYield(enemy, multiplier)} ${t("nowGain")} | ${getEnemyPlace(enemy)}</span>
         </button>
       `;
     })
@@ -3947,6 +4047,7 @@ function render() {
   renderBuildRecommendation();
   renderStats();
   renderTrainingHelp();
+  renderTrainingSourceControls();
   renderStatFilters();
   renderLastAction();
   renderTrainingPlan();
@@ -4118,6 +4219,19 @@ elements.itemSearch.addEventListener("input", () => {
   renderItemGuide();
 });
 
+elements.trainingSourceButtons.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-training-source]");
+  if (!button) return;
+  state.trainingSource = button.dataset.trainingSource === "dex" ? "dex" : "quick";
+  if (state.trainingSource === "dex" && state.selectedStatFilter === "needed") state.selectedStatFilter = "all";
+  saveState();
+  renderTrainingSourceControls();
+  renderStatFilters();
+  renderEnemies();
+});
+
+elements.evDexSearch.addEventListener("input", renderEnemies);
+
 elements.itemFilters.addEventListener("click", (event) => {
   const button = event.target.closest("[data-item-filter]");
   if (!button) return;
@@ -4202,7 +4316,8 @@ elements.statRows.addEventListener("input", (event) => {
 elements.enemyButtons.addEventListener("click", (event) => {
   const button = event.target.closest("[data-enemy]");
   if (!button) return;
-  addEnemyEv(enemies[Number(button.dataset.enemy)]);
+  const sourceEnemies = button.dataset.source === "dex" ? evDexEnemies : enemies;
+  addEnemyEv(sourceEnemies[Number(button.dataset.enemy)]);
 });
 
 elements.resetButton.addEventListener("click", () => {

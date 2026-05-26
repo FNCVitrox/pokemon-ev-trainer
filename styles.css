@@ -1092,6 +1092,18 @@ input:not([type="checkbox"]):focus-visible,
   margin-bottom: 8px;
 }
 
+.training-source-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.evdex-search {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
 .filter-button {
   min-height: 30px;
   border: 1px solid var(--line);

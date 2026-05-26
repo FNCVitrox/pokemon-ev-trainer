@@ -9,7 +9,7 @@
     />
     <meta name="referrer" content="no-referrer" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-26-splash-clean" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-26-ev-dex" />
   </head>
   <body class="splash-active">
     <div class="splash-screen" id="splashScreen" aria-label="Nemurenai Game Studio Intro">
@@ -103,6 +103,11 @@
             </div>
 
             <div id="trainingHelp" class="training-help"></div>
+            <div class="training-source-row" id="trainingSourceButtons" aria-label="Trainingsliste">
+              <button class="filter-button active" type="button" data-training-source="quick">EV-Training</button>
+              <button class="filter-button" type="button" data-training-source="dex">Alle Pokémon</button>
+            </div>
+            <input class="evdex-search" id="evDexSearch" type="search" placeholder="z.B. Schiggy, Raupy, Abra..." autocomplete="off" hidden />
             <div id="statFilters" class="filter-row" aria-label="EV Stat Filter"></div>
             <div id="lastAction" class="last-action"></div>
             <div id="trainingPlan" class="training-plan"></div>
@@ -230,6 +235,6 @@
       </section>
     </div>
 
-    <script src="app.js?v=2026-05-26-splash-clean"></script>
+    <script src="app.js?v=2026-05-26-ev-dex"></script>
   </body>
 </html>
