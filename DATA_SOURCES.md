@@ -14,6 +14,7 @@ Used for:
 - FireRed / LeafGreen move learnability through `version_group_details`
 - Move data such as type, power, accuracy, and PP
 - EV yields for training targets and the all-Kanto EV Dex
+- FireRed/LeafGreen move acquisition methods shown on recommended move cards
 - Ability checks for recommended builds
 - Generation-specific type checks where available
 

@@ -887,6 +887,160 @@ const pveMoveSets = {
   151: ["Psychokinese", "Donnerblitz", "Eisstrahl", "Flammenwurf"]
 };
 
+const moveAcquisition = {
+  1: { "Rasierblatt": "lv20", "Schlafpuder": "lv15", "Egelsamen": "lv7", "Tackle": "start" },
+  2: { "Rasierblatt": "lv22", "Schlafpuder": "lv15", "Egelsamen": "start", "Gigasauger": "tm19" },
+  3: { "Rasierblatt": "lv22", "Gigasauger": "tm19", "Schlafpuder": "lv15", "Egelsamen": "start" },
+  4: { "Glut": "lv7", "Metallklaue": "lv13", "Schaufler": "tm28", "Schlitzer": "lv37" },
+  5: { "Flammenwurf": "lv34", "Metallklaue": "lv13", "Schaufler": "tm28", "Schlitzer": "lv41" },
+  6: { "Flammenwurf": "lv34", "Fliegen": "hm02", "Drachenklaue": "tm02", "Erdbeben": "tm26" },
+  7: { "Aquaknarre": "lv13", "Biss": "lv18", "Schutzschild": "lv28", "Schaufler": "tm28" },
+  8: { "Surfer": "hm03", "Biss": "lv19", "Schutzschild": "lv31", "Eisstrahl": "tm13" },
+  9: { "Surfer": "hm03", "Eisstrahl": "tm13", "Biss": "lv19", "Schutzschild": "lv31" },
+  10: { "Tackle": "start", "Fadenschuss": "start" },
+  11: { "Härtner": "start" },
+  12: { "Psychokinese": "tm29", "Schlafpuder": "lv15", "Silberhauch": "lv47", "Gigasauger": "tm19" },
+  13: { "Giftstachel": "start", "Fadenschuss": "start" },
+  14: { "Härtner": "start" },
+  15: { "Duonadel": "lv20", "Durchbruch": "tm31", "Schwerttanz": "tutor", "Matschbombe": "tm36" },
+  16: { "Flügelschlag": "lv25", "Ruckzuckhieb": "lv13", "Sandwirbel": "lv5", "Rückkehr": "tm27" },
+  17: { "Flügelschlag": "lv27", "Ruckzuckhieb": "lv13", "Sandwirbel": "start", "Rückkehr": "tm27" },
+  18: { "Fliegen": "hm02", "Rückkehr": "tm27", "Stahlflügel": "tm47", "Ruckzuckhieb": "start" },
+  19: { "Hyperzahn": "lv13", "Ruckzuckhieb": "lv7", "Schaufler": "tm28", "Biss": "egg" },
+  20: { "Hyperzahn": "lv13", "Rückkehr": "tm27", "Schaufler": "tm28", "Stärke": "hm04" },
+  21: { "Pikser": "start", "Verfolgung": "lv19", "Fliegen": "hm02", "Rückkehr": "tm27" },
+  22: { "Bohrschnabel": "lv40", "Fliegen": "hm02", "Rückkehr": "tm27", "Stahlflügel": "tm47" },
+  23: { "Giftstachel": "lv8", "Biss": "lv13", "Schaufler": "tm28", "Kreideschrei": "lv25" },
+  24: { "Matschbombe": "tm36", "Biss": "start", "Schaufler": "tm28", "Kreideschrei": "lv28" },
+  25: { "Donnerblitz": "lv26", "Donnerwelle": "lv8", "Ruckzuckhieb": "lv11", "Doppelteam": "lv15" },
+  26: { "Donnerblitz": "start", "Donnerwelle": "tutor", "Durchbruch": "tm31", "Ruckzuckhieb": "start" },
+  27: { "Schaufler": "tm28", "Schlitzer": "lv23", "Sternschauer": "lv30", "Sandwirbel": "lv11" },
+  28: { "Erdbeben": "tm26", "Schlitzer": "lv24", "Durchbruch": "tm31", "Steinhagel": "tutor" },
+  29: { "Doppelkick": "lv12", "Giftstachel": "lv17", "Biss": "lv20", "Schaufler": "tm28" },
+  30: { "Doppelkick": "lv12", "Biss": "lv22", "Schaufler": "tm28", "Matschbombe": "tm36" },
+  31: { "Erdbeben": "tm26", "Durchbruch": "tm31", "Matschbombe": "tm36", "Donnerblitz": "tm24" },
+  32: { "Doppelkick": "lv12", "Giftstachel": "lv17", "Hornattacke": "lv20", "Schaufler": "tm28" },
+  33: { "Doppelkick": "lv12", "Hornattacke": "lv22", "Schaufler": "tm28", "Matschbombe": "tm36" },
+  34: { "Erdbeben": "tm26", "Durchbruch": "tm31", "Matschbombe": "tm36", "Donnerblitz": "tm24" },
+  35: { "Gesang": "lv9", "Rückkehr": "tm27", "Donnerblitz": "tm24", "Eisstrahl": "tm13" },
+  36: { "Rückkehr": "tm27", "Donnerblitz": "tm24", "Eisstrahl": "tm13", "Gedankengut": "tm04" },
+  37: { "Flammenwurf": "lv29", "Hypnose": "egg", "Schaufler": "tm28", "Ruckzuckhieb": "lv13" },
+  38: { "Flammenwurf": "tm35", "Feuerwirbel": "lv45", "Schaufler": "tm28", "Rückkehr": "tm27" },
+  39: { "Gesang": "start", "Rückkehr": "tm27", "Doppelteam": "tm32", "Schutzschild": "tm17" },
+  40: { "Rückkehr": "tm27", "Donnerblitz": "tm24", "Eisstrahl": "tm13", "Gesang": "start" },
+  41: { "Flügelschlag": "lv21", "Konfusstrahl": "lv26", "Biss": "lv16", "Aero-Ass": "tm40" },
+  42: { "Flügelschlag": "lv21", "Konfusstrahl": "lv28", "Biss": "lv16", "Matschbombe": "tm36" },
+  43: { "Schlafpuder": "lv18", "Säure": "lv23", "Gigasauger": "tm19", "Sonnentag": "tm11" },
+  44: { "Schlafpuder": "lv18", "Säure": "lv24", "Gigasauger": "tm19", "Mondschein": "lv35" },
+  45: { "Gigasauger": "tm19", "Solarstrahl": "tm22", "Stachelspore": "start", "Blättertanz": "lv44" },
+  46: { "Giftpuder": "lv13", "Schlitzer": "lv31", "Gigasauger": "lv43", "Pilzspore": "lv25" },
+  47: { "Pilzspore": "lv27", "Schlitzer": "lv35", "Gigasauger": "lv51", "Schwerttanz": "tutor" },
+  48: { "Konfusion": "lv17", "Schlafpuder": "lv36", "Gigasauger": "tm19", "Giftpuder": "lv20" },
+  49: { "Psychokinese": "lv52", "Schlafpuder": "lv42", "Gigasauger": "tm19", "Silberhauch": "start" },
+  50: { "Schaufler": "lv17", "Schlitzer": "lv33", "Sandwirbel": "start", "Aero-Ass": "tm40" },
+  51: { "Erdbeben": "lv51", "Schlitzer": "lv38", "Aero-Ass": "tm40", "Steinhagel": "tutor" },
+  52: { "Zahltag": "lv18", "Biss": "lv10", "Schaufler": "tm28", "Schlitzer": "lv40" },
+  53: { "Schlitzer": "lv49", "Biss": "start", "Schaufler": "tm28", "Donnerblitz": "tm24" },
+  54: { "Surfer": "hm03", "Konfusion": "lv16", "Schaufler": "tm28", "Eisstrahl": "tm13" },
+  55: { "Surfer": "hm03", "Eisstrahl": "tm13", "Schaufler": "tm28", "Aussetzer": "start" },
+  56: { "Karateschlag": "lv11", "Fußkick": "lv6", "Schaufler": "tm28", "Kreideschrei": "lv41" },
+  57: { "Durchbruch": "tm31", "Kreuzhieb": "lv35", "Steinhagel": "tutor", "Erdbeben": "tm26" },
+  58: { "Flammenwurf": "lv49", "Biss": "start", "Schaufler": "tm28", "Rückkehr": "tm27" },
+  59: { "Flammenwurf": "tm35", "Turbotempo": "lv49", "Biss": "start", "Schaufler": "tm28" },
+  60: { "Surfer": "hm03", "Hypnose": "lv7", "Bodyslam": "lv31", "Regentanz": "lv25" },
+  61: { "Surfer": "hm03", "Hypnose": "start", "Bodyslam": "lv35", "Durchbruch": "tm31" },
+  62: { "Surfer": "hm03", "Durchbruch": "tm31", "Hypnose": "start", "Erdbeben": "tm26" },
+  63: { "Teleport": "start", "Psychokinese": "tm29", "Donnerwelle": "tutor", "Schutzschild": "tm17" },
+  64: { "Psychokinese": "lv36", "Genesung": "lv25", "Donnerwelle": "tutor", "Gedankengut": "tm04" },
+  65: { "Psychokinese": "lv36", "Gedankengut": "lv33", "Genesung": "lv25", "Donnerwelle": "tutor" },
+  66: { "Karateschlag": "lv13", "Geowurf": "lv19", "Fußkick": "start", "Silberblick": "start" },
+  67: { "Durchbruch": "tm31", "Geowurf": "lv19", "Steinhagel": "tutor", "Protzer": "tm08" },
+  68: { "Kreuzhieb": "lv46", "Erdbeben": "tm26", "Steinhagel": "tutor", "Protzer": "tm08" },
+  69: { "Rasierblatt": "lv37", "Schlafpuder": "lv15", "Säure": "lv23", "Gigasauger": "tm19" },
+  70: { "Rasierblatt": "lv42", "Schlafpuder": "lv15", "Säure": "lv24", "Gigasauger": "tm19" },
+  71: { "Rasierblatt": "start", "Schlafpuder": "start", "Gigasauger": "tm19", "Solarstrahl": "tm22" },
+  72: { "Surfer": "hm03", "Säure": "lv19", "Superschall": "lv6", "Eisstrahl": "tm13" },
+  73: { "Surfer": "hm03", "Eisstrahl": "tm13", "Säure": "lv19", "Barriere": "lv38" },
+  74: { "Steinwurf": "lv11", "Schaufler": "tm28", "Intensität": "lv16", "Stärke": "hm04" },
+  75: { "Steinhagel": "tutor", "Schaufler": "tm28", "Intensität": "lv16", "Stärke": "hm04" },
+  76: { "Erdbeben": "lv45", "Steinhagel": "tutor", "Durchbruch": "tm31", "Explosion": "lv53" },
+  77: { "Flammenwurf": "tm35", "Stampfer": "lv19", "Solarstrahl": "tm22", "Agilität": "lv38" },
+  78: { "Flammenwurf": "tm35", "Stampfer": "lv19", "Solarstrahl": "tm22", "Rückkehr": "tm27" },
+  79: { "Surfer": "hm03", "Konfusion": "lv17", "Aussetzer": "lv24", "Eisstrahl": "tm13" },
+  80: { "Surfer": "hm03", "Psychokinese": "lv44", "Eisstrahl": "tm13", "Aussetzer": "lv24" },
+  81: { "Donnerblitz": "tm24", "Donnerwelle": "lv21", "Sternschauer": "lv38", "Ultraschall": "lv16" },
+  82: { "Donnerblitz": "tm24", "Donnerwelle": "lv21", "Ultraschall": "lv16", "Metallsound": "start" },
+  83: { "Fliegen": "hm02", "Schlitzer": "lv41", "Schwerttanz": "lv31", "Stahlflügel": "tm47" },
+  84: { "Bohrschnabel": "lv37", "Verfolgung": "lv9", "Rückkehr": "tm27", "Aero-Ass": "tm40" },
+  85: { "Bohrschnabel": "lv47", "Rückkehr": "tm27", "Stahlflügel": "tm47", "Aero-Ass": "tm40" },
+  86: { "Surfer": "hm03", "Eisstrahl": "lv41", "Kopfnuss": "start", "Erholung": "lv29" },
+  87: { "Surfer": "hm03", "Eisstrahl": "lv51", "Kopfnuss": "start", "Erholung": "lv29" },
+  88: { "Matschbombe": "lv43", "Aussetzer": "lv8", "Säurepanzer": "lv34", "Geheimpower": "tm43" },
+  89: { "Matschbombe": "lv47", "Aussetzer": "lv8", "Säurepanzer": "lv34", "Durchbruch": "tm31" },
+  90: { "Surfer": "hm03", "Eisstrahl": "lv50", "Schutzschild": "lv29", "Explosion": "tutor" },
+  91: { "Surfer": "hm03", "Eisstrahl": "tm13", "Schutzschild": "start", "Explosion": "tutor" },
+  92: { "Psychokinese": "tm29", "Hypnose": "start", "Konfusstrahl": "lv21", "Nachtnebel": "lv16" },
+  93: { "Psychokinese": "tm29", "Hypnose": "start", "Konfusstrahl": "lv21", "Nachtnebel": "lv16" },
+  94: { "Psychokinese": "tm29", "Donnerblitz": "tm24", "Gigasauger": "tm19", "Hypnose": "start" },
+  95: { "Erdbeben": "tm26", "Steinhagel": "tutor", "Schaufler": "tm28", "Kreideschrei": "start" },
+  96: { "Psychokinese": "lv31", "Hypnose": "start", "Kopfnuss": "lv17", "Gedankengut": "tm04" },
+  97: { "Psychokinese": "lv35", "Hypnose": "start", "Kopfnuss": "lv17", "Gedankengut": "tm04" },
+  98: { "Surfer": "hm03", "Krabbhammer": "lv45", "Schutzschild": "lv38", "Stampfer": "lv27" },
+  99: { "Surfer": "hm03", "Krabbhammer": "lv57", "Schutzschild": "lv42", "Stärke": "hm04" },
+  100: { "Donnerblitz": "tm24", "Donnerwelle": "tutor", "Sternschauer": "lv42", "Explosion": "lv46" },
+  101: { "Donnerblitz": "tm24", "Donnerwelle": "tutor", "Sternschauer": "lv48", "Explosion": "lv54" },
+  102: { "Schlafpuder": "lv37", "Konfusion": "lv19", "Gigasauger": "tm19", "Egelsamen": "lv13" },
+  103: { "Psychokinese": "tm29", "Gigasauger": "tm19", "Schlafpuder": "pre-evo", "Egelsamen": "pre-evo" },
+  104: { "Knochmerang": "lv25", "Kopfnuss": "lv13", "Schaufler": "tm28", "Trugschlag": "lv33" },
+  105: { "Knochmerang": "lv25", "Erdbeben": "tm26", "Steinhagel": "tutor", "Durchbruch": "tm31" },
+  106: { "Turmkick": "lv26", "Durchbruch": "lv20", "Steinhagel": "tutor", "Protzer": "tm08" },
+  107: { "Durchbruch": "tm31", "Tempohieb": "lv20", "Donnerschlag": "lv26", "Eishieb": "lv26" },
+  108: { "Rückkehr": "tm27", "Surfer": "hm03", "Donnerblitz": "tm24", "Eisstrahl": "tm13" },
+  109: { "Matschbombe": "tm36", "Smog": "lv9", "Donnerblitz": "tm24", "Explosion": "lv41" },
+  110: { "Matschbombe": "tm36", "Donnerblitz": "tm24", "Explosion": "lv44", "Flammenwurf": "tm35" },
+  111: { "Hornattacke": "start", "Schaufler": "tm28", "Stärke": "hm04", "Stampfer": "lv10" },
+  112: { "Erdbeben": "lv58", "Steinhagel": "tutor", "Durchbruch": "tm31", "Hornbohrer": "lv38" },
+  113: { "Geowurf": "tutor", "Toxin": "tm06", "Weichei": "lv13", "Lichtschild": "lv49" },
+  114: { "Gigasauger": "tm19", "Schlafpuder": "lv4", "Slam": "lv40", "Sonnentag": "tm11" },
+  115: { "Rückkehr": "tm27", "Erdbeben": "tm26", "Durchbruch": "tm31", "Biss": "lv7" },
+  116: { "Surfer": "hm03", "Eisstrahl": "tm13", "Agilität": "lv36", "Rauchwolke": "lv8" },
+  117: { "Surfer": "hm03", "Eisstrahl": "tm13", "Agilität": "lv40", "Rauchwolke": "start" },
+  118: { "Surfer": "hm03", "Hornattacke": "lv15", "Agilität": "lv52", "Hornbohrer": "lv43" },
+  119: { "Surfer": "hm03", "Hornattacke": "lv15", "Agilität": "lv61", "Hornbohrer": "lv49" },
+  120: { "Surfer": "hm03", "Psychokinese": "tm29", "Donnerblitz": "tm24", "Eisstrahl": "tm13" },
+  121: { "Surfer": "hm03", "Psychokinese": "tm29", "Eisstrahl": "tm13", "Donnerblitz": "tm24" },
+  122: { "Psychokinese": "lv43", "Gedankengut": "tm04", "Lichtschild": "lv19", "Donnerblitz": "tm24" },
+  123: { "Schlitzer": "lv31", "Aero-Ass": "tm40", "Schwerttanz": "lv36", "Zerschneider": "hm01" },
+  124: { "Eisstrahl": "tm13", "Psychokinese": "tm29", "Todeskuss": "start", "Gedankengut": "tm04" },
+  125: { "Donnerblitz": "lv47", "Donnerwelle": "tutor", "Durchbruch": "tm31", "Psychokinese": "tm29" },
+  126: { "Flammenwurf": "lv41", "Psychokinese": "tm29", "Durchbruch": "tm31", "Feuerschlag": "start" },
+  127: { "Durchbruch": "lv31", "Schwerttanz": "lv49", "Steinhagel": "tutor", "Rückkehr": "tm27" },
+  128: { "Rückkehr": "tm27", "Erdbeben": "tm26", "Surfer": "hm03", "Eisstrahl": "tm13" },
+  129: { "Platscher": "start", "Tackle": "lv15", "Dreschflegel": "lv30" },
+  130: { "Surfer": "hm03", "Erdbeben": "tm26", "Drachentanz": "lv50", "Rückkehr": "tm27" },
+  131: { "Surfer": "hm03", "Eisstrahl": "lv31", "Donnerblitz": "tm24", "Abgesang": "lv25" },
+  132: { "Wandler": "start" },
+  133: { "Rückkehr": "tm27", "Biss": "lv30", "Schaufler": "tm28", "Doppelteam": "tm32" },
+  134: { "Surfer": "hm03", "Eisstrahl": "tm13", "Biss": "lv30", "Säurepanzer": "lv47" },
+  135: { "Donnerblitz": "tm24", "Donnerwelle": "lv42", "Biss": "pre-evo", "Doppelteam": "tm32" },
+  136: { "Flammenwurf": "lv52", "Biss": "lv30", "Schaufler": "tm28", "Rückkehr": "tm27" },
+  137: { "Psychokinese": "tm29", "Donnerblitz": "tm24", "Eisstrahl": "tm13", "Genesung": "lv20" },
+  138: { "Surfer": "hm03", "Eisstrahl": "tm13", "Schutzschild": "lv37", "Biss": "lv13" },
+  139: { "Surfer": "hm03", "Eisstrahl": "tm13", "Schutzschild": "lv37", "Biss": "start" },
+  140: { "Surfer": "hm03", "Steinhagel": "tutor", "Schutzschild": "tm17", "Kratzer": "start" },
+  141: { "Surfer": "hm03", "Steinhagel": "tutor", "Schlitzer": "lv40", "Durchbruch": "tm31" },
+  142: { "Fliegen": "hm02", "Steinhagel": "tutor", "Erdbeben": "tm26", "Stahlflügel": "tm47" },
+  143: { "Rückkehr": "tm27", "Erdbeben": "tm26", "Spukball": "tm30", "Erholung": "lv25" },
+  144: { "Eisstrahl": "lv49", "Fliegen": "hm02", "Weißnebel": "lv13", "Agilität": "lv25" },
+  145: { "Donnerblitz": "tm24", "Bohrschnabel": "lv49", "Donnerwelle": "lv13", "Lichtschild": "lv73" },
+  146: { "Flammenwurf": "lv49", "Fliegen": "hm02", "Feuerwirbel": "lv13", "Agilität": "lv25" },
+  147: { "Drachenwut": "lv22", "Donnerwelle": "lv8", "Surfer": "hm03", "Eisstrahl": "tm13" },
+  148: { "Drachenwut": "lv22", "Donnerwelle": "start", "Surfer": "hm03", "Eisstrahl": "tm13" },
+  149: { "Drachenklaue": "tm02", "Erdbeben": "tm26", "Fliegen": "hm02", "Rückkehr": "tm27" },
+  150: { "Psychokinese": "lv66", "Gedankengut": "tm04", "Donnerblitz": "tm24", "Eisstrahl": "tm13" },
+  151: { "Psychokinese": "lv40", "Donnerblitz": "tm24", "Eisstrahl": "tm13", "Flammenwurf": "tm35" }
+};
+
 const preferredItems = {
   Feuer: "Holzkohle",
   Wasser: "Mystikwasser",
@@ -3657,12 +3811,26 @@ function formatMoveNumber(value, suffix = "") {
   return value === null || value === undefined ? "—" : `${value}${suffix}`;
 }
 
-function renderMoveCard(move) {
+function getMoveAcquisitionLabel(pokemonId, moveName) {
+  const method = moveAcquisition[pokemonId]?.[moveName];
+  if (!method) return state.lang === "en" ? "Check learnset" : "Learnset prüfen";
+  if (method === "start") return state.lang === "en" ? "Start / already known" : "Start / schon da";
+  if (method === "tutor") return state.lang === "en" ? "Move Tutor" : "Attackenhelfer";
+  if (method === "egg") return state.lang === "en" ? "Egg move" : "Ei-Zucht";
+  if (method === "pre-evo") return state.lang === "en" ? "Pre-evolution" : "Vorentwicklung";
+  if (method === "machine") return state.lang === "en" ? "TM/HM" : "TM/VM";
+  if (method.startsWith("lv")) return `${state.lang === "en" ? "Level" : "Level"} ${method.slice(2)}`;
+  if (method.startsWith("tm")) return `TM${method.slice(2).padStart(2, "0")}`;
+  if (method.startsWith("hm")) return `${state.lang === "en" ? "HM" : "VM"}${method.slice(2).padStart(2, "0")}`;
+  return method;
+}
+
+function renderMoveCard(move, pokemonId) {
   const details = moveDetails[move];
   const category = getMoveCategory(details, move);
   const labels = state.lang === "en"
-    ? { type: "Type", category: "Cat.", power: "Power", accuracy: "Acc.", pp: "PP" }
-    : { type: "Typ", category: "Kat.", power: "Stärke", accuracy: "Genau.", pp: "AP" };
+    ? { type: "Type", category: "Cat.", power: "Power", accuracy: "Acc.", pp: "PP", obtain: "Get" }
+    : { type: "Typ", category: "Kat.", power: "Stärke", accuracy: "Genau.", pp: "AP", obtain: "Erhalt" };
 
   return `
     <div class="move-card">
@@ -3675,6 +3843,10 @@ function renderMoveCard(move) {
         <span><small>${labels.power}</small><b>${formatMoveNumber(details?.power)}</b></span>
         <span><small>${labels.accuracy}</small><b>${formatMoveNumber(details?.accuracy, "%")}</b></span>
         <span><small>${labels.pp}</small><b>${formatMoveNumber(details?.pp)}</b></span>
+      </div>
+      <div class="move-acquisition">
+        <small>${labels.obtain}</small>
+        <b>${getMoveAcquisitionLabel(pokemonId, move)}</b>
       </div>
       <p>${getMoveDescription(move)}</p>
     </div>
@@ -3750,6 +3922,7 @@ function getActiveBuild() {
 }
 
 function renderBuildRecommendation() {
+  const active = pokemon[state.selectedPokemon];
   const build = getActiveBuild();
   elements.buildRecommendation.innerHTML = `
     <div class="build-summary">
@@ -3774,7 +3947,7 @@ function renderBuildRecommendation() {
     <div class="move-list">
       <span>${t("moves")}</span>
       <div class="move-grid">
-        ${build.moves.map((move) => renderMoveCard(move)).join("")}
+        ${build.moves.map((move) => renderMoveCard(move, active.id)).join("")}
       </div>
     </div>
   `;

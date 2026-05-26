@@ -1406,6 +1406,32 @@ input:not([type="checkbox"]):focus-visible,
   overflow-wrap: normal;
 }
 
+.move-acquisition {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+  border: 1px solid rgba(255, 221, 63, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 221, 63, 0.06);
+  padding: 6px 8px;
+}
+
+.move-acquisition small {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.move-acquisition b {
+  color: #fff;
+  font-size: 0.82rem;
+  line-height: 1.1;
+  text-align: right;
+}
+
 .move-card p {
   margin: 8px 0 0;
   color: var(--muted);
