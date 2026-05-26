@@ -9,7 +9,7 @@
     />
     <meta name="referrer" content="no-referrer" />
     <title>Pokémon EV Trainer</title>
-    <link rel="stylesheet" href="styles.css?v=2026-05-26-brand-placement" />
+    <link rel="stylesheet" href="styles.css?v=2026-05-26-target-under-pokemon" />
   </head>
   <body class="splash-active">
     <div class="splash-screen" id="splashScreen" aria-label="Nemurenai Game Studio Intro">
@@ -113,6 +113,41 @@
             <div id="trainingPlan" class="training-plan"></div>
             <div id="enemyButtons" class="enemy-grid"></div>
           </div>
+        </div>
+
+        <div class="dashboard-column dashboard-column-selection">
+          <div class="panel pokemon-panel">
+            <label id="searchLabel" for="pokemonSearch">Suche</label>
+            <input id="pokemonSearch" type="search" placeholder="z.B. Glurak, Pikachu, Mewtu..." autocomplete="off" />
+
+            <label id="pokemonSelectLabel" for="pokemonSelect">Pokémon</label>
+            <select id="pokemonSelect"></select>
+
+            <div class="pokemon-preview">
+              <div class="sprite-frame" id="spriteFrame">
+                <img id="pokemonSprite" alt="" />
+              </div>
+              <div>
+                <p class="label" id="activeBuildLabel">Aktiver Build</p>
+                <h2 id="pokemonName">Glurak</h2>
+                <p id="pokemonTypes" class="muted">Feuer / Flug</p>
+                <button class="shiny-button" id="shinyButton" type="button">Shiny: Aus</button>
+              </div>
+            </div>
+
+            <div id="typeMatchups" class="type-matchups" aria-label="Typen Matchups"></div>
+
+            <div class="mini-grid">
+              <label>
+                <span id="versionLabel">Version</span>
+                <select id="versionSelect"></select>
+              </label>
+              <label>
+                <span id="natureLabel">Wesen</span>
+                <select id="natureSelect"></select>
+              </label>
+            </div>
+          </div>
 
           <div class="panel target-panel">
             <div class="section-heading">
@@ -141,46 +176,6 @@
             </div>
             <div id="statRows" class="stat-list"></div>
           </div>
-        </div>
-
-        <div class="dashboard-column dashboard-column-selection">
-          <div class="panel pokemon-panel">
-            <label id="searchLabel" for="pokemonSearch">Suche</label>
-            <input id="pokemonSearch" type="search" placeholder="z.B. Glurak, Pikachu, Mewtu..." autocomplete="off" />
-
-            <label id="pokemonSelectLabel" for="pokemonSelect">Pokémon</label>
-            <select id="pokemonSelect"></select>
-
-            <div class="pokemon-preview">
-              <div class="sprite-frame" id="spriteFrame">
-                <img id="pokemonSprite" alt="" />
-              </div>
-              <div>
-                <p class="label" id="activeBuildLabel">Aktiver Build</p>
-                <h2 id="pokemonName">Glurak</h2>
-                <p id="pokemonTypes" class="muted">Feuer / Flug</p>
-                <button class="shiny-button" id="shinyButton" type="button">Shiny: Aus</button>
-              </div>
-            </div>
-
-            <div class="studio-footer">
-              <span>Nemurenai Game Studio</span>
-            </div>
-
-            <div id="typeMatchups" class="type-matchups" aria-label="Typen Matchups"></div>
-
-            <div class="mini-grid">
-              <label>
-                <span id="versionLabel">Version</span>
-                <select id="versionSelect"></select>
-              </label>
-              <label>
-                <span id="natureLabel">Wesen</span>
-                <select id="natureSelect"></select>
-              </label>
-            </div>
-          </div>
-
         </div>
       </section>
 
@@ -220,6 +215,10 @@
           <div id="locationSteps" class="location-timeline"></div>
         </div>
       </section>
+
+      <div class="studio-footer">
+        <span>Nemurenai Game Studio</span>
+      </div>
     </main>
 
     <div class="tutorial-modal" id="tutorialModal" hidden>
